@@ -264,12 +264,12 @@ elif menu == "✍️ Trabalhos Científicos":
 elif menu == "🎓 Certificados e Validação":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("🎓 Certificados — Jornada Científica de Fisioterapia")
-    tab1, tab2 = st.tabs(["📜 Emitir Certificado", "🛡️ Validar Autenticidade por Código"])
+    tab1, tab2 = st.tabs(["📜 Certificado enviado por email", "🛡️ Validar Autenticidade por Código"])
     
     with tab1:
         st.write("Selecione a categoria para receber seu certificado:")
         cat_cert = st.selectbox("Categoria:", ["Ouvinte", "Apresentador", "Banca Avaliadora"])
-        st.link_button("📥 Emitir Certificado", "LINK_CERTIFICADOS")
+        st.link_button("📥 Certificado por email", "LINK_CERTIFICADOS")
         
     with tab2:
         st.write("Insira o **Código de Autenticidade** exclusivo impresso no rodapé do certificado da Jornada Científica para comprovar sua validade:")
