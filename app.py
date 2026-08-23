@@ -299,10 +299,10 @@ elif menu == "🎓 Certificados e Validação":
                     if not liberado_geral:
                         st.warning("⏳ **Emissão Indisponível:** Os certificados da Jornada Científica serão liberados para emissão somente após o encerramento oficial do evento.")
                     else:
-                        # Procura colunas de e-mail, nome e código
-                        col_email_emit = next((c for c in df_emit.columns if 'email' in c), None)
-                        col_nome_emit = next((c for c in df_emit.columns if 'nome' in c or 'participante' in c), None)
-                        col_cod_emit = next((c for c in df_emit.columns if 'codigo' in c or 'chave' in c), None)
+                        # Procura colunas de e-mail e nome ignorando acentos, maiúsculas e hífens
+                        col_email_emit = next((c for c in df_emit.columns if 'email' in c.replace('-', '').lower()), None)
+                        col_nome_emit = next((c for c in df_emit.columns if 'nome' in c.lower() or 'participante' in c.lower()), None)
+                        col_cod_emit = next((c for c in df_emit.columns if 'codigo' in c.lower() or 'chave' in c.lower() or 'autenticidade' in c.lower()), None)
                         
                         if col_email_emit and col_nome_emit:
                             df_emit[col_email_emit] = df_emit[col_email_emit].astype(str).str.strip().str.lower()
