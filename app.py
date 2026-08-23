@@ -324,13 +324,13 @@ elif menu == "🎓 Certificados e Validação":
                                                 return val
                                     return default
 
-                                Título = get_val(['titulo', 'trabalho', 'resumo', 'nome do trabalho', 'artigo'], 'Título do Trabalho não informado')
-                                Nome_Orientador = get_val(['orientador', 'professor'], 'Orientador').title()
-                                Nome_Aluno = get_val(['nome_aluno', 'aluno', 'estudante', 'autor'], pessoa_logada).title()
-                                Nome_Banca1 = get_val(['banca1', 'avaliador1', 'examinador1', 'membro 1'], 'Avaliador 1').title()
-                                Nome_Banca2 = get_val(['banca2', 'avaliador2', 'examinador2', 'membro 2'], 'Avaliador 2').title()
-                                Data_Evento = get_val(['data_evento', 'data', 'periodo'], '20 a 22 de outubro de 2026')
-                                CargaHoraria = get_val(['carga_horaria', 'horas', 'ch'], '20')
+                                Título = get_val(['Título', 'título', 'trabalho', 'resumo', 'nome do trabalho', 'artigo'], 'Título do Trabalho não informado')
+                                Nome_Orientador = get_val(['Nome_Orientador', 'orientador', 'professor'], 'Orientador').title()
+                                Nome_Aluno = get_val(['Nome_Aluno','nome_aluno', 'aluno', 'estudante', 'autor'], pessoa_logada).title()
+                                Nome_Banca1 = get_val(['Nome_Banca1','banca1', 'avaliador1', 'examinador1', 'membro 1'], 'Avaliador 1').title()
+                                Nome_Banca2 = get_val(['Nome_Banca2','banca2', 'avaliador2', 'examinador2', 'membro 2'], 'Avaliador 2').title()
+                                Data_Evento = get_val(['Data_Evento','data_evento', 'data', 'periodo'])
+                                CargaHoraria = get_val(['CargaHoraria','carga_horaria', 'horas', 'ch'])
                                 Evento = "Jornada Científica do Curso de Fisioterapia da PUC Goiás (2026/2)"
                                 
                                 st.success(f"✅ Participante encontrado: **{pessoa_logada}**")
@@ -399,12 +399,12 @@ elif menu == "🎓 Certificados e Validação":
                                 
                                 p = Paragraph(texto_conteudo, estilo_texto)
                                 p.wrap(largura - 160, 100)
-                                # Texto do certificado descido um pouco mais (posicionado em altura - 445)
-                                p.drawOn(c, 80, altura - 445)
+                                # Texto do certificado descido um pouco mais (posicionado em altura - 245)
+                                p.drawOn(c, 80, altura - 245)
                                 
                                 # Assinatura e linha da comissão organizadora deslocadas um pouco mais para cima
                                 try:
-                                    c.drawImage("signSF.png", largura - 250, 115, width=160, height=50, mask='auto')
+                                    c.drawImage("signSF.png", largura - 200, 115, width=160, height=50, mask='auto')
                                 except:
                                     pass 
                                 
