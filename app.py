@@ -92,7 +92,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.link_button("📅 Ver / Baixar Programação da Jornada EM BREVE", "COLE_LINK_PROGRAMACAO_JORNADA")
         
     elif "Minicurso Prático" in evento_selecionado:
-        st.markdown("### 🤲 Minicurso Prático: Reabilitação e Terapia Manual")
+        st.markdown("### 🤲 Minicurso Prático: As leis da robótica de Azimov aplicadas à IA")
         st.write("Detalhes e práticas avançadas em terapia manual para acadêmicos e profissionais.")
         st.markdown("#### 📅 Programação do Evento")
         st.link_button("📅 Ver / Baixar Programação do Minicurso EM BREVE", "COLE_LINK_PROGRAMACAO_MINICURSO")
@@ -110,7 +110,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.link_button("📅 Ver / Baixar Programação do Simpósio EM BREVE", "COLE_LINK_PROGRAMACAO_SIMPOSIO")
         
     elif "Encontro Científico" in evento_selecionado:
-        st.markdown("### 🎓 Encontro Científico Docente")
+        st.markdown("### 🎓 Encontro Científico PsicoHistória")
         st.write("""
         * **Foco:** Integração científica dos acadêmicos da graduação.
         * **Investimento:** Gratuito para a comunidade acadêmica da FST.
@@ -313,7 +313,8 @@ elif menu == "🎓 Certificados e Validação":
                                 codigo_auth = str(res_emit.iloc[0][col_cod_emit]) if col_cod_emit else "PUCGO-2026-OFICIAL"
                                 
                                 Título = str(res_emit.iloc[0].get('titulo', 'Título do Trabalho não informado')).strip()
-                                Nome-Orientador = str(res_emit.iloc[0].get('orientador', 'Orientador')).strip().title()
+                                Nome_Orientador = str(res_emit.iloc[0].get('orientador', 'Orientador')).strip().title()
+                                Nome_Aluno = str(res_emit.iloc[0].get('nome_aluno', 'Nome')).strip().title()
                                 Nome_Banca1 = str(res_emit.iloc[0].get('banca1', 'Avaliador 1')).strip().title()
                                 Nome_Banca2 = str(res_emit.iloc[0].get('banca2', 'Avaliador 2')).strip().title()
                                 Data_Evento = "20 a 22 de outubro de 2026"
@@ -378,11 +379,11 @@ elif menu == "🎓 Certificados e Validação":
                                 )
                                 
                                 if "Ouvinte" in cat_cert:
-                                    texto_conteudo = f"participou do evento científico {nome_evento}, realizado na modalidade presencial, no período de {data_ev}, com carga horária total de {carga_horario_str} horas, na qualidade de Ouvinte."
+                                    texto_conteudo = f"participou do evento científico {Evento}, realizado na modalidade presencial, no período de {Data_Evento}, com carga horária total de {CargaHoraria} horas, na qualidade de Ouvinte."
                                 elif "Apresentador" in cat_cert:
-                                    texto_conteudo = f"apresentou como autor o trabalho intitulado <b>\"{titulo_trab}\"</b>, orientado por <b>{orientador_trab}</b>, tendo como banca examinadora <b>{banca1_trab}</b> e <b>{banca2_trab}</b>, apresentado em sessão pública na {nome_evento} nos dias {data_ev}."
+                                    texto_conteudo = f"apresentou como autor o trabalho intitulado <b>\"{Título}\"</b>, orientado por <b>{Nome_Orientador}</b>, tendo como banca examinadora <b>{Nome_Banca1}</b> e <b>{Nome_Banca2}</b>, apresentado em sessão pública na {Evento} nos dias {Data_Evento}."
                                 else:
-                                    texto_conteudo = f"participou como Membro da Banca Examinadora do trabalho intitulado <b>\"{titulo_trab}\"</b>, orientado por <b>{orientador_trab}</b> e apresentado em sessão pública na {nome_evento} nos dias {data_ev}."
+                                    texto_conteudo = f"participou como Membro da Banca Examinadora do trabalho intitulado <b>\"{Título}\"</b>, orientado por <b>{Nome_Orientador}</b> e apresentado em sessão pública na {Evento} nos dias {Data_Evento}."
                                 
                                 p = Paragraph(texto_conteudo, estilo_texto)
                                 p.wrap(largura - 160, 100)
