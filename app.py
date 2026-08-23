@@ -304,7 +304,7 @@ elif menu == "🎓 Certificados e Validação":
                             liberado_geral = True
                     
                     if not liberado_geral:
-                        st.warning("⏳ **Emissão Indisponível:** Os certificados serão liberados para emissão somente após o encerramento oficial do evento.")
+                        st.warning("⏳ **Emissão Indisponível:** Os certificados serão liberados para emissão somente após o encerramento oficial do evento e validação da frequência.")
                     else:
                         col_email_emit = next((c for c in df_emit.columns if 'email' in c.replace('-', '').lower()), None)
                         col_nome_emit = next((c for c in df_emit.columns if 'nome' in c.lower() or 'participante' in c.lower()), None)
@@ -319,12 +319,12 @@ elif menu == "🎓 Certificados e Validação":
                                 codigo_auth = str(res_emit.iloc[0][col_cod_emit]) if col_cod_emit else "PUCGO-2026-OFICIAL"
                                 
                                 # Coleta de dados adicionais da planilha (com valores padrão caso a coluna não exista)
-                                titulo_trab = str(res_emit.iloc[0].get('titulo', 'Título do Trabalho não informado')).strip()
-                                nome_orientador = str(res_emit.iloc[0].get('orientador', 'Orientador')).strip().title()
-                                banca_1 = str(res_emit.iloc[0].get('banca1', 'Avaliador 1')).strip().title()
-                                banca_2 = str(res_emit.iloc[0].get('banca2', 'Avaliador 2')).strip().title()
-                                data_evento = str(res_emit.iloc[0].get('data_evento', '20 a 22 de outubro de 2026')).strip()
-                                nome_evento = "Jornada Científica do Curso de Fisioterapia da PUC Goiás"
+                                Título = str(res_emit.iloc[0].get('titulo', 'Título do Trabalho não informado')).strip()
+                                Nome_Orientador = str(res_emit.iloc[0].get('orientador', 'Orientador')).strip().title()
+                                Nome_Banca1 = str(res_emit.iloc[0].get('banca1', 'Avaliador 1')).strip().title()
+                                Nome_Banca2 = str(res_emit.iloc[0].get('banca2', 'Avaliador 2')).strip().title()
+                                Data_Evento = str(res_emit.iloc[0].get('data_evento', '01 e 02 de fevereiro de 2027', '20 a 22 de outubro de 2026')).strip()
+                                Evento = "Jornada Científica do Curso de Fisioterapia da PUC Goiás"
                                 
                                 st.success(f"✅ Participante encontrado: **{pessoa_logada}**")
                                 
@@ -361,7 +361,7 @@ elif menu == "🎓 Certificados e Validação":
                                 
                                 c.setFont("Helvetica", 11)
                                 c.setFillColor(colors.HexColor("#555555"))
-                                c.drawCentredString(largura / 2, altura - 95, "Escola de Ciências Médicas e da Vida • Curso de Fisioterapia")
+                                c.drawCentredString(largura / 2, altura - 95, "Escola de Ciências Sociais e da Saúde • Curso de Fisioterapia")
                                 
                                 # Título Principal
                                 c.setFont("Helvetica-Bold", 26)
@@ -390,11 +390,11 @@ elif menu == "🎓 Certificados e Validação":
                                 )
                                 
                                 if "Ouvinte" in cat_cert:
-                                    texto_conteudo = f"participou do evento científico {nome_evento}, realizado na modalidade presencial, no período de {data_evento}, com carga horária total de 16 horas, na qualidade de Ouvinte."
+                                    texto_conteudo = f"participou do evento científico {Evento}, realizado na modalidade presencial, no período de {Data_Evento}, com carga horária total de {CargaHoraria} horas, na qualidade de Ouvinte."
                                 elif "Apresentador" in cat_cert:
-                                    texto_conteudo = f"apresentou como autor, o trabalho intitulado <b>\"{titulo_trab}\"</b>, orientado por <b>{nome_orientador}</b>, tendo como banca examinadora <b>{banca_1}</b> e <b>{banca_2}</b>, apresentado em sessão pública na {nome_evento} nos dias {data_evento}."
+                                    texto_conteudo = f"apresentou como autor, o trabalho intitulado <b>\"{Título}\"</b>, orientado por <b>{Nome-Orientador}</b>, tendo como banca examinadora <b>{Nome_Banca1}</b> e <b>{Nome_Banca2}</b>, apresentado em sessão pública na {Evento} nos dias {Data_Evento}."
                                 else:  # Membro da Banca
-                                    texto_conteudo = f"participou como Membro da Banca Examinadora do trabalho intitulado <b>\"{titulo_trab}\"</b>, do autor <b>{pessoa_logada}</b>, orientado por <b>{nome_orientador}</b> e apresentado em sessão pública na {nome_evento} nos dias {data_evento}."
+                                    texto_conteudo = f"participou como Membro da Banca Examinadora do trabalho intitulado <b>\"{Título}\"</b>, do autor <b>{Nome-Aluno}</b>, orientado por <b>{Nome-Orientador}</b> e apresentado em sessão pública na {Evento} nos dias {Data_Evento}."
                                 
                                 p = Paragraph(texto_conteudo, estilo_texto)
                                 # Define a largura da caixa de texto e a posiciona centralizada na tela
@@ -403,7 +403,7 @@ elif menu == "🎓 Certificados e Validação":
                                 
                                 # 3. ASSINATURA DIGITAL
                                 try:
-                                    c.drawImage("assinatura.png", largura - 250, 95, width=160, height=50, mask='auto')
+                                    c.drawImage("signsf.png", largura - 250, 95, width=160, height=50, mask='auto')
                                 except:
                                     pass 
                                 
@@ -413,7 +413,7 @@ elif menu == "🎓 Certificados e Validação":
                                 
                                 c.setFont("Helvetica-Bold", 9)
                                 c.setFillColor(colors.HexColor("#333333"))
-                                c.drawCentredString(largura - 170, 75, "Comissão Organizadora / Coordenação")
+                                c.drawCentredString(largura - 170, 75, "Comissão Organizadora / Coordenação do Curso de Fisioterapia / Prof. Larissa Mariana V de Oliveira")
 
                                 # 4. RODAPÉ E AUTENTICIDADE
                                 c.setStrokeColor(colors.HexColor("#CCCCCC"))
@@ -421,7 +421,7 @@ elif menu == "🎓 Certificados e Validação":
                                 
                                 c.setFont("Helvetica-Bold", 8)
                                 c.setFillColor(colors.HexColor("#444444"))
-                                c.drawString(60, 45, f"Código de Autenticidade: {codigo_auth}")
+                                c.drawString(60, 45, f"Código de Autenticidade: {Código}")
                                 c.drawRightString(largura - 60, 45, "Verificado oficialmente via Science Nexus (PUC Goiás)")
                                 
                                 c.showPage()
@@ -432,7 +432,7 @@ elif menu == "🎓 Certificados e Validação":
                                 st.download_button(
                                     label="📥 Baixar Certificado Oficial em PDF",
                                     data=buffer,
-                                    file_name=f"Certificado_{pessoa_logada.replace(' ', '_')}.pdf",
+                                    file_name=f"Certificado_{'Nome', 'Nome-aluno','Nome_Banca1','Nome_Banca2','Nome-Orientador'.replace(' ', '_')}.pdf",
                                     mime="application/pdf"
                                 )
                             else:
