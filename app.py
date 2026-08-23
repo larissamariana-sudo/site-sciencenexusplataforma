@@ -515,9 +515,9 @@ elif menu == "📂 Eventos Anteriores":
                     st.error("Por favor, informe o e-mail.")
 
 # --- 8. CONTATO ---
-elif menu == "📧 Contato":
+elif menu == "📞 Contato":
     mostrar_cabecalho("capa0.jpg")
-    st.subheader("📧📞 Fale Conosco")
+    st.subheader("📞 Fale Conosco")
     st.write("Entre em contato com a comissão organizadora para dúvidas sobre submissões, inscrições ou certificados.")
     st.markdown("---")
     st.info("📧 **E-mail oficial de suporte:** eventoscientificosc@gmail.com")
