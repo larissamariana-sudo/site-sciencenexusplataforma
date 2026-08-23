@@ -270,13 +270,12 @@ elif menu == "🎓 Certificados e Validação":
         st.subheader("📜 Emissão de Certificado Oficial")
         st.write("Digite o seu e-mail cadastrado para gerar o seu certificado oficial com código de autenticidade.")
         
-        cat_cert = st.selectbox("Selecione sua Categoria:", ["Ouvinte", "Apresentador", "Banca Avaliadora"])
+        cat_cert = st.selectbox("Selecione sua Categoria:", ["Ouvinte (16h)", "Apresentador (5h)", "Banca Avaliadora"])
         email_emissao = st.text_input("Digite seu E-mail cadastrado para emissão:").strip().lower()
         
         if st.button("Gerar e Baixar Certificado"):
             if email_emissao:
                 try:
-                    # Usamos a mesma planilha de controle de certificados
                     link_planilha_cert = "https://docs.google.com/spreadsheets/d/15D_Vay3AQDUrbmaHjgwTeg0irLHX5q2pw6sw_wtiDl0/edit?usp=sharing"
                     
                     id_c = link_planilha_cert.split("/d/")[1].split("/")[0]
@@ -285,21 +284,19 @@ elif menu == "🎓 Certificados e Validação":
                     df_emit = pd.read_csv(url_c_csv)
                     df_emit.columns = df_emit.columns.str.strip().str.lower()
                     
-                    # Verifica a regra de liberação (Método B com segurança extra para células vazias)
+                    # Verifica a regra de liberação (Método B)
                     col_liberacao = next((c for c in df_emit.columns if 'liberacao' in c or 'status_emissao' in c or 'liberado' in c), None)
                     
-                    liberado_geral = False # Por padrão agora é FALSO (segurança máxima: se não estiver explicitamente liberado, trava)
-                    
+                    liberado_geral = False
                     if col_liberacao:
                         status_lib = str(df_emit.iloc[0][col_liberacao]).strip().lower()
-                        # O certificado só será liberado se a célula contiver exatamente 'liberado' ou 'sim'
                         if status_lib in ['liberado', 'sim', 'true', '1']:
                             liberado_geral = True
                     
                     if not liberado_geral:
                         st.warning("⏳ **Emissão Indisponível:** Os certificados da Jornada Científica serão liberados para emissão somente após o encerramento oficial do evento e validação da frequência.")
                     else:
-                        # Procura colunas de e-mail e nome ignorando acentos, maiúsculas e hífens
+                        # Procura colunas ignorando acentos e hífens
                         col_email_emit = next((c for c in df_emit.columns if 'email' in c.replace('-', '').lower()), None)
                         col_nome_emit = next((c for c in df_emit.columns if 'nome' in c.lower() or 'participante' in c.lower()), None)
                         col_cod_emit = next((c for c in df_emit.columns if 'codigo' in c.lower() or 'chave' in c.lower() or 'autenticidade' in c.lower()), None)
@@ -314,51 +311,81 @@ elif menu == "🎓 Certificados e Validação":
                                 
                                 st.success(f"✅ Participante encontrado: **{nome_participante}**")
                                 
-                                # --- GERAÇÃO DO PDF EM MEMÓRIA (ReportLab) ---
+                                # --- LAYOUT PROFISSIONAL DO CERTIFICADO (ReportLab) ---
                                 import io
                                 from reportlab.lib.pagesizes import letter, landscape
                                 from reportlab.pdfgen import canvas
+                                from reportlab.lib import colors
                                 
                                 buffer = io.BytesIO()
                                 c = canvas.Canvas(buffer, pagesize=landscape(letter))
                                 largura, altura = landscape(letter)
                                 
-                                # Borda decorativa do certificado
-                                c.setStrokeColorRGB(0, 0.26, 0.14) # Verde PUC (#004225)
-                                c.setLineWidth(5)
-                                c.rect(30, 30, largura - 60, altura - 60)
+                                # 1. Moldura Externa (Verde Escuro Institucional - #004225)
+                                c.setStrokeColor(colors.HexColor("#004225"))
+                                c.setLineWidth(6)
+                                c.rect(25, 25, largura - 50, altura - 50)
                                 
-                                # Cabeçalho institucional
-                                c.setFont("Helvetica-Bold", 20)
-                                c.drawCentredString(largura / 2, altura - 90, "PONTIFÍCIA UNIVERSIDADE CATÓLICA DE GOIÁS")
-                                c.setFont("Helvetica", 13)
-                                c.drawCentredString(largura / 2, altura - 115, "Science Nexus — Plataforma de Eventos Científicos")
+                                # 2. Moldura Interna Fina (Detalhe elegante)
+                                c.setLineWidth(1)
+                                c.rect(32, 32, largura - 64, altura - 64)
                                 
-                                # Título principal
+                                # 3. Cabeçalho Institucional
+                                c.setFont("Helvetica-Bold", 16)
+                                c.setFillColor(colors.HexColor("#004225"))
+                                c.drawCentredString(largura / 2, altura - 75, "PONTIFÍCIA UNIVERSIDADE CATÓLICA DE GOIÁS")
+                                
+                                c.setFont("Helvetica", 11)
+                                c.setFillColor(colors.HexColor("#555555"))
+                                c.drawCentredString(largura / 2, altura - 95, "Escola de Ciências Sociais e da Saúde • Curso de Fisioterapia")
+                                
+                                # 4. Título Principal do Certificado
+                                c.setFont("Helvetica-Bold", 28)
+                                c.setFillColor(colors.HexColor("#004225"))
+                                c.drawCentredString(largura / 2, altura - 150, "CERTIFICADO DE PARTICIPAÇÃO")
+                                
+                                # 5. Corpo do Texto (Certificamos que...)
+                                c.setFont("Helvetica", 14)
+                                c.setFillColor(colors.HexColor("#333333"))
+                                c.drawCentredString(largura / 2, altura - 200, "Certificamos, para os devidos fins, que")
+                                
+                                # 6. Nome do Participante (Destaque em Negrito e Maior)
                                 c.setFont("Helvetica-Bold", 24)
-                                c.setFillColorRGB(0, 0.26, 0.14)
-                                c.drawCentredString(largura / 2, altura - 175, "CERTIFICADO DE PARTICIPAÇÃO")
+                                c.setFillColor(colors.HexColor("#000000"))
+                                c.drawCentredString(largura / 2, altura - 235, nome_participante)
                                 
-                                # Texto descritivo
+                                # 7. Descrição da Atividade / Categoria
                                 c.setFont("Helvetica", 13)
-                                c.setFillColorRGB(0.2, 0.2, 0.2)
-                                texto_cert = f"Certificamos que {nome_participante} participou com êxito na categoria"
-                                c.drawCentredString(largura / 2, altura - 225, texto_cert)
+                                c.setFillColor(colors.HexColor("#333333"))
+                                texto_atividade = f"participou com êxito na categoria de {cat_cert}"
+                                c.drawCentredString(largura / 2, altura - 275, texto_atividade)
                                 
-                                c.setFont("Helvetica-Bold", 14)
-                                c.drawCentredString(largura / 2, altura - 250, f"{cat_cert} da Jornada Científica do Curso de Fisioterapia.")
+                                c.setFont("Helvetica-Bold", 13)
+                                c.setFillColor(colors.HexColor("#004225"))
+                                c.drawCentredString(largura / 2, altura - 295, "da Jornada Científica do Curso de Fisioterapia da PUC Goiás (2026/2).")
                                 
-                                # Rodapé com código de autenticidade
-                                c.setFont("Helvetica", 10)
-                                c.drawString(50, 50, f"Código de Autenticidade: {codigo_auth}")
-                                c.drawRightString(largura - 50, 50, "Verificado oficialmente via Science Nexus (PUC Goiás)")
+                                # 8. Rodapé / Bloco de Autenticidade
+                                # Linha divisória do rodapé
+                                c.setStrokeColor(colors.HexColor("#CCCCCC"))
+                                c.setLineWidth(0.8)
+                                c.line(60, 85, largura - 60, 85)
+                                
+                                # Informações de Autenticidade e Validação
+                                c.setFont("Helvetica-Bold", 9)
+                                c.setFillColor(colors.HexColor("#444444"))
+                                c.drawString(60, 65, f"Código de Autenticidade: {codigo_auth}")
+                                c.drawRightString(largura - 60, 65, "Documento emitido digitalmente via Science Nexus")
+                                
+                                c.setFont("Helvetica", 8)
+                                c.setFillColor(colors.HexColor("#666666"))
+                                c.drawString(60, 50, "A autenticidade deste certificado pode ser verificada publicamente na aba de validação do portal.")
                                 
                                 c.showPage()
                                 c.save()
                                 
                                 buffer.seek(0)
                                 
-                                # Botão de Download direto na tela
+                                # Botão de Download na tela
                                 st.download_button(
                                     label="📥 Baixar Certificado Oficial em PDF",
                                     data=buffer,
