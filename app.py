@@ -399,12 +399,12 @@ elif menu == "🎓 Certificados e Validação":
                                 
                                 p = Paragraph(texto_conteudo, estilo_texto)
                                 p.wrap(largura - 160, 100)
-                                # Texto do certificado descido um pouco mais (posicionado em altura - 345)
-                                p.drawOn(c, 80, altura - 345)
+                                # Texto do certificado descido um pouco mais (posicionado em altura - 445)
+                                p.drawOn(c, 80, altura - 445)
                                 
                                 # Assinatura e linha da comissão organizadora deslocadas um pouco mais para cima
                                 try:
-                                    c.drawImage("signsf.png", largura - 250, 115, width=160, height=50, mask='auto')
+                                    c.drawImage("signSF.png", largura - 250, 115, width=160, height=50, mask='auto')
                                 except:
                                     pass 
                                 
