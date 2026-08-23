@@ -312,7 +312,7 @@ elif menu == "🎓 Certificados e Validação":
                                 pessoa_logada = str(res_emit.iloc[0][col_nome_emit]).title()
                                 codigo_auth = str(res_emit.iloc[0][col_cod_emit]) if col_cod_emit and pd.notna(res_emit.iloc[0][col_cod_emit]) else "PUCGO-2026-OFICIAL"
                                 
-                                # Leitura segura dos dados diretamente da planilha mapeados por nome de coluna dinâmicos
+                                # Leitura segura dos dados diretamente da planilha mapeados por termos abrangentes
                                 row_data = res_emit.iloc[0]
                                 
                                 def get_val(keys, default):
@@ -324,11 +324,11 @@ elif menu == "🎓 Certificados e Validação":
                                                 return val
                                     return default
 
-                                Título = get_val(['titulo', 'trabalho', 'resumo'], 'Título do Trabalho não informado')
-                                Nome_Orientador = get_val(['orientador'], 'Orientador').title()
-                                Nome_Aluno = get_val(['nome_aluno', 'aluno', 'estudante'], pessoa_logada).title()
-                                Nome_Banca1 = get_val(['banca1', 'avaliador1', 'examinador1'], 'Avaliador 1').title()
-                                Nome_Banca2 = get_val(['banca2', 'avaliador2', 'examinador2'], 'Avaliador 2').title()
+                                Título = get_val(['titulo', 'trabalho', 'resumo', 'nome do trabalho', 'artigo'], 'Título do Trabalho não informado')
+                                Nome_Orientador = get_val(['orientador', 'professor'], 'Orientador').title()
+                                Nome_Aluno = get_val(['nome_aluno', 'aluno', 'estudante', 'autor'], pessoa_logada).title()
+                                Nome_Banca1 = get_val(['banca1', 'avaliador1', 'examinador1', 'membro 1'], 'Avaliador 1').title()
+                                Nome_Banca2 = get_val(['banca2', 'avaliador2', 'examinador2', 'membro 2'], 'Avaliador 2').title()
                                 Data_Evento = get_val(['data_evento', 'data', 'periodo'], '20 a 22 de outubro de 2026')
                                 CargaHoraria = get_val(['carga_horaria', 'horas', 'ch'], '20')
                                 Evento = "Jornada Científica do Curso de Fisioterapia da PUC Goiás (2026/2)"
@@ -377,7 +377,7 @@ elif menu == "🎓 Certificados e Validação":
                                 
                                 c.setFont("Helvetica-Bold", 22)
                                 c.setFillColor(colors.HexColor("#000000"))
-                                c.drawCentredString(largura / 2, altura - 230, pessoa_logada)
+                                c.drawCentredString(largura / 2, altura - 235, pessoa_logada)
                                 
                                 styles = getSampleStyleSheet()
                                 estilo_texto = ParagraphStyle(
@@ -399,28 +399,31 @@ elif menu == "🎓 Certificados e Validação":
                                 
                                 p = Paragraph(texto_conteudo, estilo_texto)
                                 p.wrap(largura - 160, 100)
-                                p.drawOn(c, 80, altura - 330)
+                                # Texto do certificado descido um pouco mais (posicionado em altura - 345)
+                                p.drawOn(c, 80, altura - 345)
                                 
+                                # Assinatura e linha da comissão organizadora deslocadas um pouco mais para cima
                                 try:
-                                    c.drawImage("signsf.png", largura - 250, 95, width=160, height=50, mask='auto')
+                                    c.drawImage("signsf.png", largura - 250, 115, width=160, height=50, mask='auto')
                                 except:
                                     pass 
                                 
                                 c.setStrokeColor(colors.HexColor("#333333"))
                                 c.setLineWidth(0.8)
-                                c.line(largura - 270, 90, largura - 70, 90)
+                                c.line(largura - 270, 110, largura - 70, 110)
                                 
                                 c.setFont("Helvetica-Bold", 9)
                                 c.setFillColor(colors.HexColor("#333333"))
-                                c.drawCentredString(largura - 170, 75, "Comissão Organizadora / Coordenação do Curso de Fisioterapia / Prof. Larissa Mariana V de Oliveira")
+                                c.drawCentredString(largura - 170, 95, "Comissão Organizadora / Coordenação do Curso de Fisioterapia / Prof. Larissa Mariana V de Oliveira")
 
+                                # Rodapé e Código de Autenticidade posicionados um pouco mais acima
                                 c.setStrokeColor(colors.HexColor("#CCCCCC"))
-                                c.line(60, 60, largura - 60, 60)
+                                c.line(60, 75, largura - 60, 75)
                                 
                                 c.setFont("Helvetica-Bold", 8)
                                 c.setFillColor(colors.HexColor("#444444"))
-                                c.drawString(60, 45, f"Código de Autenticidade: {codigo_auth}")
-                                c.drawRightString(largura - 60, 45, "Verificado oficialmente via Science Nexus (PUC Goiás)")
+                                c.drawString(60, 60, f"Código de Autenticidade: {codigo_auth}")
+                                c.drawRightString(largura - 60, 60, "Verificado oficialmente via Science Nexus (PUC Goiás)")
                                 
                                 c.showPage()
                                 c.save()
