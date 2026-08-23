@@ -317,8 +317,8 @@ elif menu == "🎓 Certificados e Validação":
                                 Nome_Aluno = str(res_emit.iloc[0].get('nome_aluno', 'Nome')).strip().title()
                                 Nome_Banca1 = str(res_emit.iloc[0].get('banca1', 'Avaliador 1')).strip().title()
                                 Nome_Banca2 = str(res_emit.iloc[0].get('banca2', 'Avaliador 2')).strip().title()
-                                Data_Evento = "20 a 22 de outubro de 2026"
-                                CargaHoraria = "XX"
+                                Data_Evento = "Data_Evento"
+                                CargaHoraria = "CargaHoraria"
                                 Evento = "Jornada Científica do Curso de Fisioterapia da PUC Goiás (2026/2)"
                                 
                                 st.success(f"✅ Participante encontrado: **{pessoa_logada}**")
