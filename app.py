@@ -64,10 +64,10 @@ elif menu == "🎟️ Eventos e Inscrições":
     
     evento_selecionado = st.selectbox("Escolha o Evento:", [
         "1. Jornada Científica do Curso de Fisioterapia", 
-        "2. Minicurso Prático: Reabilitação e Terapia Manual", 
+        "2. Minicurso Prático: As Leis da Robótica de Azimov Aplicadas à IA", 
         "3. Workshop: Inovação e Tecnologias em Saúde",
         "4. Simpósio de Saúde Coletiva e Políticas Públicas",
-        "5. Encontro Científico Docente"
+        "5. Encontro Científico sobre PsicoHistória"
     ])
     
     st.markdown("---")
@@ -310,15 +310,27 @@ elif menu == "🎓 Certificados e Validação":
                             
                             if not res_emit.empty:
                                 pessoa_logada = str(res_emit.iloc[0][col_nome_emit]).title()
-                                codigo_auth = str(res_emit.iloc[0][col_cod_emit]) if col_cod_emit else "PUCGO-2026-OFICIAL"
+                                codigo_auth = str(res_emit.iloc[0][col_cod_emit]) if col_cod_emit and pd.notna(res_emit.iloc[0][col_cod_emit]) else "PUCGO-2026-OFICIAL"
                                 
-                                Título = str(res_emit.iloc[0].get('titulo', 'Título do Trabalho não informado')).strip()
-                                Nome_Orientador = str(res_emit.iloc[0].get('orientador', 'Orientador')).strip().title()
-                                Nome_Aluno = str(res_emit.iloc[0].get('nome_aluno', 'Nome')).strip().title()
-                                Nome_Banca1 = str(res_emit.iloc[0].get('banca1', 'Avaliador 1')).strip().title()
-                                Nome_Banca2 = str(res_emit.iloc[0].get('banca2', 'Avaliador 2')).strip().title()
-                                Data_Evento = "Data_Evento"
-                                CargaHoraria = "CargaHoraria"
+                                # Leitura segura dos dados diretamente da planilha mapeados por nome de coluna dinâmicos
+                                row_data = res_emit.iloc[0]
+                                
+                                def get_val(keys, default):
+                                    for k in keys:
+                                        found_col = next((c for c in df_emit.columns if k in c), None)
+                                        if found_col and pd.notna(row_data[found_col]):
+                                            val = str(row_data[found_col]).strip()
+                                            if val.lower() != 'nan' and val != '':
+                                                return val
+                                    return default
+
+                                Título = get_val(['titulo', 'trabalho', 'resumo'], 'Título do Trabalho não informado')
+                                Nome_Orientador = get_val(['orientador'], 'Orientador').title()
+                                Nome_Aluno = get_val(['nome_aluno', 'aluno', 'estudante'], pessoa_logada).title()
+                                Nome_Banca1 = get_val(['banca1', 'avaliador1', 'examinador1'], 'Avaliador 1').title()
+                                Nome_Banca2 = get_val(['banca2', 'avaliador2', 'examinador2'], 'Avaliador 2').title()
+                                Data_Evento = get_val(['data_evento', 'data', 'periodo'], '20 a 22 de outubro de 2026')
+                                CargaHoraria = get_val(['carga_horaria', 'horas', 'ch'], '20')
                                 Evento = "Jornada Científica do Curso de Fisioterapia da PUC Goiás (2026/2)"
                                 
                                 st.success(f"✅ Participante encontrado: **{pessoa_logada}**")
@@ -383,7 +395,7 @@ elif menu == "🎓 Certificados e Validação":
                                 elif "Apresentador" in cat_cert:
                                     texto_conteudo = f"apresentou como autor o trabalho intitulado <b>\"{Título}\"</b>, orientado por <b>{Nome_Orientador}</b>, tendo como banca examinadora <b>{Nome_Banca1}</b> e <b>{Nome_Banca2}</b>, apresentado em sessão pública na {Evento} nos dias {Data_Evento}."
                                 else:
-                                    texto_conteudo = f"participou como Membro da Banca Examinadora do trabalho intitulado <b>\"{Título}\"</b>, orientado por <b>{Nome_Orientador}</b> e apresentado em sessão pública na {Evento} nos dias {Data_Evento}."
+                                    texto_conteudo = f"participou como Membro da Banca Examinadora do trabalho intitulado <b>\"{Título}\"</b>, do autor <b>{Nome_Aluno}</b>, orientado por <b>{Nome_Orientador}</b> e apresentado em sessão pública na {Evento} nos dias {Data_Evento}."
                                 
                                 p = Paragraph(texto_conteudo, estilo_texto)
                                 p.wrap(largura - 160, 100)
