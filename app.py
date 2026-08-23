@@ -270,7 +270,7 @@ elif menu == "🎓 Certificados e Validação":
         st.subheader("📜 Emissão de Certificado Oficial")
         st.write("Digite o seu e-mail cadastrado para gerar o seu certificado oficial com código de autenticidade.")
         
-        cat_cert = st.selectbox("Selecione sua Categoria:", ["Ouvinte (16h)", "Apresentador (5h)", "Banca Avaliadora"])
+        cat_cert = st.selectbox("Selecione sua Categoria:", ["Ouvinte", "Apresentador", "Banca Avaliadora"])
         email_emissao = st.text_input("Digite seu E-mail cadastrado para emissão:").strip().lower()
         
         if st.button("Gerar e Baixar Certificado"):
