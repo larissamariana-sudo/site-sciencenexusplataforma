@@ -263,12 +263,6 @@ elif menu == "✍️ Trabalhos Científicos":
 # --- 4. CERTIFICADOS E VALIDAÇÃO ---
 elif menu == "🎓 Certificados e Validação":
     mostrar_cabecalho("capa0.jpg")
-    st.subheader("🎓 Certificados — Jornada Científica de Fisioterapia")
-    tab1, tab2 = st.tabs(["📜 Emissão de Certificado", "🛡️ Validar Autenticidade por Código"])
-    
-    # --- 4. CERTIFICADOS E VALIDAÇÃO ---
-elif menu == "🎓 Certificados e Validação":
-    mostrar_cabecalho("capa0.jpg")
     st.subheader("🎓 Central de Certificados e Validação")
     tab1, tab2 = st.tabs(["📜 Emitir Certificado", "🛡️ Validar Autenticidade por Código"])
     
@@ -281,50 +275,50 @@ elif menu == "🎓 Certificados e Validação":
             "Membro da Banca Examinadora"
         ])
         
-        email_emissao = st.text_input("Digite o seu E-mail cadastrado para emissão:").strip().lower()
+        # Definição dos links das planilhas conforme solicitado
+        if "Ouvinte" in cat_cert:
+            link_planilha_cert = "https://docs.google.com/spreadsheets/d/15D_Vay3AQDUrbmaHjgwTeg0irLHX5q2pw6sw_wtiDl0/edit?usp=sharing"
+            st.info("ℹ️ Emissão baseada na planilha de frequência de ouvintes.")
+        else:
+            link_planilha_cert = "https://docs.google.com/spreadsheets/d/1eEQeDcwCQ9gkpy9MAI9It7gk1fx1QwZRXBnhRhvkg6o/edit?usp=sharing"
+            st.info("ℹ️ Emissão baseada na planilha de apresentadores e membros da banca.")
+        
+        termo_busca = st.text_input("Digite o seu Nome Completo ou E-mail cadastrado:").strip().lower()
         
         if st.button("Gerar e Baixar Certificado em PDF"):
-            if email_emissao:
+            if termo_busca:
                 try:
-                    link_planilha_cert = "https://docs.google.com/spreadsheets/d/15D_Vay3AQDUrbmaHjgwTeg0irLHX5q2pw6sw_wtiDl0/edit?usp=sharing"
-                    
-                    id_c = link_planilha_cert.split("/d/")[1].split("/")[0]
-                    url_c_csv = f"https://docs.google.com/spreadsheets/d/{id_c}/export?format=csv"
-                    
-                    df_emit = pd.read_csv(url_c_csv)
-                    df_emit.columns = df_emit.columns.str.strip().str.lower()
-                    
-                    # Verificação de liberação (Método B)
-                    col_liberacao = next((c for c in df_emit.columns if 'liberacao' in c or 'status_emissao' in c or 'liberado' in c), None)
-                    
-                    liberado_geral = False
-                    if col_liberacao:
-                        status_lib = str(df_emit.iloc[0][col_liberacao]).strip().lower()
-                        if status_lib in ['liberado', 'sim', 'true', '1']:
-                            liberado_geral = True
-                    
-                    if not liberado_geral:
-                        st.warning("⏳ **Emissão Indisponível:** Os certificados serão liberados para emissão somente após o encerramento oficial do evento e validação da frequência.")
+                    if "COLE_LINK" in link_planilha_cert:
+                        st.error("⚠️ O link da planilha correspondente ainda não foi configurado no sistema. Por favor, insira o link correto.")
                     else:
+                        id_c = link_planilha_cert.split("/d/")[1].split("/")[0]
+                        url_c_csv = f"https://docs.google.com/spreadsheets/d/{id_c}/export?format=csv"
+                        
+                        df_emit = pd.read_csv(url_c_csv)
+                        df_emit.columns = df_emit.columns.str.strip().str.lower()
+                        
                         col_email_emit = next((c for c in df_emit.columns if 'email' in c.replace('-', '').lower()), None)
                         col_nome_emit = next((c for c in df_emit.columns if 'nome' in c.lower() or 'participante' in c.lower()), None)
                         col_cod_emit = next((c for c in df_emit.columns if 'codigo' in c.lower() or 'chave' in c.lower() or 'autenticidade' in c.lower()), None)
                         
                         if col_email_emit and col_nome_emit:
                             df_emit[col_email_emit] = df_emit[col_email_emit].astype(str).str.strip().str.lower()
-                            res_emit = df_emit[df_emit[col_email_emit] == email_emissao]
+                            df_emit[col_nome_emit] = df_emit[col_nome_emit].astype(str).str.strip().str.lower()
+                            
+                            # Busca por e-mail ou por nome
+                            res_emit = df_emit[(df_emit[col_email_emit] == termo_busca) | (df_emit[col_nome_emit].str.contains(termo_busca, na=False))]
                             
                             if not res_emit.empty:
                                 pessoa_logada = str(res_emit.iloc[0][col_nome_emit]).title()
                                 codigo_auth = str(res_emit.iloc[0][col_cod_emit]) if col_cod_emit else "PUCGO-2026-OFICIAL"
                                 
-                                # Coleta de dados adicionais da planilha (com valores padrão caso a coluna não exista)
                                 Título = str(res_emit.iloc[0].get('titulo', 'Título do Trabalho não informado')).strip()
-                                Nome_Orientador = str(res_emit.iloc[0].get('orientador', 'Orientador')).strip().title()
+                                Nome-Orientador = str(res_emit.iloc[0].get('orientador', 'Orientador')).strip().title()
                                 Nome_Banca1 = str(res_emit.iloc[0].get('banca1', 'Avaliador 1')).strip().title()
                                 Nome_Banca2 = str(res_emit.iloc[0].get('banca2', 'Avaliador 2')).strip().title()
-                                Data_Evento = str(res_emit.iloc[0].get('data_evento', '01 e 02 de fevereiro de 2027', '20 a 22 de outubro de 2026')).strip()
-                                Evento = "Jornada Científica do Curso de Fisioterapia da PUC Goiás"
+                                Data_Evento = "20 a 22 de outubro de 2026"
+                                CargaHoraria = "20"
+                                Evento = "Jornada Científica do Curso de Fisioterapia da PUC Goiás (2026/2)"
                                 
                                 st.success(f"✅ Participante encontrado: **{pessoa_logada}**")
                                 
@@ -340,21 +334,18 @@ elif menu == "🎓 Certificados e Validação":
                                 c = canvas.Canvas(buffer, pagesize=landscape(letter))
                                 largura, altura = landscape(letter)
                                 
-                                # 1. IMAGEM DE FUNDO OU MOLDURA CLÁSSICA
                                 try:
                                     c.drawImage("fundo_certificado.jpg", 0, 0, width=largura, height=altura, preserveAspectRatio=False)
                                 except:
                                     c.setFillColor(colors.white)
                                     c.rect(0, 0, largura, altura, fill=1, stroke=0)
                                     
-                                    # Moldura Institucional
                                     c.setStrokeColor(colors.HexColor("#004225"))
                                     c.setLineWidth(6)
                                     c.rect(25, 25, largura - 50, altura - 50)
                                     c.setLineWidth(1)
                                     c.rect(32, 32, largura - 64, altura - 64)
 
-                                # 2. TEXTOS INSTITUCIONAIS
                                 c.setFont("Helvetica-Bold", 16)
                                 c.setFillColor(colors.HexColor("#004225"))
                                 c.drawCentredString(largura / 2, altura - 75, "PONTIFÍCIA UNIVERSIDADE CATÓLICA DE GOIÁS")
@@ -363,7 +354,6 @@ elif menu == "🎓 Certificados e Validação":
                                 c.setFillColor(colors.HexColor("#555555"))
                                 c.drawCentredString(largura / 2, altura - 95, "Escola de Ciências Sociais e da Saúde • Curso de Fisioterapia")
                                 
-                                # Título Principal
                                 c.setFont("Helvetica-Bold", 26)
                                 c.setFillColor(colors.HexColor("#004225"))
                                 c.drawCentredString(largura / 2, altura - 150, "CERTIFICADO DE PARTICIPAÇÃO")
@@ -372,12 +362,10 @@ elif menu == "🎓 Certificados e Validação":
                                 c.setFillColor(colors.HexColor("#333333"))
                                 c.drawCentredString(largura / 2, altura - 195, "Certificamos, para os devidos fins, que")
                                 
-                                # Nome Principal em Destaque
                                 c.setFont("Helvetica-Bold", 22)
                                 c.setFillColor(colors.HexColor("#000000"))
                                 c.drawCentredString(largura / 2, altura - 230, pessoa_logada)
                                 
-                                # --- MONTAGEM DO TEXTO USANDO PARAGRAPH (Para quebras de linha automáticas perfeitas) ---
                                 styles = getSampleStyleSheet()
                                 estilo_texto = ParagraphStyle(
                                     'EstiloCertificado',
@@ -385,23 +373,21 @@ elif menu == "🎓 Certificados e Validação":
                                     fontName='Helvetica',
                                     fontSize=11,
                                     leading=16,
-                                    alignment=1, # Centralizado
+                                    alignment=1,
                                     textColor=colors.HexColor("#333333")
                                 )
                                 
                                 if "Ouvinte" in cat_cert:
-                                    texto_conteudo = f"participou do evento científico {Evento}, realizado na modalidade presencial, no período de {Data_Evento}, com carga horária total de {CargaHoraria} horas, na qualidade de Ouvinte."
+                                    texto_conteudo = f"participou do evento científico {nome_evento}, realizado na modalidade presencial, no período de {data_ev}, com carga horária total de {carga_horario_str} horas, na qualidade de Ouvinte."
                                 elif "Apresentador" in cat_cert:
-                                    texto_conteudo = f"apresentou como autor, o trabalho intitulado <b>\"{Título}\"</b>, orientado por <b>{Nome-Orientador}</b>, tendo como banca examinadora <b>{Nome_Banca1}</b> e <b>{Nome_Banca2}</b>, apresentado em sessão pública na {Evento} nos dias {Data_Evento}."
-                                else:  # Membro da Banca
-                                    texto_conteudo = f"participou como Membro da Banca Examinadora do trabalho intitulado <b>\"{Título}\"</b>, do autor <b>{Nome-Aluno}</b>, orientado por <b>{Nome-Orientador}</b> e apresentado em sessão pública na {Evento} nos dias {Data_Evento}."
+                                    texto_conteudo = f"apresentou como autor o trabalho intitulado <b>\"{titulo_trab}\"</b>, orientado por <b>{orientador_trab}</b>, tendo como banca examinadora <b>{banca1_trab}</b> e <b>{banca2_trab}</b>, apresentado em sessão pública na {nome_evento} nos dias {data_ev}."
+                                else:
+                                    texto_conteudo = f"participou como Membro da Banca Examinadora do trabalho intitulado <b>\"{titulo_trab}\"</b>, orientado por <b>{orientador_trab}</b> e apresentado em sessão pública na {nome_evento} nos dias {data_ev}."
                                 
                                 p = Paragraph(texto_conteudo, estilo_texto)
-                                # Define a largura da caixa de texto e a posiciona centralizada na tela
                                 p.wrap(largura - 160, 100)
                                 p.drawOn(c, 80, altura - 330)
                                 
-                                # 3. ASSINATURA DIGITAL
                                 try:
                                     c.drawImage("signsf.png", largura - 250, 95, width=160, height=50, mask='auto')
                                 except:
@@ -415,13 +401,12 @@ elif menu == "🎓 Certificados e Validação":
                                 c.setFillColor(colors.HexColor("#333333"))
                                 c.drawCentredString(largura - 170, 75, "Comissão Organizadora / Coordenação do Curso de Fisioterapia / Prof. Larissa Mariana V de Oliveira")
 
-                                # 4. RODAPÉ E AUTENTICIDADE
                                 c.setStrokeColor(colors.HexColor("#CCCCCC"))
                                 c.line(60, 60, largura - 60, 60)
                                 
                                 c.setFont("Helvetica-Bold", 8)
                                 c.setFillColor(colors.HexColor("#444444"))
-                                c.drawString(60, 45, f"Código de Autenticidade: {Código}")
+                                c.drawString(60, 45, f"Código de Autenticidade: {codigo_auth}")
                                 c.drawRightString(largura - 60, 45, "Verificado oficialmente via Science Nexus (PUC Goiás)")
                                 
                                 c.showPage()
@@ -432,17 +417,17 @@ elif menu == "🎓 Certificados e Validação":
                                 st.download_button(
                                     label="📥 Baixar Certificado Oficial em PDF",
                                     data=buffer,
-                                    file_name=f"Certificado_{'Nome', 'Nome-aluno','Nome_Banca1','Nome_Banca2','Nome-Orientador'.replace(' ', '_')}.pdf",
+                                    file_name=f"Certificado_{pessoa_logada.replace(' ', '_')}.pdf",
                                     mime="application/pdf"
                                 )
                             else:
-                                st.error("E-mail não encontrado na base de dados de certificados. Verifique se digitou corretamente.")
+                                st.error("Nenhum registro encontrado com este nome ou e-mail na base de dados de certificados. Verifique se digitou corretamente.")
                         else:
                             st.error("A planilha precisa conter colunas de 'Email' e 'Nome'.")
                 except Exception as e:
                     st.error(f"Erro ao processar a emissão do certificado: {e}")
             else:
-                st.error("Por favor, digite o e-mail cadastrado.")
+                st.error("Por favor, digite o nome ou o e-mail cadastrado.")
                 
     with tab2:
         st.subheader("🛡️ Validação de Autenticidade por Código")
@@ -454,9 +439,9 @@ elif menu == "🎓 Certificados e Validação":
             if validar_btn:
                 if codigo_digitado:
                     try:
-                        link_planilha_cert = "https://docs.google.com/spreadsheets/d/15D_Vay3AQDUrbmaHjgwTeg0irLHX5q2pw6sw_wtiDl0/edit?usp=sharing"
+                        link_planilha_cert_val = "https://docs.google.com/spreadsheets/d/1eEQeDcwCQ9gkpy9MAI9It7gk1fx1QwZRXBnhRhvkg6o/edit?usp=sharing"
                         
-                        id_c = link_planilha_cert.split("/d/")[1].split("/")[0]
+                        id_c = link_planilha_cert_val.split("/d/")[1].split("/")[0]
                         url_c_csv = f"https://docs.google.com/spreadsheets/d/{id_c}/export?format=csv"
                         
                         df_c = pd.read_csv(url_c_csv)
@@ -471,7 +456,7 @@ elif menu == "🎓 Certificados e Validação":
                             if not res_c.empty:
                                 nome_p = res_c.iloc[0].get('nome', 'Participante')
                                 st.success("✅ **CERTIFICADO VÁLIDO E AUTÊNTICO!**")
-                                st.write(f"Este certificado pertence oficialmente a: **{nome_p}** — Jornada Científica de Fisioterapia (PUC Goiás).")
+                                st.write(f"Este certificado pertence oficialmente a: **{nome_p}** — Jornada Científica de Fisioterapia 2026/2 (PUC Goiás).")
                             else:
                                 st.error("❌ **Certificado Inválido ou Falso:** O código informado não consta na base de dados oficial.")
                         else:
@@ -480,6 +465,7 @@ elif menu == "🎓 Certificados e Validação":
                         st.error(f"Erro ao consultar base de certificados: {e}")
                 else:
                     st.error("Por favor, digite o código de autenticidade.")
+
 # --- 5. DOI ---
 elif menu == "💳 Taxa de DOI Individual":
     mostrar_cabecalho("capa0.jpg")
@@ -528,9 +514,9 @@ elif menu == "📂 Eventos Anteriores":
                     st.error("Por favor, informe o e-mail.")
 
 # --- 8. CONTATO ---
-elif menu == "📞 Contato":
+elif menu == "📧 Contato":
     mostrar_cabecalho("capa0.jpg")
-    st.subheader("📞 Fale Conosco")
+    st.subheader("📧📞 Fale Conosco")
     st.write("Entre em contato com a comissão organizadora para dúvidas sobre submissões, inscrições ou certificados.")
     st.markdown("---")
     st.info("📧 **E-mail oficial de suporte:** eventoscientificosc@gmail.com")
