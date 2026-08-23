@@ -295,42 +295,43 @@ elif menu == "🎓 Certificados e Validação":
                         url_c_csv = f"https://docs.google.com/spreadsheets/d/{id_c}/export?format=csv"
                         
                         df_emit = pd.read_csv(url_c_csv)
-                        df_emit.columns = df_emit.columns.str.strip().str.lower()
+                        # Padroniza todas as colunas para minúsculas e remove espaços para evitar falhas de leitura
+                        df_emit.columns = [str(c).strip().lower() for c in df_emit.columns]
                         
-                        col_email_emit = next((c for c in df_emit.columns if 'email' in c.replace('-', '').lower()), None)
-                        col_nome_emit = next((c for c in df_emit.columns if 'nome' in c.lower() or 'participante' in c.lower()), None)
-                        col_cod_emit = next((c for c in df_emit.columns if 'codigo' in c.lower() or 'chave' in c.lower() or 'autenticidade' in c.lower()), None)
+                        col_email_emit = next((c for c in df_emit.columns if 'email' in c), None)
+                        col_nome_emit = next((c for c in df_emit.columns if 'nome' in c or 'participante' in c), None)
+                        col_cod_emit = next((c for c in df_emit.columns if 'codigo' in c or 'chave' in c or 'autenticidade' in c), None)
                         
                         if col_email_emit and col_nome_emit:
                             df_emit[col_email_emit] = df_emit[col_email_emit].astype(str).str.strip().str.lower()
                             df_emit[col_nome_emit] = df_emit[col_nome_emit].astype(str).str.strip().str.lower()
                             
-                            # Busca por e-mail ou por nome
+                            # Busca por e-mail ou por nome (parcial)
                             res_emit = df_emit[(df_emit[col_email_emit] == termo_busca) | (df_emit[col_nome_emit].str.contains(termo_busca, na=False))]
                             
                             if not res_emit.empty:
                                 pessoa_logada = str(res_emit.iloc[0][col_nome_emit]).title()
                                 codigo_auth = str(res_emit.iloc[0][col_cod_emit]) if col_cod_emit and pd.notna(res_emit.iloc[0][col_cod_emit]) else "PUCGO-2026-OFICIAL"
                                 
-                                # Leitura segura dos dados diretamente da planilha mapeados por termos abrangentes
                                 row_data = res_emit.iloc[0]
                                 
-                                def get_val(keys, default):
-                                    for k in keys:
-                                        found_col = next((c for c in df_emit.columns if k in c), None)
-                                        if found_col and pd.notna(row_data[found_col]):
-                                            val = str(row_data[found_col]).strip()
-                                            if val.lower() != 'nan' and val != '':
-                                                return val
+                                # Função ultra-flexível para capturar colunas com variações de escrita
+                                def get_val(possiveis_nomes, default):
+                                    for col in df_emit.columns:
+                                        for nome in possiveis_nomes:
+                                            if nome in col:
+                                                val = row_data[col]
+                                                if pd.notna(val) and str(val).strip().lower() != 'nan' and str(val).strip() != '':
+                                                    return str(val).strip()
                                     return default
 
-                                Título = get_val(['Título', 'título', 'trabalho', 'resumo', 'nome do trabalho', 'artigo'], 'Título do Trabalho não informado')
-                                Nome_Orientador = get_val(['Nome_Orientador', 'orientador', 'professor'], 'Orientador').title()
-                                Nome_Aluno = get_val(['Nome_Aluno','nome_aluno', 'aluno', 'estudante', 'autor'], pessoa_logada).title()
-                                Nome_Banca1 = get_val(['Nome_Banca1','banca1', 'avaliador1', 'examinador1', 'membro 1'], 'Avaliador 1').title()
-                                Nome_Banca2 = get_val(['Nome_Banca2','banca2', 'avaliador2', 'examinador2', 'membro 2'], 'Avaliador 2').title()
-                                Data_Evento = get_val(['Data_Evento','data_evento', 'data', 'periodo'])
-                                CargaHoraria = get_val(['CargaHoraria','carga_horaria', 'horas', 'ch'])
+                                Título = get_val(['titulo', 'trabalho', 'resumo', 'artigo'], 'Título do Trabalho não informado')
+                                Nome_Orientador = get_val(['orientador', 'professor'], 'Orientador').title()
+                                Nome_Aluno = get_val(['nome_aluno', 'aluno', 'estudante', 'autor'], pessoa_logada).title()
+                                Nome_Banca1 = get_val(['banca1', 'avaliador1', 'examinador1', 'membro 1'], 'Avaliador 1').title()
+                                Nome_Banca2 = get_val(['banca2', 'avaliador2', 'examinador2', 'membro 2'], 'Avaliador 2').title()
+                                Data_Evento = get_val(['data_evento', 'data', 'periodo'], '20 a 22 de outubro de 2026')
+                                CargaHoraria = get_val(['carga_horaria', 'horas', 'ch'], '20')
                                 Evento = "Jornada Científica do Curso de Fisioterapia da PUC Goiás (2026/2)"
                                 
                                 st.success(f"✅ Participante encontrado: **{pessoa_logada}**")
@@ -399,12 +400,12 @@ elif menu == "🎓 Certificados e Validação":
                                 
                                 p = Paragraph(texto_conteudo, estilo_texto)
                                 p.wrap(largura - 160, 100)
-                                # Texto do certificado descido um pouco mais (posicionado em altura - 245)
-                                p.drawOn(c, 80, altura - 245)
+                                # Texto central do certificado posicionado mais abaixo (altura - 255)
+                                p.drawOn(c, 80, altura - 255)
                                 
-                                # Assinatura e linha da comissão organizadora deslocadas um pouco mais para cima
+                                # Assinatura e linha da comissão organizadora deslocadas mais para cima
                                 try:
-                                    c.drawImage("signSF.png", largura - 200, 115, width=160, height=50, mask='auto')
+                                    c.drawImage("signSF.png", largura - 250, 115, width=160, height=50, mask='auto')
                                 except:
                                     pass 
                                 
@@ -416,7 +417,7 @@ elif menu == "🎓 Certificados e Validação":
                                 c.setFillColor(colors.HexColor("#333333"))
                                 c.drawCentredString(largura - 170, 95, "Comissão Organizadora / Coordenação do Curso de Fisioterapia / Prof. Larissa Mariana V de Oliveira")
 
-                                # Rodapé e Código de Autenticidade posicionados um pouco mais acima
+                                # Rodapé e Código de Autenticidade posicionados mais acima
                                 c.setStrokeColor(colors.HexColor("#CCCCCC"))
                                 c.line(60, 75, largura - 60, 75)
                                 
@@ -461,7 +462,7 @@ elif menu == "🎓 Certificados e Validação":
                         url_c_csv = f"https://docs.google.com/spreadsheets/d/{id_c}/export?format=csv"
                         
                         df_c = pd.read_csv(url_c_csv)
-                        df_c.columns = df_c.columns.str.strip().str.lower()
+                        df_c.columns = [str(c).strip().lower() for c in df_c.columns]
                         
                         col_cod = next((c for c in df_c.columns if 'codigo' in c or 'chave' in c or 'autenticidade' in c), None)
                         
