@@ -264,12 +264,115 @@ elif menu == "✍️ Trabalhos Científicos":
 elif menu == "🎓 Certificados e Validação":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("🎓 Certificados — Jornada Científica de Fisioterapia")
-    tab1, tab2 = st.tabs(["📜 Certificado enviado por email", "🛡️ Validar Autenticidade por Código"])
+    tab1, tab2 = st.tabs(["📜 Emissão de Certificado", "🛡️ Validar Autenticidade por Código"])
     
     with tab1:
-        st.write("Selecione a categoria para receber seu certificado:")
-        cat_cert = st.selectbox("Categoria:", ["Ouvinte", "Apresentador", "Banca Avaliadora"])
-        st.link_button("📥 Certificado por email", "LINK_CERTIFICADOS")
+        st.subheader("📜 Emissão de Certificado Oficial")
+        st.write("Digite o seu e-mail cadastrado para gerar o seu certificado oficial com código de autenticidade.")
+        
+        cat_cert = st.selectbox("Selecione sua Categoria:", ["Ouvinte", "Apresentador", "Banca Avaliadora"])
+        email_emissao = st.text_input("Digite seu E-mail cadastrado para emissão:").strip().lower()
+        
+        if st.button("Gerar e Baixar Certificado"):
+            if email_emissao:
+                try:
+                    # Usamos a mesma planilha de controle de certificados
+                    link_planilha_cert = "https://docs.google.com/spreadsheets/d/15D_Vay3AQDUrbmaHjgwTeg0irLHX5q2pw6sw_wtiDl0/edit?usp=sharing"
+                    
+                    id_c = link_planilha_cert.split("/d/")[1].split("/")[0]
+                    url_c_csv = f"https://docs.google.com/spreadsheets/d/{id_c}/export?format=csv"
+                    
+                    df_emit = pd.read_csv(url_c_csv)
+                    df_emit.columns = df_emit.columns.str.strip().str.lower()
+                    
+                    # Verifica a regra de liberação (Método B com segurança extra para células vazias)
+                    col_liberacao = next((c for c in df_emit.columns if 'liberacao' in c or 'status_emissao' in c or 'liberado' in c), None)
+                    
+                    liberado_geral = False # Por padrão agora é FALSO (segurança máxima: se não estiver explicitamente liberado, trava)
+                    
+                    if col_liberacao:
+                        status_lib = str(df_emit.iloc[0][col_liberacao]).strip().lower()
+                        # O certificado só será liberado se a célula contiver exatamente 'liberado' ou 'sim'
+                        if status_lib in ['liberado', 'sim', 'true', '1']:
+                            liberado_geral = True
+                    
+                    if not liberado_geral:
+                        st.warning("⏳ **Emissão Indisponível:** Os certificados da Jornada Científica serão liberados para emissão somente após o encerramento oficial do evento.")
+                    else:
+                        # Procura colunas de e-mail, nome e código
+                        col_email_emit = next((c for c in df_emit.columns if 'email' in c), None)
+                        col_nome_emit = next((c for c in df_emit.columns if 'nome' in c or 'participante' in c), None)
+                        col_cod_emit = next((c for c in df_emit.columns if 'codigo' in c or 'chave' in c), None)
+                        
+                        if col_email_emit and col_nome_emit:
+                            df_emit[col_email_emit] = df_emit[col_email_emit].astype(str).str.strip().str.lower()
+                            res_emit = df_emit[df_emit[col_email_emit] == email_emissao]
+                            
+                            if not res_emit.empty:
+                                nome_participante = str(res_emit.iloc[0][col_nome_emit]).title()
+                                codigo_auth = str(res_emit.iloc[0][col_cod_emit]) if col_cod_emit else "PUCGO-2026-OFICIAL"
+                                
+                                st.success(f"✅ Participante encontrado: **{nome_participante}**")
+                                
+                                # --- GERAÇÃO DO PDF EM MEMÓRIA (ReportLab) ---
+                                import io
+                                from reportlab.lib.pagesizes import letter, landscape
+                                from reportlab.pdfgen import canvas
+                                
+                                buffer = io.BytesIO()
+                                c = canvas.Canvas(buffer, pagesize=landscape(letter))
+                                largura, altura = landscape(letter)
+                                
+                                # Borda decorativa do certificado
+                                c.setStrokeColorRGB(0, 0.26, 0.14) # Verde PUC (#004225)
+                                c.setLineWidth(5)
+                                c.rect(30, 30, largura - 60, altura - 60)
+                                
+                                # Cabeçalho institucional
+                                c.setFont("Helvetica-Bold", 20)
+                                c.drawCentredString(largura / 2, altura - 90, "PONTIFÍCIA UNIVERSIDADE CATÓLICA DE GOIÁS")
+                                c.setFont("Helvetica", 13)
+                                c.drawCentredString(largura / 2, altura - 115, "Science Nexus — Plataforma de Eventos Científicos")
+                                
+                                # Título principal
+                                c.setFont("Helvetica-Bold", 24)
+                                c.setFillColorRGB(0, 0.26, 0.14)
+                                c.drawCentredString(largura / 2, altura - 175, "CERTIFICADO DE PARTICIPAÇÃO")
+                                
+                                # Texto descritivo
+                                c.setFont("Helvetica", 13)
+                                c.setFillColorRGB(0.2, 0.2, 0.2)
+                                texto_cert = f"Certificamos que {nome_participante} participou com êxito na categoria"
+                                c.drawCentredString(largura / 2, altura - 225, texto_cert)
+                                
+                                c.setFont("Helvetica-Bold", 14)
+                                c.drawCentredString(largura / 2, altura - 250, f"{cat_cert} da Jornada Científica do Curso de Fisioterapia.")
+                                
+                                # Rodapé com código de autenticidade
+                                c.setFont("Helvetica", 10)
+                                c.drawString(50, 50, f"Código de Autenticidade: {codigo_auth}")
+                                c.drawRightString(largura - 50, 50, "Verificado oficialmente via Science Nexus (PUC Goiás)")
+                                
+                                c.showPage()
+                                c.save()
+                                
+                                buffer.seek(0)
+                                
+                                # Botão de Download direto na tela
+                                st.download_button(
+                                    label="📥 Baixar Certificado Oficial em PDF",
+                                    data=buffer,
+                                    file_name=f"Certificado_{nome_participante.replace(' ', '_')}.pdf",
+                                    mime="application/pdf"
+                                )
+                            else:
+                                st.error("E-mail não encontrado na base de dados de certificados. Verifique se digitou corretamente.")
+                        else:
+                            st.error("A planilha precisa ter colunas de 'Email' e 'Nome'.")
+                except Exception as e:
+                    st.error(f"Erro ao processar a emissão do certificado: {e}")
+            else:
+                st.error("Por favor, digite o e-mail cadastrado.")
         
     with tab2:
         st.write("Insira o **Código de Autenticidade** exclusivo impresso no rodapé do certificado da Jornada Científica para comprovar sua validade:")
