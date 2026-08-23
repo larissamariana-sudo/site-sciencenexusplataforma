@@ -28,7 +28,7 @@ def mostrar_cabecalho(foto="capa0.jpg"):
     
     st.markdown("""
         <div style='background-color: #004225; padding: 25px; border-radius: 10px; text-align: center; color: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1);'>
-            <h1 style='margin:0; font-size: 26px;'>Eventos Científicos na Saúde, Sociedade, Tecnologias, Humanidades</h1>
+            <h1 style='margin:0; font-size: 26px;'>Saúde • Sociedade • Tecnologias • Humanidades</h1>
         </div>
     """, unsafe_allow_html=True)
     st.write("")
@@ -48,7 +48,7 @@ menu = st.sidebar.selectbox("Navegue pelo Portal:", [
 # --- 1. INÍCIO ---
 if menu == "🏠 Início / Sobre":
     mostrar_cabecalho("capa0.jpg")
-    st.subheader("Bem-vindo à Science Nexus, Plataforma de Eventos Científicos na Saúde, Sociedade, Tecnologias, Humanidades")
+    st.subheader("Bem-vindo à Science Nexus Plataforma | Saúde • Sociedade • Tecnologias • Humanidades")
     st.write("Central oficial de gestão acadêmica, submissão de resumos, acompanhamento de avaliação e publicação de anais.")
     st.markdown("""
     * **Inscrições:** Gratuitas para PUC Goiás / Pagas (Standby) para externos mediante envio de comprovante.
@@ -164,7 +164,7 @@ elif menu == "✍️ Trabalhos Científicos":
             * **Alinhamento:** Justificado.
             * **Título:** Alinhado à esquerda, em caixa alta e negrito.
             * **Autores:** Primeiro nome (acadêmico); segundo nome (orientador). Escritos de forma corrida, separados por ponto e vírgula, em caixa alta. Ex.: Maria de Oliveira1; Antônio da Silva2.
-            * **Instituição:** 1;2 Pontifícia Universidade Católica de Goiás.
+            * **Instituição:** 1;2 Nome da Universidade ou Instituição de Vínculo.
             """)
             st.info("💡 Ideal para resumos de trabalhos que exigem ineditismo, relatos de experiência, pesquisas em andamento ou revisões bibliográficas preliminares.")
         
@@ -179,7 +179,7 @@ elif menu == "✍️ Trabalhos Científicos":
             * **Figuras e Tabelas:** Permitido até 2 elementos ilustrativos inseridos no corpo do texto.
             * **Título:** Alinhado à esquerda, em caixa alta e negrito.
             * **Autores:** Primeiro nome (acadêmico); segundo nome (orientador). Escritos de forma corrida, separados por ponto e vírgula, em caixa alta. Ex.: Maria de Oliveira1; Antônio da Silva2.
-            * **Instituição:** 1;2 Pontifícia Universidade Católica de Goiás.
+            * **Instituição:** 1;2 Nome da Universidade ou Instituição de Vínculo.
             
             **INFORMAÇÕES PARA A SUBMISSÃO**
             * **Formato:** Todos os trabalhos devem ser submetidos obrigatoriamente em arquivo formato WORD.
@@ -200,7 +200,7 @@ elif menu == "✍️ Trabalhos Científicos":
             * **Figuras e Tabelas:** Permitido até 2 elementos ilustrativos inseridos no corpo do texto.
             * **Título:** Alinhado à esquerda, em caixa alta e negrito.
             * **Autores:** Primeiro nome (acadêmico); segundo nome (orientador). Escritos de forma corrida, separados por ponto e vírgula, em caixa alta. Ex.: Maria de Oliveira1; Antônio da Silva2.
-            * **Instituição:** 1;2 Pontifícia Universidade Católica de Goiás.
+            * **Instituição:** 1;2 Nome da Universidade ou Instituição de Vínculo.
             
             **INFORMAÇÕES PARA A SUBMISSÃO**
             * **Formato:** Todos os trabalhos devem ser submetidos obrigatoriamente em arquivo formato WORD.
@@ -368,4 +368,4 @@ elif menu == "📞 Contato":
 
 # --- RODAPÉ ---
 st.markdown("---")
-st.markdown("<p style='text-align: center; color: gray;'>Saúde, Sociedade, Tecnologias, Humanidades</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: gray;'>Science Nexus Plataforma | Saúde • Sociedade • Tecnologias • Humanidades</p>", unsafe_allow_html=True)
