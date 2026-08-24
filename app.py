@@ -1,5 +1,9 @@
 import streamlit as st
 import pandas as pd
+from datetime import datetime
+
+# Obter o ano atual dinamicamente para o copyright
+ano_atual = datetime.now().year
 
 st.set_page_config(
     page_title="Science Nexus Plataforma | Saúde • Sociedade • Tecnologias • Humanidades",
@@ -16,6 +20,18 @@ st.markdown("""
     }
     .element-container {
         color: #333333;
+    }
+    /* Estilo para a caixa de citação acadêmica no rodapé */
+    .footer-box {
+        background-color: #ffffff;
+        border: 1px solid #e0e0e0;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 13px;
+        color: #555555;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.02);
     }
     </style>
 """, unsafe_allow_html=True)
@@ -189,7 +205,7 @@ elif menu == "✍️ Trabalhos Científicos":
             * **DOI (Opcional):** Autores que desejarem maior rastreabilidade podem optar pela aquisição do registro de DOI.
             """)
             st.info("💡 Indicado para artigos científicos e pesquisas finalizadas que necessitam de um detalhamento metodológico maior.")
-                   
+                    
         with tab_completo:
             st.markdown("### Normas para Submissão de Artigo Completo")
             st.markdown("""
@@ -367,6 +383,49 @@ elif menu == "📞 Contato":
     st.info("📧 **E-mail oficial de suporte:** eventoscientificosc@gmail.com")
     st.write("Nossa equipe responderá sua mensagem em até 48 horas úteis.")
 
+from datetime import datetime
+
+# Obter o ano atual dinamicamente para o copyright
+ano_atual = datetime.now().year
+
+# --- ESTILIZAÇÃO CSS PARA O RODAPÉ ---
+st.markdown("""
+    <style>
+    .footer-box {
+        background-color: #ffffff;
+        border: 1px solid #e0e0e0;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 13px;
+        color: #555555;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 # --- RODAPÉ ---
 st.markdown("---")
-st.markdown("<p style='text-align: center; color: gray;'>Science Nexus Plataforma | Saúde • Sociedade • Tecnologias • Humanidades</p>", unsafe_allow_html=True)
+
+# 1. Copyright e Direitos Autorais
+st.markdown(f"<p style='text-align: center; color: gray; font-size: 14px;'>© {ano_atual} [Larissa Mariana Veloso de Oliveira]. Todos os direitos reservados.</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: gray; font-size: 13px;'>O conteúdo deste website (textos, imagens e dados) está protegido pela Lei de Direitos Autorais (Lei nº 9.610/1998).</p>", unsafe_allow_html=True)
+
+# 2. Inserção da Licença Creative Commons BY-NC-SA 4.0
+st.markdown("""
+<p style='text-align: center; font-size: 13px;'>
+    Esta obra está licenciada sob uma Licença <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt-br" target="_blank">Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional</a>.
+</p>
+""", unsafe_allow_html=True)
+
+# 3. Caixa de citação acadêmica formatada
+st.markdown("""
+<div class='footer-box'>
+    <strong>Como citar este site:</strong><br>
+    [OLIVEIRA, L.M.V.]. <em>Science Nexus Plataforma</em>. Disponível em: &lt;[www.sciencenexus.com.br]&gt;. Acesso em: [Data de Acesso].
+</div>
+""", unsafe_allow_html=True)
+
+# 4. Assinatura da marca
+st.markdown("<p style='text-align: center; color: gray; font-size: 13px;'>Science Nexus Plataforma | Saúde • Sociedade • Tecnologias • Humanidades</p>", unsafe_allow_html=True)
