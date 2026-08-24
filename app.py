@@ -58,7 +58,7 @@ if menu == "🏠 Início / Sobre":
 
 # --- 2. EVENTOS E INSCRIÇÕES ---
 elif menu == "🎟️ Eventos e Inscrições":
-    mostrar_cabecalho("PORTAL0.jpg")
+    mostrar_cabecalho("eventos.png")
     st.subheader("🎟️ Programação de Eventos e Cursos Disponíveis")
     st.write("Selecione abaixo o evento de seu interesse para ver os detalhes, consultar a programação e realizar a inscrição.")
     
