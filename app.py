@@ -48,7 +48,7 @@ menu = st.sidebar.selectbox("Navegue pelo Portal:", [
 # --- 1. INÍCIO ---
 if menu == "🏠 Início / Sobre":
     mostrar_cabecalho("capa0.jpg")
-    st.subheader("Bem-vindo à Science Nexus Plataforma | Saúde • Sociedade • Tecnologias • Humanidades")
+    st.subheader("Bem-vindo à Science Nexus Plataforma Científica")
     st.write("Central oficial de gestão acadêmica, submissão de resumos, acompanhamento de avaliação e publicação de anais.")
     st.markdown("""
     * **Inscrições:** Gratuitas para PUC Goiás / Pagas (Standby) para externos mediante envio de comprovante.
