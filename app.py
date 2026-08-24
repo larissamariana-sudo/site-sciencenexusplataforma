@@ -409,7 +409,7 @@ st.markdown("""
 st.markdown("---")
 
 # 1. Copyright e Direitos Autorais
-st.markdown(f"<p style='text-align: center; color: gray; font-size: 14px;'>© {ano_atual} [Larissa Mariana Veloso de Oliveira]. Todos os direitos reservados.</p>", unsafe_allow_html=True)
+st.markdown(f"<p style='text-align: center; color: gray; font-size: 14px;'>© {ano_atual} Larissa Mariana Veloso de Oliveira. Todos os direitos reservados.</p>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center; color: gray; font-size: 13px;'>O conteúdo deste website (textos, imagens e dados) está protegido pela Lei de Direitos Autorais (Lei nº 9.610/1998).</p>", unsafe_allow_html=True)
 
 # 2. Inserção da Licença Creative Commons BY-NC-SA 4.0
@@ -423,7 +423,7 @@ st.markdown("""
 st.markdown("""
 <div class='footer-box'>
     <strong>Como citar este site:</strong><br>
-    [OLIVEIRA, L.M.V.]. <em>Science Nexus Plataforma</em>. Disponível em: &lt;[www.sciencenexus.com.br]&gt;. Acesso em: [Data de Acesso].
+    OLIVEIRA, L.M.V. <em>Science Nexus Plataforma</em>. Disponível em: &lt;www.sciencenexus.com.br&gt;. Acesso em: [Data de Acesso].
 </div>
 """, unsafe_allow_html=True)
 
