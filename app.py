@@ -10,7 +10,21 @@ st.set_page_config(
     page_icon="🩺",
     layout="wide"
 )
-
+# --- FUNÇÃO DE CACHE PARA CARREGAR PLANILHAS RAPIDAMENTE ---
+@st.cache_data(ttl=600)
+def carregar_dados_planilha(link_planilha):
+    """Carrega os dados da planilha e guarda em cache por 10 minutos para evitar lentidão."""
+    try:
+        if "docs.google.com" in link_planilha:
+            id_plan = link_planilha.split("/d/")[1].split("/")[0]
+            url_csv = f"https://docs.google.com/spreadsheets/d/{id_plan}/export?format=csv"
+            df = pd.read_csv(url_csv)
+            df.columns = df.columns.str.strip().str.lower()
+            return df
+    except Exception:
+        return None
+    return None
+    
 # --- ESTILIZAÇÃO CSS PROFISSIONAL ---
 st.markdown("""
     <style>
