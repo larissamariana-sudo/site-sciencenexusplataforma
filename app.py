@@ -170,7 +170,7 @@ elif menu == "🎟️ Eventos e Inscrições":
     
     st.markdown("---")
     cat = st.radio("Selecione a opção desejada para inscrição:", [
-        "Participante/Ouvinte", "Apresentador de Trabalho", "Membro da Banca", "Cadastro de Trabalho para Certificação (Orientador)"
+        "Participante/Ouvinte", "Apresentador de Trabalho", "Orientador", "Membro da Banca", "Cadastro de Trabalho para Certificação (Orientador)"
     ])
     
     if cat == "Participante/Ouvinte":
