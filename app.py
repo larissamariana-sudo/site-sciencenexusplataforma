@@ -124,7 +124,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.link_button("📅 Ver / Baixar Programação da Jornada EM BREVE", "COLE_LINK_PROGRAMACAO_JORNADA")
 
     elif "Mostra Extensionista da Graduação em Fisioterapia" in evento_selecionado:
-        st.image("SEU_LOGO_AQUI", width=400)
+        st.image("extensao.jpg", width=400)
         st.markdown("### 🩺 Mostra Extensionista da Graduação em Fisioterapia")
         st.write("""
         * **Público-alvo:** Estudantes e docentes do curso de Fisioterapia.
