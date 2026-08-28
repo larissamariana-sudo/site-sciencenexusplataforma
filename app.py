@@ -95,10 +95,11 @@ elif menu == "🎟️ Eventos e Inscrições":
     
     evento_selecionado = st.selectbox("Escolha o Evento:", [
         "1. Jornada Científica do Curso de Fisioterapia", 
-        "2. Minicurso Prático: Reabilitação e Terapia Manual", 
-        "3. Workshop: Inovação e Tecnologias em Saúde",
-        "4. Simpósio de Saúde Coletiva e Políticas Públicas",
-        "5. Encontro Científico Docente"
+        "2. Mostra Extensionista da Graduação em Fisioterapia", 
+        "3. Minicurso Prático: Reabilitação e Terapia Manual", 
+        "4. Workshop: Inovação e Tecnologias em Saúde",
+        "5. Simpósio de Saúde Coletiva e Políticas Públicas",
+        "6. Encontro Científico PsicoHistória e as Leis da Robótica"
     ])
     
     st.markdown("---")
@@ -121,7 +122,25 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.markdown("#### 📅 Programação do Evento")
         st.write("Consulte os horários, apresentações de Projeto de Pesquisa e Trabalhos de Conclusão de Curso:")
         st.link_button("📅 Ver / Baixar Programação da Jornada EM BREVE", "COLE_LINK_PROGRAMACAO_JORNADA")
+
+    elif "Mostra Extensionista da Graduação em Fisioterapia" in evento_selecionado:
+        st.image("SEU_LOGO_AQUI", width=400)
+        st.markdown("### 🩺 Mostra Extensionista da Graduação em Fisioterapia")
+        st.write("""
+        * **Público-alvo:** Estudantes e docentes do curso de Fisioterapia.
+        * **Investimento:** 
+          * Estudantes e Docentes: **Gratuito**.
+        * **Destaque:** Permite submissão de Resumos Simples, Expandidos e Artigos Completos com ISBN gratuito.
+        """)
+        st.markdown("### **EIXOS TEMÁTICOS**")
+        st.write("**Disciplinas extensionistas do curso de Fisioterapia.**")
+        st.warning("⚠️ **Atenção os modelos de banner devem ser adaptados para: **Resumo Expandido**.")
         
+        st.markdown("---")
+        st.markdown("#### 📅 Programação do Evento")
+        st.write("Consulte os horários de apresentações da Mostra Extensionista da Graduação da PUC Goiás:")
+        st.link_button("📅 Ver / Baixar Programação da Jornada EM BREVE", "COLE_LINK_PROGRAMACAO_JORNADA")        
+    
     elif "Minicurso Prático" in evento_selecionado:
         st.markdown("### 🤲 Minicurso Prático: Reabilitação e Terapia Manual")
         st.write("Detalhes e práticas avançadas em terapia manual para acadêmicos e profissionais.")
