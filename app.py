@@ -313,7 +313,7 @@ elif menu == "✍️ Trabalhos Científicos":
 # --- 4. CERTIFICADOS E VALIDAÇÃO ---
 elif menu == "🎓 Certificados e Validação":
     mostrar_cabecalho("capa0.jpg")
-    st.subheader("🎓 Certificados — Jornada Científica de Fisioterapia")
+    st.subheader("🎓 Certificados")
     tab1, tab2 = st.tabs(["📜 Certificado enviado por email", "🛡️ Validar Autenticidade por Código"])
     
     with tab1:
