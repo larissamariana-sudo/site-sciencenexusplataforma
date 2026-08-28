@@ -175,6 +175,8 @@ elif menu == "🎟️ Eventos e Inscrições":
     
     if cat == "Participante/Ouvinte":
         st.link_button("🔗 Inscrever-se como Ouvinte", "https://forms.gle/3q9LWnYiv3AdwiiM6")
+    elif cat == "Orientador":
+        st.link_button("🔗 Inscrever-se como Orientador", "https://forms.gle/3q9LWnYiv3AdwiiM6")
     elif cat == "Apresentador de Trabalho":
         st.link_button("🔗 Inscrever-se como Apresentador", "https://forms.gle/3q9LWnYiv3AdwiiM6")
     elif cat == "Membro da Banca":
@@ -318,7 +320,7 @@ elif menu == "🎓 Certificados e Validação":
     
     with tab1:
         st.write("Selecione a categoria para receber seu certificado:")
-        cat_cert = st.selectbox("Categoria:", ["Ouvinte", "Apresentador", "Banca Avaliadora"])
+        cat_cert = st.selectbox("Categoria:", ["Ouvinte", "Orientador", "Apresentador", "Banca Avaliadora"])
         st.link_button("📥 Certificado por email", "LINK_CERTIFICADOS")
         
     with tab2:
