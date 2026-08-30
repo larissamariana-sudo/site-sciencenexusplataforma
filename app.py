@@ -407,8 +407,8 @@ elif menu == "💳 Taxa de ISBN Coletivo":
 elif menu == "📚 Anais Publicados":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("📚 Repositório Oficial de Anais")
-    st.link_button("📥 Baixar Anais Jornada Científica 2026/2", "COLE_LINK_PDF_ANAIS_AQUI"), ("📥 Baixar Apresentação/Expediente Jornada Científica", "COLE_LINK_PDF_ANAIS_AQUI")
-    st.link_button("📥 Baixar Anais Mostra Extensionista 2026", "COLE_LINK_PDF_ANAIS_AQUI"), ("📥 Baixar Apresentação/Expediente Mostra Extensionista", "COLE_LINK_PDF_ANAIS_AQUI") 
+    st.link_button("📥 Baixar Anais Jornada Científica 2026/2", "COLE_LINK_PDF_ANAIS_AQUI")
+    st.link_button("📥 Baixar Anais Mostra Extensionista 2026", "COLE_LINK_PDF_ANAIS_AQUI") 
 
 # --- 7. EVENTOS ANTERIORES ---
 elif menu == "📂 Eventos Anteriores":
@@ -425,6 +425,8 @@ elif menu == "📂 Eventos Anteriores":
         * **Jornada Científica EM BREVE** — [📥 Baixar Anais EM BREVE](COLE_LINK_ANAIS_2026)
         * **Mostra Extensionista EM BREVE** — [📥 Baixar Anais EM BREVE](COLE_LINK_ANAIS_2026)
         """)
+        st.link_button("📥 Baixar Apresentação; Expediente dos Anais da Jornada Científica 2026", "COLE_LINK_PDF_ANAIS_AQUI")
+        st.link_button("📥 Baixar Apresentação; Expediente dos Anais da Mostra Extensionista 2026", "COLE_LINK_PDF_ANAIS_AQUI") 
         st.link_button("📥 Acessar Pasta Geral de Anais Anteriores no Drive EM CONSTRUÇÃO", "COLE_LINK_PASTA_ANAIS_ANTERIORES")
         
     with tab_ant2:
