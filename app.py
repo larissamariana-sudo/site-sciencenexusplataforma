@@ -394,21 +394,21 @@ elif menu == "💳 Taxa de DOI Individual/Pessoal":
     st.subheader("💳 Solicitação e Pagamento de DOI Individual")
     st.write("O DOI individual é opcional (R$ 20,00).")
     st.info("ℹ️ **Chave PIX:** eventoscientificosc@gmail.com")
-    st.link_button("🔗 Link para Solicitação DOI", "https://forms.gle/ZjKAcp7LuK8zFFub8")
+    st.link_button("🔗 Link para Solicitação DOI", "https://forms.gle/J1FArsU2fYT7nHU26")
 
 elif menu == "💳 Taxa de ISBN Coletivo":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("💳 Solicitação e Pagamento de ISBN Coletivo")
     st.write("Taxa única ISBN, para o documento que conterá todos os resumos dos Anais (R$ 35,00).")
     st.info("ℹ️ **Chave PIX:** eventoscientificosc@gmail.com")
-    st.link_button("🔗 Link para Solicitação ISBN", "https://forms.gle/7JXdM3jRKzqJyqdR9")
+    st.link_button("🔗 Link para Solicitação ISBN", "https://forms.gle/2bN1yFrR5phvTcAu5")
 
 # --- 6. ANAIS ---
 elif menu == "📚 Anais Publicados":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("📚 Repositório Oficial de Anais")
-    st.link_button("📥 Baixar Anais Jornada Científica 2026/2", "COLE_LINK_PDF_ANAIS_AQUI")
-    st.link_button("📥 Baixar Anais Mostra Extensionista 2026", "COLE_LINK_PDF_ANAIS_AQUI")
+    st.link_button("📥 Baixar Anais Jornada Científica 2026/2", "COLE_LINK_PDF_ANAIS_AQUI"), ("📥 Baixar Apresentação/Expediente Jornada Científica", "COLE_LINK_PDF_ANAIS_AQUI")
+    st.link_button("📥 Baixar Anais Mostra Extensionista 2026", "COLE_LINK_PDF_ANAIS_AQUI"), ("📥 Baixar Apresentação/Expediente Mostra Extensionista", "COLE_LINK_PDF_ANAIS_AQUI") 
 
 # --- 7. EVENTOS ANTERIORES ---
 elif menu == "📂 Eventos Anteriores":
