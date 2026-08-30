@@ -99,7 +99,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         "3. Minicurso Prático: Reabilitação e Terapia Manual", 
         "4. Workshop: Inovação e Tecnologias em Saúde",
         "5. Simpósio de Saúde Coletiva e Políticas Públicas",
-        "6. Encontro Científico PsicoHistória e as Leis da Robótica"
+        "6. Encontro Científico Psico História e as Leis da Robótica"
     ])
     
     st.markdown("---")
@@ -112,7 +112,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         * **Investimento:** 
           * Estudantes, Docentes e Banca da PUC Goiás: **Gratuito**.
           * Participantes Externos: **R$ 10,00** (Standby mediante comprovante na chave `eventoscientificosc@gmail.com`).
-        * **Destaque:** Permite submissão de Resumos Simples, Expandidos e Artigos Completos com ISBN gratuito.
+        * **Destaque:** Permite submissão de Resumos Simples, Expandidos e Artigos Completos com ISBN.
         """)
         st.markdown("### **EIXOS TEMÁTICOS**")
         st.write("**Fisioterapia Musculo Esquelética, Neurológica, Cardiorrespiratória, Terapia Intensiva, Geriatria e Gerontologia, Saúde da Mulher, Saúde Coletiva, Tecnologias e Inteligência Artificial na Saúde e Outras Áreas.**")
@@ -130,11 +130,11 @@ elif menu == "🎟️ Eventos e Inscrições":
         * **Público-alvo:** Estudantes e docentes do curso de Fisioterapia.
         * **Investimento:** 
           * Estudantes e Docentes: **Gratuito**.
-        * **Destaque:** Permite submissão de Resumos Simples, Expandidos e Artigos Completos com ISBN gratuito.
+        * **Destaque:** Permite submissão de Resumos Simples e Resumos Expandidos com ISBN.
         """)
         st.markdown("### **EIXOS TEMÁTICOS**")
         st.write("**Disciplinas extensionistas do curso de Fisioterapia.**")
-        st.warning("⚠️ **Atenção os modelos de banner devem ser adaptados para: **Resumo Expandido**.")
+        st.warning("⚠️ **Sugestão: os modelos de banner devem ser adaptados para: **Resumo Expandido**.")
         
         st.markdown("---")
         st.markdown("#### 📅 Programação do Evento")
@@ -160,7 +160,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.link_button("📅 Ver / Baixar Programação do Simpósio EM BREVE", "COLE_LINK_PROGRAMACAO_SIMPOSIO")
         
     elif "Encontro Científico" in evento_selecionado:
-        st.markdown("### 🎓 Encontro Científico Docente")
+        st.markdown("### 🎓 Encontro Científico Psico História e as Leis da Robótica")
         st.write("""
         * **Foco:** Integração científica dos acadêmicos da graduação.
         * **Investimento:** Gratuito para a comunidade acadêmica da FST.
@@ -263,7 +263,8 @@ elif menu == "✍️ Trabalhos Científicos":
 
         st.markdown("---")
         st.info("📌 **Importante:** Para que os arquivos sejam salvos diretamente na nuvem da comissão científica, a submissão é feita por formulário dedicado.")
-        st.link_button("📥 Clique aqui para acessar o Formulário de Submissão de Trabalhos", "https://forms.gle/UUmLAAEdCwY9JRrY6")
+        st.link_button("📥 Jornada Científica / Clique aqui para acessar o Formulário de Submissão de Trabalhos", "https://forms.gle/UUmLAAEdCwY9JRrY6")
+        st.link_button("📥 Mostra Extensionista / Clique aqui para acessar o Formulário de Submissão de Trabalhos", "https://forms.gle/7JXdM3jRKzqJyqdR9")
     
     with tab_principal2:
         st.write("Digite o seu e-mail cadastrado na submissão para verificar o parecer atual da comissão científica.")
