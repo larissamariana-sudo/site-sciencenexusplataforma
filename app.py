@@ -363,14 +363,21 @@ elif menu == "🎓 Certificados e Validação":
                 else:
                     st.error("Por favor, digite o código de autenticidade.")
 
-# --- 5. DOI ---
-elif menu == "💳 Taxa de DOI Individual":
+# --- 5. DOI/ISBN ---
+elif menu == "💳 Taxa de DOI Individual/Pessoal":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("💳 Solicitação e Pagamento de DOI Individual")
-    st.write("A publicação nos Anais oficiais com ISBN é gratuita. O DOI individual é opcional (R$ 20,00).")
+    st.write("O DOI individual é opcional (R$ 20,00).")
     st.info("ℹ️ **Chave PIX:** eventoscientificosc@gmail.com")
     st.link_button("🔗 Link para Solicitação DOI", "https://forms.gle/ZjKAcp7LuK8zFFub8")
 
+elif menu == "💳 Taxa de ISBN Coletivo":
+    mostrar_cabecalho("capa0.jpg")
+    st.subheader("💳 Solicitação e Pagamento de ISBN Coletivo")
+    st.write("Taxa única ISBN, para o documento que conterá todos os resumos dos Anais (R$ 35,00).")
+    st.info("ℹ️ **Chave PIX:** eventoscientificosc@gmail.com")
+    st.link_button("🔗 Link para Solicitação ISBN", "https://forms.gle/7JXdM3jRKzqJyqdR9")
+    
 # --- 6. ANAIS ---
 elif menu == "📚 Anais Publicados":
     mostrar_cabecalho("capa0.jpg")
