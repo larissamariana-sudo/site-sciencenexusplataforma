@@ -377,12 +377,12 @@ elif menu == "💳 Taxa de ISBN Coletivo":
     st.write("Taxa única ISBN, para o documento que conterá todos os resumos dos Anais (R$ 35,00).")
     st.info("ℹ️ **Chave PIX:** eventoscientificosc@gmail.com")
     st.link_button("🔗 Link para Solicitação ISBN", "https://forms.gle/7JXdM3jRKzqJyqdR9")
-    
 # --- 6. ANAIS ---
 elif menu == "📚 Anais Publicados":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("📚 Repositório Oficial de Anais")
-    st.link_button("📥 Baixar Anais", "COLE_LINK_PDF_ANAIS_AQUI")
+    st.link_button("📥 Baixar Anais Jornada Científica 2026/2", "COLE_LINK_PDF_ANAIS_AQUI")
+    st.link_button("📥 Baixar Anais Mostra Extensionista 2026", "COLE_LINK_PDF_ANAIS_AQUI")
 
 # --- 7. EVENTOS ANTERIORES ---
 elif menu == "📂 Eventos Anteriores":
@@ -397,7 +397,7 @@ elif menu == "📂 Eventos Anteriores":
         st.write("Consulte os cadernos de resumos e anais oficiais dos anos anteriores:")
         st.markdown("""
         * **Jornada Científica EM BREVE** — [📥 Baixar Anais EM BREVE](COLE_LINK_ANAIS_2026)
-        * **Jornada Científica EM BREVE** — [📥 Baixar Anais EM BREVE](COLE_LINK_ANAIS_2027)
+        * **Mostra Extensionista EM BREVE** — [📥 Baixar Anais EM BREVE](COLE_LINK_ANAIS_2026)
         """)
         st.link_button("📥 Acessar Pasta Geral de Anais Anteriores no Drive EM CONSTRUÇÃO", "COLE_LINK_PASTA_ANAIS_ANTERIORES")
         
