@@ -10,6 +10,7 @@ st.set_page_config(
     page_icon="🩺",
     layout="wide"
 )
+
 # --- FUNÇÃO DE CACHE PARA CARREGAR PLANILHAS RAPIDAMENTE ---
 @st.cache_data(ttl=600)
 def carregar_dados_planilha(link_planilha):
@@ -54,7 +55,10 @@ st.markdown("""
 def mostrar_cabecalho(foto="capa0.jpg"):
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        st.image(foto, width=600)
+        try:
+            st.image(foto, width=600)
+        except Exception:
+            pass
     
     st.markdown("""
         <div style='background-color: #004225; padding: 25px; border-radius: 10px; text-align: center; color: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1);'>
@@ -69,7 +73,8 @@ menu = st.sidebar.selectbox("Navegue pelo Portal:", [
     "🎟️ Eventos e Inscrições", 
     "✍️ Trabalhos Científicos", 
     "🎓 Certificados e Validação", 
-    "💳 Taxa de DOI Individual", 
+    "💳 Taxa de DOI Individual/Pessoal", 
+    "💳 Taxa de ISBN Coletivo",
     "📚 Anais Publicados",
     "📂 Eventos Anteriores",
     "📞 Contato"
@@ -104,6 +109,7 @@ elif menu == "🎟️ Eventos e Inscrições":
     
     st.markdown("---")
     
+    # Determina quais categorias de inscrição mostrar com base no evento selecionado
     if "Jornada Científica" in evento_selecionado:
         st.image("logo_jornada.png.jpg", width=400)
         st.markdown("### 🩺 Jornada Científica do Curso de Fisioterapia")
@@ -122,6 +128,14 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.markdown("#### 📅 Programação do Evento")
         st.write("Consulte os horários, apresentações de Projeto de Pesquisa e Trabalhos de Conclusão de Curso:")
         st.link_button("📅 Ver / Baixar Programação da Jornada EM BREVE", "COLE_LINK_PROGRAMACAO_JORNADA")
+        
+        opcoes_inscricao = [
+            "Participante/Ouvinte", 
+            "Orientador", 
+            "Apresentador de Trabalho", 
+            "Membro da Banca", 
+            "Cadastro de Trabalho para Certificação (Orientador)"
+        ]
 
     elif "Mostra Extensionista da Graduação em Fisioterapia" in evento_selecionado:
         st.image("extensao.jpg", width=400)
@@ -134,12 +148,20 @@ elif menu == "🎟️ Eventos e Inscrições":
         """)
         st.markdown("### **EIXOS TEMÁTICOS**")
         st.write("**Disciplinas extensionistas do curso de Fisioterapia.**")
-        st.warning("⚠️ **Sugestão: os modelos de banner devem ser adaptados para: **Resumo Expandido**.")
+        st.warning("⚠️ **Sugestão: os modelos de banner devem ser adaptados para: Resumo Expandido**.")
         
         st.markdown("---")
         st.markdown("#### 📅 Programação do Evento")
         st.write("Consulte os horários de apresentações da Mostra Extensionista da Graduação da PUC Goiás:")
         st.link_button("📅 Ver / Baixar Programação da Jornada EM BREVE", "COLE_LINK_PROGRAMACAO_JORNADA")        
+        
+        opcoes_inscricao = [
+            "Participante/Ouvinte", 
+            "Orientador", 
+            "Apresentador de Trabalho", 
+            "Membro da Banca", 
+            "Cadastro de Trabalho para Certificação (Orientador)"
+        ]
     
     elif "Minicurso Prático" in evento_selecionado:
         st.markdown("### 🤲 Minicurso Prático: Reabilitação e Terapia Manual")
@@ -147,17 +169,24 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.markdown("#### 📅 Programação do Evento")
         st.link_button("📅 Ver / Baixar Programação do Minicurso EM BREVE", "COLE_LINK_PROGRAMACAO_MINICURSO")
         
+        # Minicursos geralmente não possuem banca ou submissão de artigos completos
+        opcoes_inscricao = ["Participante/Ouvinte"]
+        
     elif "Workshop" in evento_selecionado:
         st.markdown("### 💡 Workshop: Inovação e Tecnologias em Saúde")
         st.write("Discussão sobre novas tecnologias e o futuro da reabilitação e saúde.")
         st.markdown("#### 📅 Programação do Evento")
         st.link_button("📅 Ver / Baixar Programação do Workshop EM BREVE", "COLE_LINK_PROGRAMACAO_WORKSHOP")
         
+        opcoes_inscricao = ["Participante/Ouvinte"]
+        
     elif "Simpósio de Saúde Coletiva" in evento_selecionado:
         st.markdown("### 📊 Simpósio de Saúde Coletiva e Políticas Públicas")
         st.write("Debates e mesas-redondas sobre o impacto das políticas públicas na saúde.")
         st.markdown("#### 📅 Programação do Evento")
         st.link_button("📅 Ver / Baixar Programação do Simpósio EM BREVE", "COLE_LINK_PROGRAMACAO_SIMPOSIO")
+        
+        opcoes_inscricao = ["Participante/Ouvinte", "Apresentador de Trabalho"]
         
     elif "Encontro Científico" in evento_selecionado:
         st.markdown("### 🎓 Encontro Científico Psico História e as Leis da Robótica")
@@ -167,11 +196,11 @@ elif menu == "🎟️ Eventos e Inscrições":
         """)
         st.markdown("#### 📅 Programação do Evento")
         st.link_button("📅 Ver / Baixar Programação do Encontro EM BREVE", "COLE_LINK_PROGRAMACAO_ENCONTRO")
+        
+        opcoes_inscricao = ["Participante/Ouvinte", "Apresentador de Trabalho"]
     
     st.markdown("---")
-    cat = st.radio("Selecione a opção desejada para inscrição:", [
-        "Participante/Ouvinte", "Apresentador de Trabalho", "Orientador", "Membro da Banca", "Cadastro de Trabalho para Certificação (Orientador)"
-    ])
+    cat = st.radio("Selecione a opção desejada para inscrição:", opcoes_inscricao)
     
     if cat == "Participante/Ouvinte":
         st.link_button("🔗 Inscrever-se como Ouvinte", "https://forms.gle/3q9LWnYiv3AdwiiM6")
@@ -279,35 +308,36 @@ elif menu == "✍️ Trabalhos Científicos":
                     
                     try:
                         link_planilha = "https://docs.google.com/spreadsheets/d/1X7XoT0ohgtc5DZOw-ezcu0HjPPSaBF-nSrGWOFSVsUY/edit?usp=sharing"
-                        id_planilha = link_planilha.split("/d/")[1].split("/")[0]
-                        url_csv = f"https://docs.google.com/spreadsheets/d/{id_planilha}/export?format=csv"
+                        df = carregar_dados_planilha(link_planilha)
                         
-                        df = pd.read_csv(url_csv)
-                        df.columns.values[2] = 'email_col'
-                        coluna_email = 'email_col'
-                        coluna_status = next((col for col in df.columns if 'status' in col.lower()), None)
-                        
-                        df[coluna_email] = df[coluna_email].astype(str).str.strip().str.lower()
-                        resultado = df[df[coluna_email] == email_busca]
-                        
-                        if not resultado.empty:
-                            if coluna_status:
-                                status_val = str(resultado.iloc[0][coluna_status]).strip()
-                                if status_val.lower() == 'nan' or status_val == "":
-                                    status_final = "Recebido"
+                        if df is not None:
+                            df.columns.values[2] = 'email_col'
+                            coluna_email = 'email_col'
+                            coluna_status = next((col for col in df.columns if 'status' in col.lower()), None)
+                            
+                            df[coluna_email] = df[coluna_email].astype(str).str.strip().str.lower()
+                            resultado = df[df[coluna_email] == email_busca]
+                            
+                            if not resultado.empty:
+                                if coluna_status:
+                                    status_val = str(resultado.iloc[0][coluna_status]).strip()
+                                    if status_val.lower() == 'nan' or status_val == "":
+                                        status_final = "Recebido"
+                                    else:
+                                        status_final = status_val
+                                    
+                                    if "aprovado" in status_final.lower():
+                                        st.success(f"🎉 **Status:** {status_final}")
+                                    elif "correção" in status_final.lower():
+                                        st.error(f"⚠️ **Status:** {status_final} - Verifique seu e-mail.")
+                                    else:
+                                        st.info(f"⏳ **Status:** {status_final}")
                                 else:
-                                    status_final = status_val
-                                
-                                if "aprovado" in status_final.lower():
-                                    st.success(f"🎉 **Status:** {status_final}")
-                                elif "correção" in status_final.lower():
-                                    st.error(f"⚠️ **Status:** {status_final} - Verifique seu e-mail.")
-                                else:
-                                    st.info(f"⏳ **Status:** {status_final}")
+                                    st.error("Coluna 'Status' não encontrada na planilha.")
                             else:
-                                st.error("Coluna 'Status' não encontrada na planilha.")
+                                st.warning("E-mail não encontrado na Coluna C.")
                         else:
-                            st.warning("E-mail não encontrado na Coluna C.")
+                            st.error("Erro ao ler planilha.")
                     except Exception as e:
                         st.error(f"Erro ao ler planilha: {e}")
                 else:
@@ -334,14 +364,9 @@ elif menu == "🎓 Certificados e Validação":
                 if codigo_digitado:
                     try:
                         link_planilha_cert = "https://docs.google.com/spreadsheets/d/15D_Vay3AQDUrbmaHjgwTeg0irLHX5q2pw6sw_wtiDl0/edit?usp=sharing"
+                        df_c = carregar_dados_planilha(link_planilha_cert)
                         
-                        if "docs.google.com" in link_planilha_cert:
-                            id_c = link_planilha_cert.split("/d/")[1].split("/")[0]
-                            url_c_csv = f"https://docs.google.com/spreadsheets/d/{id_c}/export?format=csv"
-                            
-                            df_c = pd.read_csv(url_c_csv)
-                            df_c.columns = df_c.columns.str.strip().str.lower()
-                            
+                        if df_c is not None:
                             col_cod = next((c for c in df_c.columns if 'codigo' in c or 'chave' in c or 'autenticidade' in c), None)
                             
                             if col_cod:
@@ -377,6 +402,7 @@ elif menu == "💳 Taxa de ISBN Coletivo":
     st.write("Taxa única ISBN, para o documento que conterá todos os resumos dos Anais (R$ 35,00).")
     st.info("ℹ️ **Chave PIX:** eventoscientificosc@gmail.com")
     st.link_button("🔗 Link para Solicitação ISBN", "https://forms.gle/7JXdM3jRKzqJyqdR9")
+
 # --- 6. ANAIS ---
 elif menu == "📚 Anais Publicados":
     mostrar_cabecalho("capa0.jpg")
@@ -425,28 +451,6 @@ elif menu == "📞 Contato":
     st.markdown("---")
     st.info("📧 **E-mail oficial de suporte:** eventoscientificosc@gmail.com")
     st.write("Nossa equipe responderá sua mensagem em até 48 horas úteis.")
-
-from datetime import datetime
-
-# Obter o ano atual dinamicamente para o copyright
-ano_atual = datetime.now().year
-
-# --- ESTILIZAÇÃO CSS PARA O RODAPÉ ---
-st.markdown("""
-    <style>
-    .footer-box {
-        background-color: #ffffff;
-        border: 1px solid #e0e0e0;
-        padding: 15px;
-        border-radius: 8px;
-        font-size: 13px;
-        color: #555555;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-    }
-    </style>
-""", unsafe_allow_html=True)
 
 # --- RODAPÉ ---
 st.markdown("---")
