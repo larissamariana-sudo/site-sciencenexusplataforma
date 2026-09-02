@@ -144,7 +144,7 @@ elif menu == "🎟️ Eventos e Inscrições":
 
     elif "Encontro Formativo PET Saúde Clima" in evento_selecionado:
         try:
-            st.image("clima de estimação.png", width=400)
+            st.image("pet clima.png", width=400)
         except Exception:
             st.caption("ℹ️ *[Logo de divulgação do PET Saúde Clima não encontrada no repositório]*")
             
