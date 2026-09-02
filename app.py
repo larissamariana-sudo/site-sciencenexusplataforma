@@ -65,16 +65,16 @@ def mostrar_cabecalho(foto="capa0.jpg"):
     """, unsafe_allow_html=True)
     st.write("")
 
-# --- MENU ---
+# --- MENU (Ordem atualizada com Transmissão abaixo de Anais Publicados) ---
 menu = st.sidebar.selectbox("Navegue pelo Portal:", [
     "🏠 Início / Sobre", 
     "🎟️ Eventos e Inscrições", 
     "✍️ Trabalhos Científicos", 
-    "📺 Transmissão ao Vivo",
     "🎓 Certificados e Validação", 
     "💳 Taxa de DOI Individual/Pessoal", 
     "💳 Taxa de ISBN Coletivo",
     "📚 Anais Publicados",
+    "📺 Transmissão ao Vivo",
     "📂 Eventos Anteriores",
     "📞 Contato"
 ])
@@ -91,7 +91,7 @@ if menu == "🏠 Início / Sobre":
     * **Avaliação:** Acompanhe em tempo real se seu trabalho está em análise, aprovado ou pendente de correções.
     """)
 
-# --- 2. EVENTOS E INSCRIÇÕES ---
+# --- 2. EVENTOS E INSCRIÇÕES (Com Links Independentes por Evento) ---
 elif menu == "🎟️ Eventos e Inscrições":
     mostrar_cabecalho("eventos.png")
     st.subheader("🎟️ Programação de Eventos e Cursos Disponíveis")
@@ -110,7 +110,7 @@ elif menu == "🎟️ Eventos e Inscrições":
     
     st.markdown("---")
     
-    # Exibição customizada por evento com suporte seguro a imagens e logos
+    # Cada evento possui agora seus próprios links dedicados de inscrição
     if "Jornada Científica" in evento_selecionado:
         try:
             st.image("logo_jornada.png.jpg", width=400)
@@ -133,13 +133,14 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.markdown("#### 📅 Programação do Evento")
         st.link_button("📅 Ver / Baixar Programação da Jornada EM BREVE", "COLE_LINK_PROGRAMACAO_JORNADA")
         
-        opcoes_inscricao = [
-            "Participante/Ouvinte", 
-            "Orientador", 
-            "Apresentador de Trabalho", 
-            "Membro da Banca", 
-            "Cadastro de Trabalho para Certificação (Orientador)"
-        ]
+        opcoes_inscricao = ["Participante/Ouvinte", "Orientador", "Apresentador de Trabalho", "Membro da Banca", "Cadastro de Trabalho para Certificação (Orientador)"]
+        
+        # Links específicos da Jornada
+        link_ouv = "https://forms.gle/LINK_JORNADA_OUVINTE"
+        link_ori = "https://forms.gle/LINK_JORNADA_ORIENTADOR"
+        link_apr = "https://forms.gle/LINK_JORNADA_APRESENTADOR"
+        link_ban = "https://forms.gle/LINK_JORNADA_BANCA"
+        link_cad = "https://forms.gle/LINK_JORNADA_CADASTRO_TRABALHO"
 
     elif "Encontro Formativo PET Saúde Clima" in evento_selecionado:
         try:
@@ -158,6 +159,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.link_button("📅 Ver / Baixar Programação PET Saúde Clima", "COLE_LINK_PROGRAMACAO_PET")
         
         opcoes_inscricao = ["Participante/Ouvinte"]
+        link_ouv = "https://forms.gle/LINK_PET_SAUDE_OUVINTE"
 
     elif "Acolhimento dos Monitores" in evento_selecionado or "Monitores" in evento_selecionado:
         try:
@@ -171,6 +173,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.link_button("📅 Ver / Baixar Programação", "COLE_LINK_PROGRAMACAO_MONITORES")
         
         opcoes_inscricao = ["Participante/Ouvinte"]
+        link_ouv = "https://forms.gle/LINK_MONITORES_OUVINTE"
         
     elif "Mostra Extensionista" in evento_selecionado:
         try:
@@ -192,13 +195,13 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.markdown("#### 📅 Programação do Evento")
         st.link_button("📅 Ver / Baixar Programação da Mostra", "COLE_LINK_PROGRAMACAO_MOSTRA")        
         
-        opcoes_inscricao = [
-            "Participante/Ouvinte", 
-            "Orientador", 
-            "Apresentador de Trabalho", 
-            "Membro da Banca", 
-            "Cadastro de Trabalho para Certificação (Orientador)"
-        ]
+        opcoes_inscricao = ["Participante/Ouvinte", "Orientador", "Apresentador de Trabalho", "Membro da Banca", "Cadastro de Trabalho para Certificação (Orientador)"]
+        
+        link_ouv = "https://forms.gle/LINK_MOSTRA_OUVINTE"
+        link_ori = "https://forms.gle/LINK_MOSTRA_ORIENTADOR"
+        link_apr = "https://forms.gle/LINK_MOSTRA_APRESENTADOR"
+        link_ban = "https://forms.gle/LINK_MOSTRA_BANCA"
+        link_cad = "https://forms.gle/LINK_MOSTRA_CADASTRO_TRABALHO"
     
     elif "Minicurso Prático" in evento_selecionado:
         try:
@@ -212,6 +215,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.link_button("📅 Ver / Baixar Programação do Minicurso", "COLE_LINK_PROGRAMACAO_MINICURSO")
         
         opcoes_inscricao = ["Participante/Ouvinte"]
+        link_ouv = "https://forms.gle/LINK_MINICURSO_OUVINTE"
         
     elif "Workshop" in evento_selecionado:
         try:
@@ -225,6 +229,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.link_button("📅 Ver / Baixar Programação do Workshop", "COLE_LINK_PROGRAMACAO_WORKSHOP")
         
         opcoes_inscricao = ["Participante/Ouvinte"]
+        link_ouv = "https://forms.gle/LINK_WORKSHOP_OUVINTE"
         
     elif "Simpósio de Saúde Coletiva" in evento_selecionado:
         try:
@@ -238,6 +243,8 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.link_button("📅 Ver / Baixar Programação do Simpósio", "COLE_LINK_PROGRAMACAO_SIMPOSIO")
         
         opcoes_inscricao = ["Participante/Ouvinte", "Apresentador de Trabalho"]
+        link_ouv = "https://forms.gle/LINK_SIMPOSIO_OUVINTE"
+        link_apr = "https://forms.gle/LINK_SIMPOSIO_APRESENTADOR"
         
     elif "Encontro Científico" in evento_selecionado:
         try:
@@ -254,21 +261,23 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.link_button("📅 Ver / Baixar Programação do Encontro", "COLE_LINK_PROGRAMACAO_ENCONTRO")
         
         opcoes_inscricao = ["Participante/Ouvinte", "Apresentador de Trabalho"]
+        link_ouv = "https://forms.gle/LINK_ENCONTRO_OUVINTE"
+        link_apr = "https://forms.gle/LINK_ENCONTRO_APRESENTADOR"
     
     st.markdown("---")
     cat = st.radio("Selecione a opção desejada para inscrição:", opcoes_inscricao)
     
     if cat == "Participante/Ouvinte":
-        st.link_button("🔗 Inscrever-se como Ouvinte", "https://forms.gle/3q9LWnYiv3AdwiiM6")
+        st.link_button("🔗 Inscrever-se como Ouvinte", link_ouv)
     elif cat == "Orientador":
-        st.link_button("🔗 Inscrever-se como Orientador", "https://forms.gle/3q9LWnYiv3AdwiiM6")
+        st.link_button("🔗 Inscrever-se como Orientador", link_ori)
     elif cat == "Apresentador de Trabalho":
-        st.link_button("🔗 Inscrever-se como Apresentador", "https://forms.gle/3q9LWnYiv3AdwiiM6")
+        st.link_button("🔗 Inscrever-se como Apresentador", link_apr)
     elif cat == "Membro da Banca":
-        st.link_button("🔗 Inscrever-se como Banca", "https://forms.gle/3q9LWnYiv3AdwiiM6")
+        st.link_button("🔗 Inscrever-se como Banca", link_ban)
     else:
         st.info("⚠️ **Exclusivo para Orientadores:** Utilize este formulário para cadastrar o trabalho, estudante e banca para o certificado.")
-        st.link_button("📝 Cadastrar Informações do Trabalho", "https://forms.gle/bTGR48dU3rrgBgr17")
+        st.link_button("📝 Cadastrar Informações do Trabalho", link_cad)
 
 # --- 3. TRABALHOS (SUBMISSÃO + STATUS) ---
 elif menu == "✍️ Trabalhos Científicos":
@@ -296,7 +305,6 @@ elif menu == "✍️ Trabalhos Científicos":
             * **DOI (Opcional):** Autores que desejarem maior rastreabilidade podem optar pela aquisição do registro de DOI.
             """)
             
-            # Botão de download do PDF de regras (Resumo Simples) - Seguro contra ausência do arquivo
             try:
                 with open("regras_resumo_simples.pdf", "rb") as pdf_file:
                     st.download_button("📥 Baixar Regras Completas (PDF - Resumo Simples)", pdf_file, file_name="Regras_Resumo_Simples.pdf", mime="application/pdf")
@@ -380,33 +388,7 @@ elif menu == "✍️ Trabalhos Científicos":
                 else:
                     st.error("Por favor, digite um e-mail.")
 
-# --- 4. TRANSMISSÃO AO VIVO ---
-elif menu == "📺 Transmissão ao Vivo":
-    mostrar_cabecalho("capa0.jpg")
-    st.subheader("📺 Central de Transmissões ao Vivo e Eventos Online")
-    st.write("Acompanhe abaixo as palestras, sessões de apresentação de trabalhos e mesas-redondas em tempo real.")
-    
-    st.markdown("---")
-    link_transmissao = st.text_input("🔗 Cole aqui o link da transmissão (YouTube Live):", "https://www.youtube.com/watch?v=EXEMPLO_LIVE")
-    
-    if link_transmissao:
-        try:
-            st.video(link_transmissao)
-        except Exception:
-            st.warning("Insira um link válido do YouTube para exibir o player de transmissão.")
-            
-    st.markdown("---")
-    st.markdown("### 📋 Programação das Salas Online")
-    sala_escolhida = st.selectbox("Escolha a Sala:", [
-        "Sala 1: Abertura e Conferências Principais",
-        "Sala 2: Apresentação de Trabalhos - Fisioterapia Musculoesquelética",
-        "Sala 3: Apresentação de Trabalhos - Saúde Coletiva e Extensão",
-        "Sala 4: Mesas-redondas e Encerramento"
-    ])
-    st.info("🔴 **Status:** Transmissão agendada. O link será ativado no horário oficial do evento.")
-    st.link_button(f"🔗 Entrar na {sala_escolhida}", "COLE_LINK_DA_SALA")
-
-# --- 5. CERTIFICADOS E VALIDAÇÃO (Apenas Validação por Código ativada) ---
+# --- 4. CERTIFICADOS E VALIDAÇÃO ---
 elif menu == "🎓 Certificados e Validação":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("🎓 Validação de Autenticidade de Certificados")
@@ -444,7 +426,7 @@ elif menu == "🎓 Certificados e Validação":
             else:
                 st.error("Por favor, digite o código de autenticidade.")
 
-# --- 6. DOI/ISBN ---
+# --- 5. DOI/ISBN ---
 elif menu == "💳 Taxa de DOI Individual/Pessoal":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("💳 Solicitação e Pagamento de DOI Individual")
@@ -459,12 +441,38 @@ elif menu == "💳 Taxa de ISBN Coletivo":
     st.info("ℹ️ **Chave PIX:** eventoscientificosc@gmail.com")
     st.link_button("🔗 Link para Solicitação ISBN", "https://forms.gle/2bN1yFrR5phvTcAu5")
 
-# --- 7. ANAIS ---
+# --- 6. ANAIS ---
 elif menu == "📚 Anais Publicados":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("📚 Repositório Oficial de Anais")
     st.link_button("📥 Baixar Anais Jornada Científica 2026/2", "COLE_LINK_PDF_ANAIS_AQUI")
     st.link_button("📥 Baixar Anais Mostra Extensionista 2026", "COLE_LINK_PDF_ANAIS_AQUI") 
+
+# --- 7. TRANSMISSÃO AO VIVO (Posicionada abaixo de Anais Publicados) ---
+elif menu == "📺 Transmissão ao Vivo":
+    mostrar_cabecalho("capa0.jpg")
+    st.subheader("📺 Central de Transmissões ao Vivo e Eventos Online")
+    st.write("Acompanhe abaixo as palestras, sessões de apresentação de trabalhos e mesas-redondas em tempo real.")
+    
+    st.markdown("---")
+    link_transmissao = st.text_input("🔗 Cole aqui o link da transmissão (YouTube Live):", "https://www.youtube.com/watch?v=EXEMPLO_LIVE")
+    
+    if link_transmissao:
+        try:
+            st.video(link_transmissao)
+        except Exception:
+            st.warning("Insira um link válido do YouTube para exibir o player de transmissão.")
+            
+    st.markdown("---")
+    st.markdown("### 📋 Programação das Salas Online")
+    sala_escolhida = st.selectbox("Escolha a Sala:", [
+        "Sala 1: Abertura e Conferências Principais",
+        "Sala 2: Apresentação de Trabalhos - Fisioterapia Musculoesquelética",
+        "Sala 3: Apresentação de Trabalhos - Saúde Coletiva e Extensão",
+        "Sala 4: Mesas-redondas e Encerramento"
+    ])
+    st.info("🔴 **Status:** Transmissão agendada. O link será ativado no horário oficial do evento.")
+    st.link_button(f"🔗 Entrar na {sala_escolhida}", "COLE_LINK_DA_SALA")
 
 # --- 8. EVENTOS ANTERIORES ---
 elif menu == "📂 Eventos Anteriores":
