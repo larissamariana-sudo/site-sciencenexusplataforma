@@ -139,7 +139,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         ]
 
     elif "Workshop" in evento_selecionado:
-        st.image("sugemonitores.jpg", width=400)
+        st.image("monitores.jpg", width=400)
         st.markdown("### 🤲 Acolhimento dos Monitores Caeme/Prograd")
         st.write("Data: 11/09 Matutino 9h às 10h30 Campus Il Auditório Bloco S e Noturno 18h às 19h30 Área II Auditório II. Público: Monitores selecionados em 2026/2.")
         st.markdown("#### 📅 Programação do Evento")
