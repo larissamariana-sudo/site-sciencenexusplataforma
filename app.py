@@ -173,7 +173,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.link_button("📅 Ver / Baixar Programação", "COLE_LINK_PROGRAMACAO_MONITORES")
         
         opcoes_inscricao = ["Participante/Ouvinte"]
-        link_ouv = "https://forms.gle/LINK_MONITORES_OUVINTE"
+        link_ouv = "https://forms.gle/wtTcSXZt6PnwzjEL7"
         
     elif "Mostra Extensionista" in evento_selecionado:
         try:
