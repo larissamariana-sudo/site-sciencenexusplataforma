@@ -99,12 +99,13 @@ elif menu == "🎟️ Eventos e Inscrições":
     st.write("Selecione abaixo o evento de seu interesse para ver os detalhes, consultar a programação e realizar a inscrição.")
     
     evento_selecionado = st.selectbox("Escolha o Evento:", [
-        "1. Jornada Científica do Curso de Fisioterapia", 
-        "2. Mostra Extensionista da Graduação em Fisioterapia", 
-        "3. Minicurso Prático: Reabilitação e Terapia Manual", 
-        "4. Workshop: Inovação e Tecnologias em Saúde",
-        "5. Simpósio de Saúde Coletiva e Políticas Públicas",
-        "6. Encontro Científico Psico História e as Leis da Robótica"
+        "1. Jornada Científica do Curso de Fisioterapia"
+        "2. Acolhimento dos Monitores Caeme/Prograd", 
+        "3. Mostra Extensionista da Graduação em Fisioterapia", 
+        "4. Minicurso Prático: Reabilitação e Terapia Manual", 
+        "5. Workshop: Inovação e Tecnologias em Saúde",
+        "6. Simpósio de Saúde Coletiva e Políticas Públicas",
+        "7. Encontro Científico Psico História e as Leis da Robótica"
     ])
     
     st.markdown("---")
@@ -137,6 +138,14 @@ elif menu == "🎟️ Eventos e Inscrições":
             "Cadastro de Trabalho para Certificação (Orientador)"
         ]
 
+    elif "Workshop" in evento_selecionado:
+        st.markdown("### 🤲 Acolhimento dos Monitores Caeme/Prograd")
+        st.write("Data: 11/09 Matutino 9h às 10h30 Campus Il Auditório Bloco S e Noturno 18h às 19h30 Área II Auditório II. Público: Monitores selecionados em 2026/2.")
+        st.markdown("#### 📅 Programação do Evento")
+        st.link_button("📅 Ver / Baixar Programação do Minicurso EM BREVE", "COLE_LINK_PROGRAMACAO_MINICURSO")
+        
+        opcoes_inscricao = ["Participante/Ouvinte"]
+        
     elif "Mostra Extensionista da Graduação em Fisioterapia" in evento_selecionado:
         st.image("extensao.jpg", width=400)
         st.markdown("### 🩺 Mostra Extensionista da Graduação em Fisioterapia")
@@ -164,6 +173,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         ]
     
     elif "Minicurso Prático" in evento_selecionado:
+        st.image("sugemonitores.jpg", width=400)
         st.markdown("### 🤲 Minicurso Prático: Reabilitação e Terapia Manual")
         st.write("Detalhes e práticas avançadas em terapia manual para acadêmicos e profissionais.")
         st.markdown("#### 📅 Programação do Evento")
