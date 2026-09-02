@@ -150,7 +150,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         with col_img:
             st.image("monitores.jpg", width=350, caption="Banner do Evento")
         with col_logo:
-            st.image("logo_caeme.png", width=250, caption="Logo de Divulgação Caeme/Prograd")
+            st.image("caeme.jpg", width=250, caption="Logo de Divulgação Caeme/Prograd")
             
         st.markdown("### 🤲 Acolhimento dos Monitores Caeme/Prograd")
         st.write("Data: 11/09 Matutino 9h às 10h30 Campus II Auditório Bloco S e Noturno 18h às 19h30 Área II Auditório II. Público: Monitores selecionados em 2026/2.")
