@@ -99,7 +99,7 @@ elif menu == "🎟️ Eventos e Inscrições":
     st.write("Selecione abaixo o evento de seu interesse para ver os detalhes, consultar a programação e realizar a inscrição.")
     
     evento_selecionado = st.selectbox("Escolha o Evento:", [
-        "1. Jornada Científica do Curso de Fisioterapia"
+        "1. Jornada Científica do Curso de Fisioterapia",
         "2. Acolhimento dos Monitores Caeme/Prograd", 
         "3. Mostra Extensionista da Graduação em Fisioterapia", 
         "4. Minicurso Prático: Reabilitação e Terapia Manual", 
