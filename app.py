@@ -29,14 +29,12 @@ def carregar_dados_planilha(link_planilha):
 # --- ESTILIZAÇÃO CSS PROFISSIONAL ---
 st.markdown("""
     <style>
-    /* Fundo geral da página mais limpo e profissional */
     .stApp {
         background-color: #f8f9fa;
     }
     .element-container {
         color: #333333;
     }
-    /* Estilo para a caixa de citação acadêmica no rodapé */
     .footer-box {
         background-color: #ffffff;
         border: 1px solid #e0e0e0;
@@ -51,7 +49,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# --- FUNÇÕES DE ESTILO (Imagem menor, centralizada e aplicada em todas as abas) ---
+# --- FUNÇÕES DE ESTILO (Segura contra ausência de imagens) ---
 def mostrar_cabecalho(foto="capa0.jpg"):
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
@@ -73,7 +71,7 @@ menu = st.sidebar.selectbox("Navegue pelo Portal:", [
     "🎟️ Eventos e Inscrições", 
     "✍️ Trabalhos Científicos", 
     "📺 Transmissão ao Vivo",
-    "🎓 Validação de Certificados", 
+    "🎓 Certificados e Validação", 
     "💳 Taxa de DOI Individual/Pessoal", 
     "💳 Taxa de ISBN Coletivo",
     "📚 Anais Publicados",
@@ -101,9 +99,9 @@ elif menu == "🎟️ Eventos e Inscrições":
     
     evento_selecionado = st.selectbox("Escolha o Evento:", [
         "1. Jornada Científica do Curso de Fisioterapia",
-        "2. Acolhimento dos Monitores Caeme/Prograd", 
-        "3. Mostra Extensionista da Graduação em Fisioterapia", 
-        "4. Encontro Formativo PET Saúde Clima",
+        "2. Encontro Formativo PET Saúde Clima",
+        "3. Acolhimento dos Monitores Caeme/Prograd", 
+        "4. Mostra Extensionista da Graduação em Fisioterapia", 
         "5. Minicurso Prático: Reabilitação e Terapia Manual", 
         "6. Workshop: Inovação e Tecnologias em Saúde",
         "7. Simpósio de Saúde Coletiva e Políticas Públicas",
@@ -112,13 +110,12 @@ elif menu == "🎟️ Eventos e Inscrições":
     
     st.markdown("---")
     
-    # Exibição organizada por evento com espaço para Imagem e Logo
+    # Exibição customizada por evento com suporte seguro a imagens e logos
     if "Jornada Científica" in evento_selecionado:
-        col_img, col_logo = st.columns(2)
-        with col_img:
-            st.image("logo_jornada.png.jpg", width=350, caption="Banner do Evento")
-        with col_logo:
-            st.image("logo_puc.png", width=250, caption="Logo de Divulgação Institucional") # Substitua pelo arquivo de logo se houver
+        try:
+            st.image("logo_jornada.png.jpg", width=400)
+        except Exception:
+            st.caption("ℹ️ *[Logo institucional da Jornada não encontrada no repositório]*")
             
         st.markdown("### 🩺 Jornada Científica do Curso de Fisioterapia")
         st.write("""
@@ -134,7 +131,6 @@ elif menu == "🎟️ Eventos e Inscrições":
         
         st.markdown("---")
         st.markdown("#### 📅 Programação do Evento")
-        st.write("Consulte os horários, apresentações de Projeto de Pesquisa e Trabalhos de Conclusão de Curso:")
         st.link_button("📅 Ver / Baixar Programação da Jornada EM BREVE", "COLE_LINK_PROGRAMACAO_JORNADA")
         
         opcoes_inscricao = [
@@ -145,42 +141,56 @@ elif menu == "🎟️ Eventos e Inscrições":
             "Cadastro de Trabalho para Certificação (Orientador)"
         ]
 
-    elif "Acolhimento dos Monitores" in evento_selecionado:
-        col_img, col_logo = st.columns(2)
-        with col_img:
-            st.image("monitores.jpg", width=350, caption="Banner do Evento")
-        with col_logo:
-            st.image("caeme.jpg", width=250, caption="Logo de Divulgação Caeme/Prograd")
+    elif "Encontro Formativo PET Saúde Clima" in evento_selecionado:
+        try:
+            st.image("logo_pet_saude.png", width=400)
+        except Exception:
+            st.caption("ℹ️ *[Logo de divulgação do PET Saúde Clima não encontrada no repositório]*")
+            
+        st.markdown("### 🌱 Encontro Formativo PET Saúde Clima")
+        st.write("""
+        * **Público-alvo:** Integrantes do programa, estudantes e comunidade acadêmica.
+        * **Modalidade de Certificação:** Certificado de Ouvinte Participante.
+        * **Investimento:** Gratuito.
+        """)
+        st.markdown("---")
+        st.markdown("#### 📅 Programação do Evento")
+        st.link_button("📅 Ver / Baixar Programação PET Saúde Clima", "COLE_LINK_PROGRAMACAO_PET")
+        
+        opcoes_inscricao = ["Participante/Ouvinte"]
+
+    elif "Acolhimento dos Monitores" in evento_selecionado or "Monitores" in evento_selecionado:
+        try:
+            st.image("monitores.jpg", width=400)
+        except Exception:
+            st.caption("ℹ️ *[Logo/Imagem do evento não encontrada]*")
             
         st.markdown("### 🤲 Acolhimento dos Monitores Caeme/Prograd")
         st.write("Data: 11/09 Matutino 9h às 10h30 Campus II Auditório Bloco S e Noturno 18h às 19h30 Área II Auditório II. Público: Monitores selecionados em 2026/2.")
         st.markdown("#### 📅 Programação do Evento")
-        st.link_button("📅 Ver / Baixar Programação do Acolhimento EM BREVE", "COLE_LINK_PROGRAMACAO_MINICURSO")
+        st.link_button("📅 Ver / Baixar Programação", "COLE_LINK_PROGRAMACAO_MONITORES")
         
         opcoes_inscricao = ["Participante/Ouvinte"]
         
-    elif "Mostra Extensionista da Graduação em Fisioterapia" in evento_selecionado:
-        col_img, col_logo = st.columns(2)
-        with col_img:
-            st.image("extensao.jpg", width=350, caption="Banner do Evento")
-        with col_logo:
-            st.image("logo_extensao.png", width=250, caption="Logo de Divulgação")
+    elif "Mostra Extensionista" in evento_selecionado:
+        try:
+            st.image("extensao.jpg", width=400)
+        except Exception:
+            st.caption("ℹ️ *[Logo/Imagem da Mostra não encontrada]*")
             
         st.markdown("### 🩺 Mostra Extensionista da Graduação em Fisioterapia")
         st.write("""
         * **Público-alvo:** Estudantes e docentes do curso de Fisioterapia.
-        * **Investimento:** 
-          * Estudantes e Docentes: **Gratuito**.
+        * **Investimento:** Gratuito para Estudantes e Docentes.
         * **Destaque:** Permite submissão de Resumos Simples e Resumos Expandidos com ISBN.
         """)
         st.markdown("### **EIXOS TEMÁTICOS**")
         st.write("**Disciplinas extensionistas do curso de Fisioterapia.**")
-        st.warning("⚠️ **Sugestão: os modelos de banner devem ser adaptados para: Resumo Expandido**.")
+        st.warning("⚠️ **Sugestão:** os modelos de banner devem ser adaptados para **Resumo Expandido**.")
         
         st.markdown("---")
         st.markdown("#### 📅 Programação do Evento")
-        st.write("Consulte os horários de apresentações da Mostra Extensionista da Graduação da PUC Goiás:")
-        st.link_button("📅 Ver / Baixar Programação da Mostra EM BREVE", "COLE_LINK_PROGRAMACAO_JORNADA")        
+        st.link_button("📅 Ver / Baixar Programação da Mostra", "COLE_LINK_PROGRAMACAO_MOSTRA")        
         
         opcoes_inscricao = [
             "Participante/Ouvinte", 
@@ -189,73 +199,51 @@ elif menu == "🎟️ Eventos e Inscrições":
             "Membro da Banca", 
             "Cadastro de Trabalho para Certificação (Orientador)"
         ]
-
-    elif "PET Saúde Clima" in evento_selecionado:
-        col_img, col_logo = st.columns(2)
-        with col_img:
-            st.image("capa0.jpg", width=350, caption="Banner do Evento")
-        with col_logo:
-            st.image("logo_puc.png", width=250, caption="Logo de Divulgação PET Saúde Clima")
-            
-        st.markdown("### 🌱 Encontro Formativo PET Saúde Clima")
-        st.write("""
-        * **Foco:** Discussões integradas sobre saúde, meio ambiente e sustentabilidade climática.
-        * **Modalidade de Certificação:** Certificado de Ouvinte / Participante.
-        * **Público-alvo:** Membros do programa, acadêmicos, docentes e comunidade interessada.
-        """)
-        st.markdown("#### 📅 Programação do Evento")
-        st.link_button("📅 Ver / Baixar Programação do Encontro Formatível EM BREVE", "COLE_LINK_PROGRAMACAO_PET")
-        
-        opcoes_inscricao = ["Participante/Ouvinte"]
     
     elif "Minicurso Prático" in evento_selecionado:
-        col_img, col_logo = st.columns(2)
-        with col_img:
-            st.image("capa0.jpg", width=350, caption="Banner do Evento")
-        with col_logo:
-            st.image("logo_puc.png", width=250, caption="Logo de Divulgação")
+        try:
+            st.image("minicurso.jpg", width=400)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Minicurso não encontrada]*")
             
         st.markdown("### 🤲 Minicurso Prático: Reabilitação e Terapia Manual")
         st.write("Detalhes e práticas avançadas em terapia manual para acadêmicos e profissionais.")
         st.markdown("#### 📅 Programação do Evento")
-        st.link_button("📅 Ver / Baixar Programação do Minicurso EM BREVE", "COLE_LINK_PROGRAMACAO_MINICURSO")
+        st.link_button("📅 Ver / Baixar Programação do Minicurso", "COLE_LINK_PROGRAMACAO_MINICURSO")
         
         opcoes_inscricao = ["Participante/Ouvinte"]
         
     elif "Workshop" in evento_selecionado:
-        col_img, col_logo = st.columns(2)
-        with col_img:
-            st.image("capa0.jpg", width=350, caption="Banner do Evento")
-        with col_logo:
-            st.image("logo_puc.png", width=250, caption="Logo de Divulgação")
+        try:
+            st.image("workshop.jpg", width=400)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Workshop não encontrada]*")
             
         st.markdown("### 💡 Workshop: Inovação e Tecnologias em Saúde")
         st.write("Discussão sobre novas tecnologias e o futuro da reabilitação e saúde.")
         st.markdown("#### 📅 Programação do Evento")
-        st.link_button("📅 Ver / Baixar Programação do Workshop EM BREVE", "COLE_LINK_PROGRAMACAO_WORKSHOP")
+        st.link_button("📅 Ver / Baixar Programação do Workshop", "COLE_LINK_PROGRAMACAO_WORKSHOP")
         
         opcoes_inscricao = ["Participante/Ouvinte"]
         
     elif "Simpósio de Saúde Coletiva" in evento_selecionado:
-        col_img, col_logo = st.columns(2)
-        with col_img:
-            st.image("capa0.jpg", width=350, caption="Banner do Evento")
-        with col_logo:
-            st.image("logo_puc.png", width=250, caption="Logo de Divulgação")
+        try:
+            st.image("simposio.jpg", width=400)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Simpósio não encontrada]*")
             
         st.markdown("### 📊 Simpósio de Saúde Coletiva e Políticas Públicas")
         st.write("Debates e mesas-redondas sobre o impacto das políticas públicas na saúde.")
         st.markdown("#### 📅 Programação do Evento")
-        st.link_button("📅 Ver / Baixar Programação do Simpósio EM BREVE", "COLE_LINK_PROGRAMACAO_SIMPOSIO")
+        st.link_button("📅 Ver / Baixar Programação do Simpósio", "COLE_LINK_PROGRAMACAO_SIMPOSIO")
         
         opcoes_inscricao = ["Participante/Ouvinte", "Apresentador de Trabalho"]
         
     elif "Encontro Científico" in evento_selecionado:
-        col_img, col_logo = st.columns(2)
-        with col_img:
-            st.image("capa0.jpg", width=350, caption="Banner do Evento")
-        with col_logo:
-            st.image("logo_puc.png", width=250, caption="Logo de Divulgação")
+        try:
+            st.image("encontro.jpg", width=400)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Encontro não encontrada]*")
             
         st.markdown("### 🎓 Encontro Científico Psico História e as Leis da Robótica")
         st.write("""
@@ -263,7 +251,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         * **Investimento:** Gratuito para a comunidade acadêmica da FST.
         """)
         st.markdown("#### 📅 Programação do Evento")
-        st.link_button("📅 Ver / Baixar Programação do Encontro EM BREVE", "COLE_LINK_PROGRAMACAO_ENCONTRO")
+        st.link_button("📅 Ver / Baixar Programação do Encontro", "COLE_LINK_PROGRAMACAO_ENCONTRO")
         
         opcoes_inscricao = ["Participante/Ouvinte", "Apresentador de Trabalho"]
     
@@ -307,13 +295,13 @@ elif menu == "✍️ Trabalhos Científicos":
             * **Gratuidade:** A submissão e a publicação nos anais do evento são totalmente gratuitas (ISBN).
             * **DOI (Opcional):** Autores que desejarem maior rastreabilidade podem optar pela aquisição do registro de DOI.
             """)
-            st.info("💡 Ideal para resumos de trabalhos que exigem ineditismo, relatos de experiência, pesquisas em andamento ou revisões bibliográficas preliminares.")
             
+            # Botão de download do PDF de regras (Resumo Simples) - Seguro contra ausência do arquivo
             try:
                 with open("regras_resumo_simples.pdf", "rb") as pdf_file:
                     st.download_button("📥 Baixar Regras Completas (PDF - Resumo Simples)", pdf_file, file_name="Regras_Resumo_Simples.pdf", mime="application/pdf")
             except Exception:
-                st.caption("ℹ️ *O PDF com as regras detalhadas estará disponível em breve.*")
+                st.caption("ℹ️ *[PDF com regras detalhadas de Resumo Simples em breve]*")
         
         with tab_expandido:
             st.markdown("### Normas para Submissão de Resumo Expandido")
@@ -322,13 +310,12 @@ elif menu == "✍️ Trabalhos Científicos":
             * **Extensão:** No mínimo 4 páginas e no máximo 7 páginas completas.
             * **Formatação:** Fonte Times New Roman, tamanho 12, espaçamento entre linhas 1,0, recuo de parágrafo de 1,25 cm.
             """)
-            st.info("💡 Indicado para artigos científicos e pesquisas finalizadas que necessitam de detalhamento metodológico.")
             
             try:
                 with open("regras_resumo_expandido.pdf", "rb") as pdf_file:
                     st.download_button("📥 Baixar Regras Completas (PDF - Resumo Expandido)", pdf_file, file_name="Regras_Resumo_Expandido.pdf", mime="application/pdf")
             except Exception:
-                st.caption("ℹ️ *O PDF com as regras detalhadas estará disponível em breve.*")
+                st.caption("ℹ️ *[PDF com regras detalhadas de Resumo Expandido em breve]*")
                     
         with tab_completo:
             st.markdown("### Normas para Submissão de Artigo Completo")
@@ -341,7 +328,7 @@ elif menu == "✍️ Trabalhos Científicos":
                 with open("regras_artigo_completo.pdf", "rb") as pdf_file:
                     st.download_button("📥 Baixar Regras Completas (PDF - Artigo Completo)", pdf_file, file_name="Regras_Artigo_Completo.pdf", mime="application/pdf")
             except Exception:
-                st.caption("ℹ️ *O PDF com as regras detalhadas estará disponível em breve.*")
+                st.caption("ℹ️ *[PDF com regras detalhadas de Artigo Completo em breve]*")
 
         st.markdown("---")
         st.info("📌 **Importante:** Para que os arquivos sejam salvos diretamente na nuvem da comissão científica, a submissão é feita por formulário dedicado.")
@@ -374,10 +361,7 @@ elif menu == "✍️ Trabalhos Científicos":
                             if not resultado.empty:
                                 if coluna_status:
                                     status_val = str(resultado.iloc[0][coluna_status]).strip()
-                                    if status_val.lower() == 'nan' or status_val == "":
-                                        status_final = "Recebido"
-                                    else:
-                                        status_final = status_val
+                                    status_final = "Recebido" if (status_val.lower() == 'nan' or status_val == "") else status_val
                                     
                                     if "aprovado" in status_final.lower():
                                         st.success(f"🎉 **Status:** {status_final}")
@@ -388,7 +372,7 @@ elif menu == "✍️ Trabalhos Científicos":
                                 else:
                                     st.error("Coluna 'Status' não encontrada na planilha.")
                             else:
-                                st.warning("E-mail não encontrado na Coluna C.")
+                                st.warning("E-mail não encontrado na base de dados.")
                         else:
                             st.error("Erro ao ler planilha.")
                     except Exception as e:
@@ -419,13 +403,13 @@ elif menu == "📺 Transmissão ao Vivo":
         "Sala 3: Apresentação de Trabalhos - Saúde Coletiva e Extensão",
         "Sala 4: Mesas-redondas e Encerramento"
     ])
-    st.info("🔴 **Status:** Transmissão agendada.")
-    st.link_button(f"🔗 Entrar na {sala_escolhida}", "COLE_LINK_DA_SALA_AQUI")
+    st.info("🔴 **Status:** Transmissão agendada. O link será ativado no horário oficial do evento.")
+    st.link_button(f"🔗 Entrar na {sala_escolhida}", "COLE_LINK_DA_SALA")
 
-# --- 5. VALIDAÇÃO DE CERTIFICADOS ---
-elif menu == "🎓 Validação de Certificados":
+# --- 5. CERTIFICADOS E VALIDAÇÃO (Apenas Validação por Código ativada) ---
+elif menu == "🎓 Certificados e Validação":
     mostrar_cabecalho("capa0.jpg")
-    st.subheader("🛡️ Validação de Autenticidade por Código")
+    st.subheader("🎓 Validação de Autenticidade de Certificados")
     st.write("Insira o **Código de Autenticidade** exclusivo impresso no rodapé do certificado para comprovar sua validade:")
     
     with st.form("form_validacao_cert"):
@@ -448,13 +432,13 @@ elif menu == "🎓 Validação de Certificados":
                             if not res_c.empty:
                                 nome_p = res_c.iloc[0].get('nome', 'Participante')
                                 st.success("✅ **CERTIFICADO VÁLIDO E AUTÊNTICO!**")
-                                st.write(f"Este certificado pertence oficialmente a: **{nome_p}** — Science Nexus (PUC Goiás).")
+                                st.write(f"Este certificado pertence oficialmente a: **{nome_p}** — Science Nexus / PUC Goiás.")
                             else:
-                                st.error("❌ **Certificado Inválido ou Falso:** O código informado não consta na base de dados oficial da comissão organizadora.")
+                                st.error("❌ **Certificado Inválido ou Falso:** O código informado não consta na base de dados oficial.")
                         else:
                             st.warning("A planilha precisa ter uma coluna nomeada como 'Codigo' ou 'Chave'.")
                     else:
-                        st.info("Configure o link da planilha de certificados no código para ativar a consulta automática.")
+                        st.error("Erro ao ler base de certificados.")
                 except Exception as e:
                     st.error(f"Erro ao consultar base de certificados: {e}")
             else:
@@ -486,35 +470,24 @@ elif menu == "📚 Anais Publicados":
 elif menu == "📂 Eventos Anteriores":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("📂 Repositório de Eventos Anteriores")
-    st.write("Acesse abaixo os acervos, anais e emissão de certificados de edições passadas do nosso portal de eventos.")
+    st.write("Acesse abaixo os acervos, anais e certificados de edições passadas do nosso portal.")
     
     tab_ant1, tab_ant2 = st.tabs(["📚 Anais de Anos Anteriores", "📜 Certificados de Anos Anteriores"])
     
     with tab_ant1:
         st.markdown("### 📚 Anais Publicados em Edições Passadas")
-        st.markdown("""
-        * **Jornada Científica EM BREVE** — [📥 Baixar Anais EM BREVE](COLE_LINK_ANAIS_2026)
-        * **Mostra Extensionista EM BREVE** — [📥 Baixar Anais EM BREVE](COLE_LINK_ANAIS_2026)
-        """)
-        st.link_button("📥 Baixar Apresentação; Expediente dos Anais da Jornada Científica 2026", "COLE_LINK_PDF_ANAIS_AQUI")
-        st.link_button("📥 Baixar Apresentação; Expediente dos Anais da Mostra Extensionista 2026", "COLE_LINK_PDF_ANAIS_AQUI") 
+        st.link_button("📥 Baixar Apresentação; Expediente dos Anais da Jornada Científica", "COLE_LINK_PDF_ANAIS_AQUI")
+        st.link_button("📥 Baixar Apresentação; Expediente dos Anais da Mostra Extensionista", "COLE_LINK_PDF_ANAIS_AQUI") 
         st.link_button("📥 Acessar Pasta Geral de Anais Anteriores no Drive", "COLE_LINK_PASTA_ANAIS_ANTERIORES")
         
     with tab_ant2:
         st.markdown("### 📜 Consulta de Certificados Anteriores")
-        st.write("Se você participou de edições passadas e precisa recuperar seu certificado, selecione o ano correspondente:")
-        ano_anterior = st.selectbox("Selecione o Ano do Evento:", ["20XX", "20XX"])
-        
+        ano_anterior = st.selectbox("Selecione o Ano do Evento:", ["2025", "2024"])
         with st.form("form_cert_antigos"):
             email_antigo = st.text_input("Digite seu e-mail cadastrado no evento anterior:")
             buscar_antigo = st.form_submit_button("Consultar Certificado Antigo")
-            
-            if buscar_antigo:
-                if email_antigo:
-                    st.info(f"Buscando histórico para o e-mail: {email_antigo} ({ano_anterior})")
-                    st.link_button("🔗 Abrir Link de Emissão do Ano Selecionado", "COLE_LINK_CERTIFICADOS_ANTERIORES")
-                else:
-                    st.error("Por favor, informe o e-mail.")
+            if buscar_antigo and email_antigo:
+                st.link_button("🔗 Abrir Link de Emissão do Ano Selecionado", "COLE_LINK_CERTIFICADOS_ANTERIORES")
 
 # --- 9. CONTATO ---
 elif menu == "📞 Contato":
@@ -529,15 +502,18 @@ elif menu == "📞 Contato":
 st.markdown("---")
 st.markdown(f"<p style='text-align: center; color: gray; font-size: 14px;'>© {ano_atual} OLIVEIRA, L.M.V. Todos os direitos reservados.</p>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center; color: gray; font-size: 13px;'>O conteúdo deste website (textos, imagens e dados) está protegido pela Lei de Direitos Autorais (Lei nº 9.610/1998).</p>", unsafe_allow_html=True)
+
 st.markdown("""
 <p style='text-align: center; font-size: 13px;'>
     Esta obra está licenciada sob uma Licença <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt-br" target="_blank">Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional</a>.
 </p>
 """, unsafe_allow_html=True)
+
 st.markdown("""
 <div class='footer-box'>
     <strong>Como citar este site:</strong><br>
     OLIVEIRA, L.M.V. <em>Science Nexus Plataforma</em>. Disponível em: &lt;www.sciencenexus.com.br&gt;. Acesso em: [Data de Acesso].
 </div>
 """, unsafe_allow_html=True)
+
 st.markdown("<p style='text-align: center; color: gray; font-size: 13px;'>Science Nexus Plataforma | Saúde • Sociedade • Tecnologias • Humanidades</p>", unsafe_allow_html=True)
