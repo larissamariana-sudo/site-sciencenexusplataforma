@@ -384,7 +384,7 @@ elif menu == "✍️ Trabalhos Científicos":
                 else:
                     st.error("Por favor, digite um e-mail.")
 
-# --- 4. CERTIFICADOS E VALIDAÇÃO (Com Leitura de Múltiplas Planilhas e Reconhecimento de Nome / Nome Completo) ---
+# --- 4. CERTIFICADOS E VALIDAÇÃO (Com Leitura de Múltiplas Planilhas e Reconhecimento de Nome / Nome_Orientador / Nome_Aluno / Nome Completo) ---
 elif menu == "🎓 Certificados e Validação":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("🎓 Validação de Autenticidade de Certificados")
@@ -422,7 +422,7 @@ elif menu == "🎓 Certificados e Validação":
                                     
                                     if not res_c.empty:
                                         # Identifica automaticamente se a coluna é 'nome', 'nome completo' ou similar
-                                        col_nome_encontrada = next((c for c in df_c.columns if c in ['nome', 'nome completo', 'participante', 'autor']), 'nome')
+                                        col_nome_encontrada = next((c for c in df_c.columns if c in ['nome', 'nome completo', 'nome_orientador', 'nome_aluno', 'participante', 'autor']), 'nome')
                                         nome_p = str(res_c.iloc[0].get(col_nome_encontrada, 'Participante')).title()
                                         encontrado = True
                                         break
