@@ -420,7 +420,7 @@ elif menu == "🎓 Certificados e Validação":
                                     df_c[col_cod] = df_c[col_cod].astype(str).str.strip().str.lower()
                                     res_c = df_c[df_c[col_cod] == codigo_digitado.lower()]
                                     if not res_c.empty:
-                                        nome_p = res_c.iloc[0].get('nome', 'Participante')
+                                        nome_p = res_c.iloc[0].get('Nome','Nome Completo', 'Participante')
                                         certificado_encontrado = True
                                         break
                                         
