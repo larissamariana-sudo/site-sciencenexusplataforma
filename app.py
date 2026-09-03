@@ -384,7 +384,7 @@ elif menu == "✍️ Trabalhos Científicos":
                 else:
                     st.error("Por favor, digite um e-mail.")
 
-# --- 4. CERTIFICADOS E VALIDAÇÃO (Com Leitura de Múltiplas Planilhas e Reconhecimento de Nome / Nome_Orientador / Nome_Aluno / Nome Completo) ---
+# --- 4. CERTIFICADOS E VALIDAÇÃO (Leitura simultânea de 5 planilhas e reconhecimento de Nome, Nome Completo, Nome_Orientador e Nome_Aluno) ---
 elif menu == "🎓 Certificados e Validação":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("🎓 Validação de Autenticidade de Certificados")
@@ -397,19 +397,18 @@ elif menu == "🎓 Certificados e Validação":
         if validar_btn:
             if codigo_digitado:
                 try:
-                    # Lista com até 4 links de planilhas diferentes para varredura simultânea
+                    # Espaço para 5 links de planilhas diferentes (Incluindo a Planilha 3 corrigida)
                     links_planilhas = [
-                        "https://docs.google.com/spreadsheets/d/15D_Vay3AQDUrbmaHjgwTeg0irLHX5q2pw6sw_wtiDl0/edit?usp=sharing",  # Planilha Principal 1
-                        "https://docs.google.com/spreadsheets/d/1ymnfGiFmC_PZLUIra7mWyZMjD_hc9Uu6jXvLohUjBeE/edit?usp=sharing",  # Planilha Adicional 2
-                        "https://docs.google.com/spreadsheets/d/1eEQeDcwCQ9gkpy9MAI9It7gk1fx1QwZRXBnhRhvkg6o/edit?usp=sharing",  # Espaço para Planilha Adicional 3
-                        "COLE_LINK_PLANILHA_EVENTO_4_AQUI"   # Espaço para Planilha Adicional 4
-                        "COLE_LINK_PLANILHA_EVENTO_4_AQUI"   # Espaço para Planilha Adicional 5
+                        "https://docs.google.com/spreadsheets/d/15D_Vay3AQDUrbmaHjgwTeg0irLHX5q2pw6sw_wtiDl0/edit?usp=sharing",  # Planilha 1
+                        "https://docs.google.com/spreadsheets/d/1ymnfGiFmC_PZLUIra7mWyZMjD_hc9Uu6jXvLohUjBeE/edit?usp=sharing",  # Planilha 2
+                        "https://docs.google.com/spreadsheets/d/1eEQeDcwCQ9gkpy9MAI9It7gk1fx1QwZRXBnhRhvkg6o/edit?usp=sharing",  # Planilha 3 (Corrigida e ativa)
+                        "COLE_LINK_PLANILHA_EVENTO_4_AQUI",   # Espaço para Planilha 4
+                        "COLE_LINK_PLANILHA_EVENTO_5_AQUI"    # Espaço para Planilha 5
                     ]
                     
                     encontrado = False
                     nome_p = "Participante"
                     
-                    # Varre todas as planilhas cadastradas na lista
                     for link in links_planilhas:
                         if "docs.google.com" in link:
                             df_c = carregar_dados_planilha(link)
@@ -421,8 +420,10 @@ elif menu == "🎓 Certificados e Validação":
                                     res_c = df_c[df_c[col_cod] == codigo_digitado.lower()]
                                     
                                     if not res_c.empty:
-                                        # Identifica automaticamente se a coluna é 'nome', 'nome completo' ou similar
-                                        col_nome_encontrada = next((c for c in df_c.columns if c in ['nome', 'nome completo', 'nome_orientador', 'nome_aluno', 'participante', 'autor']), 'nome')
+                                        # Reconhece colunas de Nome, Nome Completo, Nome_Orientador ou Nome_Aluno
+                                        colunas_possiveis = ['nome', 'nome completo', 'nome_completo', 'nome_orientador', 'nome_aluno', 'participante', 'autor', 'aluno', 'orientador']
+                                        col_nome_encontrada = next((c for c in df_c.columns if c in colunas_possiveis), 'nome')
+                                        
                                         nome_p = str(res_c.iloc[0].get(col_nome_encontrada, 'Participante')).title()
                                         encontrado = True
                                         break
