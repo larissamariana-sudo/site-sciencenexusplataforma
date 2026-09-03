@@ -402,7 +402,7 @@ elif menu == "🎓 Certificados e Validação":
             if codigo_digitado:
                 try:
                     link_planilha_cert = "https://docs.google.com/spreadsheets/d/15D_Vay3AQDUrbmaHjgwTeg0irLHX5q2pw6sw_wtiDl0/edit?usp=sharing"
-                    df_c = carregar_dados_planilha(link_planilha_cert),
+                    df_c = carregar_dados_planilha(link_planilha_cert)
                     link_planilha_cert = "https://docs.google.com/spreadsheets/d/1ymnfGiFmC_PZLUIra7mWyZMjD_hc9Uu6jXvLohUjBeE/edit?usp=sharing"
                     df_c = carregar_dados_planilha(link_planilha_cert)
                     if df_c is not None:
