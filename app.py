@@ -136,11 +136,11 @@ elif menu == "🎟️ Eventos e Inscrições":
         opcoes_inscricao = ["Participante/Ouvinte", "Orientador", "Apresentador de Trabalho", "Membro da Banca", "Cadastro de Trabalho para Certificação (Orientador)"]
         
         # Links específicos da Jornada
-        link_ouv = "https://forms.gle/LINK_JORNADA_OUVINTE"
-        link_ori = "https://forms.gle/LINK_JORNADA_ORIENTADOR"
-        link_apr = "https://forms.gle/LINK_JORNADA_APRESENTADOR"
-        link_ban = "https://forms.gle/LINK_JORNADA_BANCA"
-        link_cad = "https://forms.gle/LINK_JORNADA_CADASTRO_TRABALHO"
+        link_ouv = "https://forms.gle/tVKQtkEpQHG9Bo3K7"
+        link_ori = "https://forms.gle/tVKQtkEpQHG9Bo3K7"
+        link_apr = "https://forms.gle/tVKQtkEpQHG9Bo3K7"
+        link_ban = "https://forms.gle/tVKQtkEpQHG9Bo3K7"
+        link_cad = "https://forms.gle/GM55UFo18d7EqPgL8"
 
     elif "Encontro Formativo PET Saúde Clima" in evento_selecionado:
         try:
@@ -195,13 +195,10 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.markdown("#### 📅 Programação do Evento")
         st.link_button("📅 Ver / Baixar Programação da Mostra", "COLE_LINK_PROGRAMACAO_MOSTRA")        
         
-        opcoes_inscricao = ["Participante/Ouvinte", "Orientador", "Apresentador de Trabalho", "Membro da Banca", "Cadastro de Trabalho para Certificação (Orientador)"]
+        opcoes_inscricao = ["Orientador/Professor", "Apresentador de Trabalho", "Cadastro de Trabalho para Certificação (Orientador)"]
         
-        link_ouv = "https://forms.gle/LINK_MOSTRA_OUVINTE"
-        link_ori = "https://forms.gle/LINK_MOSTRA_ORIENTADOR"
-        link_apr = "https://forms.gle/LINK_MOSTRA_APRESENTADOR"
-        link_ban = "https://forms.gle/LINK_MOSTRA_BANCA"
-        link_cad = "https://forms.gle/LINK_MOSTRA_CADASTRO_TRABALHO"
+        link_ori = "https://forms.gle/j5ESvsXoYoahGpJB9"
+        link_apr = "https://forms.gle/j5ESvsXoYoahGpJB9"
     
     elif "Minicurso Prático" in evento_selecionado:
         try:
