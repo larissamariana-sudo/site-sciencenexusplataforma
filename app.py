@@ -110,7 +110,6 @@ elif menu == "🎟️ Eventos e Inscrições":
     
     st.markdown("---")
     
-    # Cada evento possui agora seus próprios links dedicados de inscrição
     if "Jornada Científica" in evento_selecionado:
         try:
             st.image("logo_jornada.png.jpg", width=400)
@@ -135,7 +134,6 @@ elif menu == "🎟️ Eventos e Inscrições":
         
         opcoes_inscricao = ["Participante/Ouvinte", "Orientador", "Apresentador de Trabalho", "Membro da Banca", "Cadastro de Trabalho para Certificação (Orientador)"]
         
-        # Links específicos da Jornada
         link_ouv = "https://forms.gle/tVKQtkEpQHG9Bo3K7"
         link_ori = "https://forms.gle/tVKQtkEpQHG9Bo3K7"
         link_apr = "https://forms.gle/tVKQtkEpQHG9Bo3K7"
@@ -267,7 +265,7 @@ elif menu == "🎟️ Eventos e Inscrições":
     
     if cat == "Participante/Ouvinte":
         st.link_button("🔗 Inscrever-se como Ouvinte", link_ouv)
-    elif cat in ["Orientador", "Orientador/Professor"]:
+    elif cat == "Orientador" or cat == "Orientador/Professor":
         st.link_button("🔗 Inscrever-se como Orientador", link_ori)
     elif cat == "Apresentador de Trabalho":
         st.link_button("🔗 Inscrever-se como Apresentador", link_apr)
@@ -386,7 +384,7 @@ elif menu == "✍️ Trabalhos Científicos":
                 else:
                     st.error("Por favor, digite um e-mail.")
 
-# --- 4. CERTIFICADOS E VALIDAÇÃO (Suporta Múltiplas Planilhas) ---
+# --- 4. CERTIFICADOS E VALIDAÇÃO (Com Leitura de Múltiplas Planilhas e Reconhecimento de Nome / Nome Completo) ---
 elif menu == "🎓 Certificados e Validação":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("🎓 Validação de Autenticidade de Certificados")
@@ -399,36 +397,41 @@ elif menu == "🎓 Certificados e Validação":
         if validar_btn:
             if codigo_digitado:
                 try:
-                    # Lista de links de planilhas configuradas (Planilha 1, 2, 3 e 4)
-                    links_planilhas_cert = [
-                        "https://docs.google.com/spreadsheets/d/15D_Vay3AQDUrbmaHjgwTeg0irLHX5q2pw6sw_wtiDl0/edit?usp=sharing",  # Planilha 1 (Principal)
-                        "https://docs.google.com/spreadsheets/d/1ymnfGiFmC_PZLUIra7mWyZMjD_hc9Uu6jXvLohUjBeE/edit?usp=sharing",  # Planilha 2
-                        "COLE_LINK_PLANILHA_CERTIFICADOS_3_AQUI",                                                                  # Planilha 3 (Espaço reservado)
-                        "COLE_LINK_PLANILHA_CERTIFICADOS_4_AQUI"                                                                   # Planilha 4 (Espaço reservado)
+                    # Lista com até 4 links de planilhas diferentes para varredura simultânea
+                    links_planilhas = [
+                        "https://docs.google.com/spreadsheets/d/15D_Vay3AQDUrbmaHjgwTeg0irLHX5q2pw6sw_wtiDl0/edit?usp=sharing",  # Planilha Principal 1
+                        "https://docs.google.com/spreadsheets/d/1ymnfGiFmC_PZLUIra7mWyZMjD_hc9Uu6jXvLohUjBeE/edit?usp=sharing",  # Planilha Adicional 2
+                        "COLE_LINK_PLANILHA_EVENTO_3_AQUI",  # Espaço para Planilha Adicional 3
+                        "COLE_LINK_PLANILHA_EVENTO_4_AQUI"   # Espaço para Planilha Adicional 4
                     ]
                     
-                    certificado_encontrado = False
-                    nome_p = ""
+                    encontrado = False
+                    nome_p = "Participante"
                     
-                    # Varre todas as planilhas cadastradas em busca do código
-                    for link_p in links_planilhas_cert:
-                        if "docs.google.com" in link_p:
-                            df_c = carregar_dados_planilha(link_p)
+                    # Varre todas as planilhas cadastradas na lista
+                    for link in links_planilhas:
+                        if "docs.google.com" in link:
+                            df_c = carregar_dados_planilha(link)
                             if df_c is not None:
                                 col_cod = next((c for c in df_c.columns if 'codigo' in c or 'chave' in c or 'autenticidade' in c), None)
+                                
                                 if col_cod:
                                     df_c[col_cod] = df_c[col_cod].astype(str).str.strip().str.lower()
                                     res_c = df_c[df_c[col_cod] == codigo_digitado.lower()]
+                                    
                                     if not res_c.empty:
-                                        nome_p = res_c.iloc[0].get('Nome','Nome Completo', 'Participante')
-                                        certificado_encontrado = True
+                                        # Identifica automaticamente se a coluna é 'nome', 'nome completo' ou similar
+                                        col_nome_encontrada = next((c for c in df_c.columns if c in ['nome', 'nome completo', 'participante', 'autor']), 'nome')
+                                        nome_p = str(res_c.iloc[0].get(col_nome_encontrada, 'Participante')).title()
+                                        encontrado = True
                                         break
-                                        
-                    if certificado_encontrado:
+                    
+                    if encontrado:
                         st.success("✅ **CERTIFICADO VÁLIDO E AUTÊNTICO!**")
                         st.write(f"Este certificado pertence oficialmente a: **{nome_p}** — Science Nexus / PUC Goiás.")
                     else:
-                        st.error("❌ **Certificado Inválido ou Falso:** O código informado não consta em nenhuma base de dados oficial.")
+                        st.error("❌ **Certificado Inválido ou Falso:** O código informado não consta em nenhuma das bases de dados oficiais.")
+                        
                 except Exception as e:
                     st.error(f"Erro ao consultar base de certificados: {e}")
             else:
