@@ -401,8 +401,9 @@ elif menu == "🎓 Certificados e Validação":
                     links_planilhas = [
                         "https://docs.google.com/spreadsheets/d/15D_Vay3AQDUrbmaHjgwTeg0irLHX5q2pw6sw_wtiDl0/edit?usp=sharing",  # Planilha Principal 1
                         "https://docs.google.com/spreadsheets/d/1ymnfGiFmC_PZLUIra7mWyZMjD_hc9Uu6jXvLohUjBeE/edit?usp=sharing",  # Planilha Adicional 2
-                        "COLE_LINK_PLANILHA_EVENTO_3_AQUI",  # Espaço para Planilha Adicional 3
+                        "https://docs.google.com/spreadsheets/d/1eEQeDcwCQ9gkpy9MAI9It7gk1fx1QwZRXBnhRhvkg6o/edit?usp=sharing",  # Espaço para Planilha Adicional 3
                         "COLE_LINK_PLANILHA_EVENTO_4_AQUI"   # Espaço para Planilha Adicional 4
+                        "COLE_LINK_PLANILHA_EVENTO_4_AQUI"   # Espaço para Planilha Adicional 5
                     ]
                     
                     encontrado = False
