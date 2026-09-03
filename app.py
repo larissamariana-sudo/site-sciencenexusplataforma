@@ -157,7 +157,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.link_button("📅 Ver / Baixar Programação PET Saúde Clima", "COLE_LINK_PROGRAMACAO_PET")
         
         opcoes_inscricao = ["Participante/Ouvinte"]
-        link_ouv = "https://forms.gle/LINK_PET_SAUDE_OUVINTE"
+        link_ouv = "https://forms.gle/u8nseAtgNAN5aMJDA"
 
     elif "Acolhimento dos Monitores" in evento_selecionado or "Monitores" in evento_selecionado:
         try:
@@ -402,7 +402,7 @@ elif menu == "🎓 Certificados e Validação":
                         "https://docs.google.com/spreadsheets/d/15D_Vay3AQDUrbmaHjgwTeg0irLHX5q2pw6sw_wtiDl0/edit?usp=sharing",  # Planilha 1
                         "https://docs.google.com/spreadsheets/d/1ymnfGiFmC_PZLUIra7mWyZMjD_hc9Uu6jXvLohUjBeE/edit?usp=sharing",  # Planilha 2
                         "https://docs.google.com/spreadsheets/d/1eEQeDcwCQ9gkpy9MAI9It7gk1fx1QwZRXBnhRhvkg6o/edit?usp=sharing",  # Planilha 3 (Corrigida e ativa)
-                        "COLE_LINK_PLANILHA_EVENTO_4_AQUI",   # Espaço para Planilha 4
+                        "https://docs.google.com/spreadsheets/d/1uQnTs-ijo0d4fiTFoIKC0ANuJ5A2SfRQO3jOA65OruI/edit?usp=sharing",   # Espaço para Planilha 4
                         "COLE_LINK_PLANILHA_EVENTO_5_AQUI"    # Espaço para Planilha 5
                     ]
                     
