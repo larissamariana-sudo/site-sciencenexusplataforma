@@ -459,7 +459,7 @@ elif menu == "📚 Anais Publicados":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("📚 Repositório Oficial de Anais")
     st.link_button("📥 Baixar Anais Jornada Científica 2026/2", "COLE_LINK_PDF_ANAIS_AQUI")
-    st.link_button("📥 Baixar Anais Mostra Extensionista 2026", "COLE_LINK_PDF_ANAIS_AQUI") 
+    st.link_button("📥 Baixar Anais Mostra de Extensão 2026", "COLE_LINK_PDF_ANAIS_AQUI") 
 
 # --- 7. TRANSMISSÃO AO VIVO (Posicionada abaixo de Anais Publicados) ---
 elif menu == "📺 Transmissão ao Vivo":
@@ -498,7 +498,7 @@ elif menu == "📂 Eventos Anteriores":
     with tab_ant1:
         st.markdown("### 📚 Anais Publicados em Edições Passadas")
         st.link_button("📥 Baixar Apresentação; Expediente dos Anais da Jornada Científica", "COLE_LINK_PDF_ANAIS_AQUI")
-        st.link_button("📥 Baixar Apresentação; Expediente dos Anais da Mostra Extensionista", "COLE_LINK_PDF_ANAIS_AQUI") 
+        st.link_button("📥 Baixar Apresentação; Expediente dos Anais da Mostra de Extensão", "COLE_LINK_PDF_ANAIS_AQUI") 
         st.link_button("📥 Acessar Pasta Geral de Anais Anteriores no Drive", "COLE_LINK_PASTA_ANAIS_ANTERIORES")
         
     with tab_ant2:
