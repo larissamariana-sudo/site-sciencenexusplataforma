@@ -297,7 +297,7 @@ elif menu == "✍️ Trabalhos Científicos":
             **INFORMAÇÕES PARA A SUBMISSÃO**
             * **Formato:** Todos os trabalhos devem ser submetidos obrigatoriamente em arquivo formato WORD.
             * **Prazo:** As submissões devem ser realizadas estritamente dentro das datas estabelecidas no cronograma oficial.
-            * **Gratuidade:** A submissão e a publicação nos anais do evento são totalmente gratuitas (ISBN).
+            * **ISBN:** Registro ISBN - necessário para a publicação dos anais do evento. Pode ser adquirido pelo organizador do evento ou solicitado nessa plataforma.
             * **DOI (Opcional):** Autores que desejarem maior rastreabilidade podem optar pela aquisição do registro de DOI.
             """)
             
