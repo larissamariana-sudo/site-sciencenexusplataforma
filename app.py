@@ -179,7 +179,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         except Exception:
             st.caption("ℹ️ *[Logo/Imagem da Mostra não encontrada]*")
             
-        st.markdown("### 🩺 Mostra Extensionista da Graduação em Fisioterapia")
+        st.markdown("### 🩺 Mostra das Atividades de Extensão da Graduação em Fisioterapia")
         st.write("""
         * **Público-alvo:** Estudantes e docentes do curso de Fisioterapia.
         * **Investimento:** Gratuito para Estudantes e Docentes.
