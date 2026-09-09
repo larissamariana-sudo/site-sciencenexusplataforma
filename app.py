@@ -70,7 +70,7 @@ menu = st.sidebar.selectbox("Navegue pelo Portal:", [
     "🏠 Início / Sobre", 
     "🎟️ Eventos e Inscrições", 
     "✍️ Trabalhos Científicos", 
-    "🎓 Certificados e Validação", 
+    "🎓 Validação de Certificados", 
     "💳 Taxa de DOI Individual/Pessoal", 
     "💳 Taxa de ISBN Coletivo",
     "📚 Anais Publicados",
@@ -384,7 +384,7 @@ elif menu == "✍️ Trabalhos Científicos":
                 else:
                     st.error("Por favor, digite um e-mail.")
 
-# --- 4. CERTIFICADOS E VALIDAÇÃO (Leitura simultânea de 5 planilhas e reconhecimento de Nome, Nome Completo, Nome_Orientador e Nome_Aluno) ---
+# --- 4. VALIDAÇÃO DE CERTIFICADOS  (Leitura simultânea de 5 planilhas e reconhecimento de Nome, Nome Completo, Nome_Orientador e Nome_Aluno) ---
 elif menu == "🎓 Certificados e Validação":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("🎓 Validação de Autenticidade de Certificados")
@@ -444,14 +444,14 @@ elif menu == "💳 Taxa de DOI Individual/Pessoal":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("💳 Solicitação e Pagamento de DOI Individual")
     st.write("O DOI individual é opcional (R$ 20,00).")
-    st.info("ℹ️ **Chave PIX:** eventoscientificosc@gmail.com")
+    st.info("ℹ️ **Chave PIX:** eventos@sciencenexus.com.br")
     st.link_button("🔗 Link para Solicitação DOI", "https://forms.gle/J1FArsU2fYT7nHU26")
 
 elif menu == "💳 Taxa de ISBN Coletivo":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("💳 Solicitação e Pagamento de ISBN Coletivo")
     st.write("Taxa única ISBN, para o documento que conterá todos os resumos dos Anais (R$ 35,00).")
-    st.info("ℹ️ **Chave PIX:** eventoscientificosc@gmail.com")
+    st.info("ℹ️ **Chave PIX:** eventos@sciencenexus.com.br")
     st.link_button("🔗 Link para Solicitação ISBN", "https://forms.gle/2bN1yFrR5phvTcAu5")
 
 # --- 6. ANAIS ---
@@ -516,7 +516,7 @@ elif menu == "📞 Contato":
     st.subheader("📞 Fale Conosco")
     st.write("Entre em contato com a comissão organizadora para dúvidas sobre submissões, inscrições ou certificados.")
     st.markdown("---")
-    st.info("📧 **E-mail oficial de suporte:** eventoscientificosc@gmail.com")
+    st.info("📧 **E-mail oficial de suporte:** eventos@sciencenexus.com.br")
     st.write("Nossa equipe responderá sua mensagem em até 48 horas úteis.")
 
 # --- RODAPÉ ---
