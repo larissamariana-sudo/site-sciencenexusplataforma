@@ -93,7 +93,7 @@ if menu == "🏠 Início / Sobre":
 
 # --- 2. EVENTOS E INSCRIÇÕES (Com Links Independentes por Evento) ---
 elif menu == "🎟️ Eventos e Inscrições":
-    mostrar_cabecalho("eventos.png")
+    mostrar_cabecalho("capa0.jpg")
     st.subheader("🎟️ Programação de Eventos e Cursos Disponíveis")
     st.write("Selecione abaixo o evento de seu interesse para ver os detalhes, consultar a programação e realizar a inscrição.")
     
@@ -277,7 +277,7 @@ elif menu == "🎟️ Eventos e Inscrições":
 
 # --- 3. TRABALHOS (SUBMISSÃO + STATUS) ---
 elif menu == "✍️ Trabalhos Científicos":
-    mostrar_cabecalho("capa0.jpg")
+    mostrar_cabecalho("eventos.png")
     st.subheader("✍️ Central de Trabalhos Científicos")
     st.write("Consulte abaixo as normas e utilize o link do formulário exclusivo para enviar o seu arquivo Word (.doc/.docx).")
     
