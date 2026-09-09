@@ -121,7 +121,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         * **Público-alvo:** Estudantes, docentes, profissionais e pesquisadores.
         * **Investimento:** 
           * Estudantes, Docentes e Banca da PUC Goiás: **Gratuito**.
-          * Participantes Externos: **R$ 10,00** (Standby mediante comprovante na chave `eventoscientificosc@gmail.com`).
+          * Participantes Externos: **R$ 10,00** (Standby mediante comprovante na chave `eventos@sciencenexus.com.br`).
         * **Destaque:** Permite submissão de Resumos Simples, Expandidos e Artigos Completos com ISBN.
         """)
         st.markdown("### **EIXOS TEMÁTICOS**")
