@@ -65,7 +65,7 @@ def mostrar_cabecalho(foto="capa0.jpg"):
     """, unsafe_allow_html=True)
     st.write("")
 
-# --- MENU (Ordem atualizada com Transmissão abaixo de Anais Publicados) ---
+# --- MENU (Nome da aba sincronizado perfeitamente) ---
 menu = st.sidebar.selectbox("Navegue pelo Portal:", [
     "🏠 Início / Sobre", 
     "🎟️ Eventos e Inscrições", 
@@ -384,8 +384,8 @@ elif menu == "✍️ Trabalhos Científicos":
                 else:
                     st.error("Por favor, digite um e-mail.")
 
-# --- 4. VALIDAÇÃO DE CERTIFICADOS (Leitura simultânea de 6 planilhas e reconhecimento de Nome, Nome Completo, Nome_Orientador e Nome_Aluno) ---
-elif menu == "🎓 Certificados e Validação":
+# --- 4. VALIDAÇÃO DE CERTIFICADOS (Com nome corrigido para exibir perfeitamente) ---
+elif menu == "🎓 Validação de Certificados":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("🎓 Validação de Autenticidade de Certificados")
     st.write("Insira o **Código de Autenticidade** exclusivo impresso no rodapé do certificado para comprovar sua validade:")
@@ -397,15 +397,14 @@ elif menu == "🎓 Certificados e Validação":
         if validar_btn:
             if codigo_digitado:
                 try:
-                    # Espaço para 6 links de planilhas diferentes (Incluindo a Planilha 3 corrigida)
+                    # Espaço para leitura simultânea de até 6 planilhas (incluindo a Planilha 3)
                     links_planilhas = [
                         "https://docs.google.com/spreadsheets/d/15D_Vay3AQDUrbmaHjgwTeg0irLHX5q2pw6sw_wtiDl0/edit?usp=sharing",  # Planilha 1
                         "https://docs.google.com/spreadsheets/d/1ymnfGiFmC_PZLUIra7mWyZMjD_hc9Uu6jXvLohUjBeE/edit?usp=sharing",  # Planilha 2
-                        "https://docs.google.com/spreadsheets/d/1eEQeDcwCQ9gkpy9MAI9It7gk1fx1QwZRXBnhRhvkg6o/edit?usp=sharing",  # Planilha 3 (Corrigida e ativa)
-                        "https://docs.google.com/spreadsheets/d/1uQnTs-ijo0d4fiTFoIKC0ANuJ5A2SfRQO3jOA65OruI/edit?usp=sharing",   # Espaço para Planilha 4
-                        "COLE_LINK_PLANILHA_EVENTO_5_AQUI"    # Espaço para Planilha 5
-                        "COLE_LINK_PLANILHA_EVENTO_5_AQUI"    # Espaço para Planilha 6
-
+                        "https://docs.google.com/spreadsheets/d/1eEQeDcwCQ9gkpy9MAI9It7gk1fx1QwZRXBnhRhvkg6o/edit?usp=sharing",  # Planilha 3
+                        "https://docs.google.com/spreadsheets/d/1uQnTs-ijo0d4fiTFoIKC0ANuJ5A2SfRQO3jOA65OruI/edit?usp=sharing",  # Planilha 4
+                        "COLE_LINK_PLANILHA_EVENTO_5_AQUI",
+                        "COLE_LINK_PLANILHA_EVENTO_6_AQUI"
                     ]
                     
                     encontrado = False
@@ -422,7 +421,7 @@ elif menu == "🎓 Certificados e Validação":
                                     res_c = df_c[df_c[col_cod] == codigo_digitado.lower()]
                                     
                                     if not res_c.empty:
-                                        # Reconhece colunas de Nome, Nome Completo, Nome_Orientador ou Nome_Aluno
+                                        # Reconhecimento inteligente das colunas de Nome, Nome Completo, Nome_Orientador, Nome_Aluno
                                         colunas_possiveis = ['nome', 'nome completo', 'nome_completo', 'nome_orientador', 'nome_aluno', 'participante', 'autor', 'aluno', 'orientador']
                                         col_nome_encontrada = next((c for c in df_c.columns if c in colunas_possiveis), 'nome')
                                         
@@ -463,7 +462,7 @@ elif menu == "📚 Anais Publicados":
     st.link_button("📥 Baixar Anais Jornada Científica 2026/2", "COLE_LINK_PDF_ANAIS_AQUI")
     st.link_button("📥 Baixar Anais Mostra de Extensão 2026", "COLE_LINK_PDF_ANAIS_AQUI") 
 
-# --- 7. TRANSMISSÃO AO VIVO (Posicionada abaixo de Anais Publicados) ---
+# --- 7. TRANSMISSÃO AO VIVO ---
 elif menu == "📺 Transmissão ao Vivo":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("📺 Central de Transmissões ao Vivo e Eventos Online")
