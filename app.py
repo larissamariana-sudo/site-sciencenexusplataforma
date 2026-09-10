@@ -384,7 +384,7 @@ elif menu == "✍️ Trabalhos Científicos":
                 else:
                     st.error("Por favor, digite um e-mail.")
 
-# --- 4. VALIDAÇÃO DE CERTIFICADOS  (Leitura simultânea de 5 planilhas e reconhecimento de Nome, Nome Completo, Nome_Orientador e Nome_Aluno) ---
+# --- 4. VALIDAÇÃO DE CERTIFICADOS (Leitura simultânea de 5 planilhas e reconhecimento de Nome, Nome Completo, Nome_Orientador e Nome_Aluno) ---
 elif menu == "🎓 Certificados e Validação":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("🎓 Validação de Autenticidade de Certificados")
