@@ -384,7 +384,7 @@ elif menu == "✍️ Trabalhos Científicos":
                 else:
                     st.error("Por favor, digite um e-mail.")
 
-# --- 4. VALIDAÇÃO DE CERTIFICADOS (Com nome corrigido para exibir perfeitamente) ---
+# --- 4. VALIDAÇÃO DE CERTIFICADOS (Com busca flexível e tolerante a falhas) ---
 elif menu == "🎓 Validação de Certificados":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("🎓 Validação de Autenticidade de Certificados")
@@ -397,14 +397,12 @@ elif menu == "🎓 Validação de Certificados":
         if validar_btn:
             if codigo_digitado:
                 try:
-                    # Espaço para leitura simultânea de até 6 planilhas (incluindo a Planilha 3)
+                    # Lista com os links das suas planilhas de certificados
                     links_planilhas = [
                         "https://docs.google.com/spreadsheets/d/15D_Vay3AQDUrbmaHjgwTeg0irLHX5q2pw6sw_wtiDl0/edit?usp=sharing",  # Planilha 1
                         "https://docs.google.com/spreadsheets/d/1ymnfGiFmC_PZLUIra7mWyZMjD_hc9Uu6jXvLohUjBeE/edit?usp=sharing",  # Planilha 2
                         "https://docs.google.com/spreadsheets/d/1eEQeDcwCQ9gkpy9MAI9It7gk1fx1QwZRXBnhRhvkg6o/edit?usp=sharing",  # Planilha 3
                         "https://docs.google.com/spreadsheets/d/1uQnTs-ijo0d4fiTFoIKC0ANuJ5A2SfRQO3jOA65OruI/edit?usp=sharing",  # Planilha 4
-                        "COLE_LINK_PLANILHA_EVENTO_5_AQUI",
-                        "COLE_LINK_PLANILHA_EVENTO_6_AQUI"
                     ]
                     
                     encontrado = False
@@ -414,18 +412,27 @@ elif menu == "🎓 Validação de Certificados":
                         if "docs.google.com" in link:
                             df_c = carregar_dados_planilha(link)
                             if df_c is not None:
-                                col_cod = next((c for c in df_c.columns if 'codigo' in c or 'chave' in c or 'autenticidade' in c), None)
+                                # Normaliza todos os nomes das colunas (remove espaços, bota em minúsculo)
+                                df_c.columns = df_c.columns.str.strip().str.lower()
+                                
+                                # Procura por qualquer coluna que contenha codigo, chave ou autenticidade
+                                col_cod = next((c for c in df_c.columns if any(termo in c for termo in ['codigo', 'chave', 'autenticidade'])), None)
                                 
                                 if col_cod:
+                                    # Converte a coluna para string limpa para comparar
                                     df_c[col_cod] = df_c[col_cod].astype(str).str.strip().str.lower()
                                     res_c = df_c[df_c[col_cod] == codigo_digitado.lower()]
                                     
                                     if not res_c.empty:
-                                        # Reconhecimento inteligente das colunas de Nome, Nome Completo, Nome_Orientador, Nome_Aluno
+                                        # Procura colunas de nome compatíveis
                                         colunas_possiveis = ['nome', 'nome completo', 'nome_completo', 'nome_orientador', 'nome_aluno', 'participante', 'autor', 'aluno', 'orientador']
-                                        col_nome_encontrada = next((c for c in df_c.columns if c in colunas_possiveis), 'nome')
+                                        col_nome_encontrada = next((c for c in df_c.columns if any(p in c for p in colunas_possiveis)), None)
                                         
-                                        nome_p = str(res_c.iloc[0].get(col_nome_encontrada, 'Participante')).title()
+                                        if col_nome_encontrada:
+                                            nome_p = str(res_c.iloc[0].get(col_nome_encontrada, 'Participante')).title()
+                                        else:
+                                            nome_p = "Participante Registrado"
+                                            
                                         encontrado = True
                                         break
                     
@@ -433,10 +440,10 @@ elif menu == "🎓 Validação de Certificados":
                         st.success("✅ **CERTIFICADO VÁLIDO E AUTÊNTICO!**")
                         st.write(f"Este certificado pertence oficialmente a: **{nome_p}** — Science Nexus / PUC Goiás.")
                     else:
-                        st.error("❌ **Certificado Inválido ou Falso:** O código informado não consta em nenhuma das bases de dados oficiais.")
+                        st.error("❌ **Certificado Inválido ou Não Encontrado:** O código informado não consta em nenhuma das bases de dados oficiais.")
                         
                 except Exception as e:
-                    st.error(f"Erro ao consultar base de certificados: {e}")
+                    st.error(f"Erro técnico ao consultar a base de dados: {e}")
             else:
                 st.error("Por favor, digite o código de autenticidade.")
 
