@@ -18,6 +18,7 @@ def carregar_dados_planilha(link_planilha):
     try:
         if "docs.google.com" in link_planilha:
             id_plan = link_planilha.split("/d/")[1].split("/")[0]
+            # Usa export?format=csv para ler automaticamente a primeira aba da planilha do Google Sheets
             url_csv = f"https://docs.google.com/spreadsheets/d/{id_plan}/export?format=csv"
             df = pd.read_csv(url_csv)
             df.columns = df.columns.str.strip().str.lower()
@@ -384,7 +385,7 @@ elif menu == "✍️ Trabalhos Científicos":
                 else:
                     st.error("Por favor, digite um e-mail.")
 
-# --- 4. VALIDAÇÃO DE CERTIFICADOS (Com Diagnóstico de Leitura) ---
+# --- 4. VALIDAÇÃO DE CERTIFICADOS (Com Leitura Otimizada da 1ª Aba e Múltiplas Planilhas) ---
 elif menu == "🎓 Validação de Certificados":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("🎓 Validação de Autenticidade de Certificados")
@@ -397,13 +398,15 @@ elif menu == "🎓 Validação de Certificados":
         if validar_btn:
             if codigo_digitado:
                 try:
-                    # Lista com os links das suas planilhas de certificados
+                    # Lista expandida para receber os links das planilhas de cada evento cadastrado (Lendo sempre a 1ª aba)
                     links_planilhas = [
                         "https://docs.google.com/spreadsheets/d/15D_Vay3AQDUrbmaHjgwTeg0irLHX5q2pw6sw_wtiDl0/edit?usp=sharing",  # Planilha 1
                         "https://docs.google.com/spreadsheets/d/1ymnfGiFmC_PZLUIra7mWyZMjD_hc9Uu6jXvLohUjBeE/edit?usp=sharing",  # Planilha 2
                         "https://docs.google.com/spreadsheets/d/1eEQeDcwCQ9gkpy9MAI9It7gk1fx1QwZRXBnhRhvkg6o/edit?usp=sharing",  # Planilha 3
                         "https://docs.google.com/spreadsheets/d/1uQnTs-ijo0d4fiTFoIKC0ANuJ5A2SfRQO3jOA65OruI/edit?usp=sharing",  # Planilha 4
                         "https://docs.google.com/spreadsheets/d/1ym70HWRIJPhzFbcYhmf4bcQLmzW4rbF5GkkycDyEC_0/edit?usp=sharing",  # Planilha 5
+                        # Adicione novos links de planilhas de eventos futuros abaixo nesta mesma lista:
+                        # "COLE_LINK_NOVA_PLANILHA_EVENTO_AQUI",
                     ]
                     
                     encontrado = False
@@ -414,10 +417,8 @@ elif menu == "🎓 Validação de Certificados":
                         if "docs.google.com" in link:
                             df_c = carregar_dados_planilha(link)
                             if df_c is not None and not df_c.empty:
-                                # Normaliza os nomes das colunas
                                 df_c.columns = df_c.columns.str.strip().str.lower()
                                 
-                                # Procura por coluna de código
                                 col_cod = next((c for c in df_c.columns if any(termo in c for termo in ['codigo', 'chave', 'autenticidade', 'código'])), None)
                                 
                                 if col_cod:
@@ -438,14 +439,13 @@ elif menu == "🎓 Validação de Certificados":
                                 else:
                                     erros_diagnostico.append(f"Planilha {i+1}: Coluna de código não encontrada (Colunas lidas: {list(df_c.columns)})")
                             else:
-                                erros_diagnostico.append(f"Planilha {i+1}: Não foi possível ler os dados (verifique se a 1ª aba contém dados).")
+                                erros_diagnostico.append(f"Planilha {i+1}: Dados vazios ou sem permissão pública de leitura na 1ª aba.")
                     
                     if encontrado:
                         st.success("✅ **CERTIFICADO VÁLIDO E AUTÊNTICO!**")
                         st.write(f"Este certificado pertence oficialmente a: **{nome_p}** — Science Nexus / PUC Goiás.")
                     else:
                         st.error("❌ **Certificado Inválido ou Não Encontrado:** O código informado não consta em nenhuma das bases de dados oficiais.")
-                        # Exibe detalhes no painel caso queira debugar o motivo exato
                         with st.expander("🔍 Detalhes técnicos da varredura"):
                             for err in erros_diagnostico:
                                 st.write(err)
