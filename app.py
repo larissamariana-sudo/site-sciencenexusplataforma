@@ -384,7 +384,7 @@ elif menu == "✍️ Trabalhos Científicos":
                 else:
                     st.error("Por favor, digite um e-mail.")
 
-# --- 4. VALIDAÇÃO DE CERTIFICADOS (Leitura simultânea de 5 planilhas e reconhecimento de Nome, Nome Completo, Nome_Orientador e Nome_Aluno) ---
+# --- 4. VALIDAÇÃO DE CERTIFICADOS (Leitura simultânea de 6 planilhas e reconhecimento de Nome, Nome Completo, Nome_Orientador e Nome_Aluno) ---
 elif menu == "🎓 Certificados e Validação":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("🎓 Validação de Autenticidade de Certificados")
@@ -397,13 +397,15 @@ elif menu == "🎓 Certificados e Validação":
         if validar_btn:
             if codigo_digitado:
                 try:
-                    # Espaço para 5 links de planilhas diferentes (Incluindo a Planilha 3 corrigida)
+                    # Espaço para 6 links de planilhas diferentes (Incluindo a Planilha 3 corrigida)
                     links_planilhas = [
                         "https://docs.google.com/spreadsheets/d/15D_Vay3AQDUrbmaHjgwTeg0irLHX5q2pw6sw_wtiDl0/edit?usp=sharing",  # Planilha 1
                         "https://docs.google.com/spreadsheets/d/1ymnfGiFmC_PZLUIra7mWyZMjD_hc9Uu6jXvLohUjBeE/edit?usp=sharing",  # Planilha 2
                         "https://docs.google.com/spreadsheets/d/1eEQeDcwCQ9gkpy9MAI9It7gk1fx1QwZRXBnhRhvkg6o/edit?usp=sharing",  # Planilha 3 (Corrigida e ativa)
                         "https://docs.google.com/spreadsheets/d/1uQnTs-ijo0d4fiTFoIKC0ANuJ5A2SfRQO3jOA65OruI/edit?usp=sharing",   # Espaço para Planilha 4
                         "COLE_LINK_PLANILHA_EVENTO_5_AQUI"    # Espaço para Planilha 5
+                        "COLE_LINK_PLANILHA_EVENTO_5_AQUI"    # Espaço para Planilha 6
+
                     ]
                     
                     encontrado = False
