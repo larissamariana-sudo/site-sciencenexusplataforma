@@ -384,7 +384,7 @@ elif menu == "✍️ Trabalhos Científicos":
                 else:
                     st.error("Por favor, digite um e-mail.")
 
-# --- 4. VALIDAÇÃO DE CERTIFICADOS (Com busca flexível e tolerante a falhas) ---
+# --- 4. VALIDAÇÃO DE CERTIFICADOS (Com Diagnóstico de Leitura) ---
 elif menu == "🎓 Validação de Certificados":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("🎓 Validação de Autenticidade de Certificados")
@@ -407,24 +407,23 @@ elif menu == "🎓 Validação de Certificados":
                     
                     encontrado = False
                     nome_p = "Participante"
+                    erros_diagnostico = []
                     
-                    for link in links_planilhas:
+                    for i, link in enumerate(links_planilhas):
                         if "docs.google.com" in link:
                             df_c = carregar_dados_planilha(link)
-                            if df_c is not None:
-                                # Normaliza todos os nomes das colunas (remove espaços, bota em minúsculo)
+                            if df_c is not None and not df_c.empty:
+                                # Normaliza os nomes das colunas
                                 df_c.columns = df_c.columns.str.strip().str.lower()
                                 
-                                # Procura por qualquer coluna que contenha codigo, chave ou autenticidade
-                                col_cod = next((c for c in df_c.columns if any(termo in c for termo in ['codigo', 'chave', 'autenticidade'])), None)
+                                # Procura por coluna de código
+                                col_cod = next((c for c in df_c.columns if any(termo in c for termo in ['codigo', 'chave', 'autenticidade', 'código'])), None)
                                 
                                 if col_cod:
-                                    # Converte a coluna para string limpa para comparar
                                     df_c[col_cod] = df_c[col_cod].astype(str).str.strip().str.lower()
                                     res_c = df_c[df_c[col_cod] == codigo_digitado.lower()]
                                     
                                     if not res_c.empty:
-                                        # Procura colunas de nome compatíveis
                                         colunas_possiveis = ['nome', 'nome completo', 'nome_completo', 'nome_orientador', 'nome_aluno', 'participante', 'autor', 'aluno', 'orientador']
                                         col_nome_encontrada = next((c for c in df_c.columns if any(p in c for p in colunas_possiveis)), None)
                                         
@@ -435,12 +434,20 @@ elif menu == "🎓 Validação de Certificados":
                                             
                                         encontrado = True
                                         break
+                                else:
+                                    erros_diagnostico.append(f"Planilha {i+1}: Coluna de código não encontrada (Colunas lidas: {list(df_c.columns)})")
+                            else:
+                                erros_diagnostico.append(f"Planilha {i+1}: Não foi possível ler os dados (verifique se a 1ª aba contém dados).")
                     
                     if encontrado:
                         st.success("✅ **CERTIFICADO VÁLIDO E AUTÊNTICO!**")
                         st.write(f"Este certificado pertence oficialmente a: **{nome_p}** — Science Nexus / PUC Goiás.")
                     else:
                         st.error("❌ **Certificado Inválido ou Não Encontrado:** O código informado não consta em nenhuma das bases de dados oficiais.")
+                        # Exibe detalhes no painel caso queira debugar o motivo exato
+                        with st.expander("🔍 Detalhes técnicos da varredura"):
+                            for err in erros_diagnostico:
+                                st.write(err)
                         
                 except Exception as e:
                     st.error(f"Erro técnico ao consultar a base de dados: {e}")
