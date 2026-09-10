@@ -167,7 +167,7 @@ elif menu == "🎟️ Eventos e Inscrições":
             st.caption("ℹ️ *[Logo/Imagem do evento não encontrada]*")
             
         st.markdown("### 🤲 Acolhimento dos Monitores Caeme/Prograd")
-        st.write("Data: 11/09 Matutino 9h às 10h30 Campus II Auditório Bloco S e Noturno 18h às 19h30 Área II Auditório II. Público: Monitores selecionados em 2026/2.")
+        st.write("Data: 11/09 Matutino 9h às 10h30 Campus II Auditório Bloco G e Noturno 18h às 19h30 Área II Auditório II. Público: Monitores selecionados em 2026/2.")
         st.markdown("#### 📅 Programação do Evento")
         st.link_button("📅 Ver / Baixar Programação", "COLE_LINK_PROGRAMACAO_MONITORES")
         
