@@ -329,7 +329,7 @@ elif menu == "✍️ Trabalhos Científicos":
             """)
             
             try:
-                with open("regras_artigo_completo.pdf", "rb") as pdf_file:
+                with open("regras_resumo_artigo.pdf", "rb") as pdf_file:
                     st.download_button("📥 Baixar Regras Completas (PDF - Artigo Completo)", pdf_file, file_name="Regras_Artigo_Completo.pdf", mime="application/pdf")
             except Exception:
                 st.caption("ℹ️ *[PDF com regras detalhadas de Artigo Completo em breve]*")
