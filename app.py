@@ -290,7 +290,7 @@ elif menu == "✍️ Trabalhos Científicos":
         with tab_simples:
             st.markdown("### Normas para Submissão de Resumo Simples")
             st.markdown("""
-            * **Estrutura Obrigatória:** Introdução, Objetivos, Metodologia, Resultados e Discussão, e Considerações Finais.
+            * **Estrutura Obrigatória:** Introdução, Objetivos, Materiais e Métodos, Resultados e Discussão, e Considerações Finais.
             * **Formatação:** Mínimo de 250 palavras e Máximo de 350 palavras (excluindo título e referências). Fonte Times New Roman, tamanho 12, espaçamento 1,0.
             * **Palavras-chave:** De 3 a 5 palavras-chave separadas por ponto e vírgula.
             * **Autores:** Permitido até 3 autores por trabalho (incluindo o orientador).
