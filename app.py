@@ -276,7 +276,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.info("⚠️ **Exclusivo para Orientadores:** Utilize este formulário para cadastrar o trabalho, estudante e banca para o certificado.")
         st.link_button("📝 Cadastrar Informações do Trabalho", link_cad)
 
-# --- 3. TRABALHOS (SUBMISSÃO + STATUS) ---
+# --- 3. TRABALHOS (SUBMISSÃO + STATUS COM RELATO DE EXPERIÊNCIA) ---
 elif menu == "✍️ Trabalhos Científicos":
     mostrar_cabecalho("eventos.png")
     st.subheader("✍️ Central de Trabalhos Científicos")
@@ -285,7 +285,7 @@ elif menu == "✍️ Trabalhos Científicos":
     tab_principal1, tab_principal2 = st.tabs(["📥 Submissão e Normas", "🔍 Consultar Status"])
     
     with tab_principal1:
-        tab_simples, tab_expandido, tab_completo = st.tabs(["📄 Resumo Simples", "📑 Resumo Expandido", "📚 Artigo Completo"])
+        tab_simples, tab_expandido, tab_completo, tab_relato = st.tabs(["📄 Resumo Simples", "📑 Resumo Expandido", "📚 Artigo Completo", "📝 Relato de Experiência"])
         
         with tab_simples:
             st.markdown("### Normas para Submissão de Resumo Simples")
@@ -334,6 +334,26 @@ elif menu == "✍️ Trabalhos Científicos":
                     st.download_button("📥 Baixar Regras Completas (PDF - Artigo Completo)", pdf_file, file_name="Regras_Artigo_Completo.pdf", mime="application/pdf")
             except Exception:
                 st.caption("ℹ️ *[PDF com regras detalhadas de Artigo Completo em breve]*")
+
+        with tab_relato:
+            st.markdown("### Normas para Submissão de Relato de Experiência")
+            st.markdown("""
+            * **Estrutura Obrigatória:** Introdução/Fundamentação Teórica, Descrição da Experiência (Vivência, Local, Público Envolvido), Reflexão Crítica/Resultados Alcançados, e Considerações Finais.
+            * **Extensão:** De 3 a 5 páginas completas.
+            * **Formatação:** Fonte Times New Roman, tamanho 12, espaçamento entre linhas 1,0, recuo de parágrafo de 1,25 cm.
+            * **Palavras-chave:** De 3 a 5 palavras-chave separadas por ponto e vírgula.
+            
+            **INFORMAÇÕES PARA A SUBMISSÃO**
+            * **Formato:** O arquivo deve ser submetido em formato WORD (.doc/.docx).
+            * **Prazo:** Respeitar o cronograma oficial do evento.
+            * **Publicação:** Inserido nos anais oficiais com ISBN da plataforma.
+            """)
+            
+            try:
+                with open("regras_relato_experiencia.pdf", "rb") as pdf_file:
+                    st.download_button("📥 Baixar Regras Completas (PDF - Relato de Experiência)", pdf_file, file_name="Regras_Relato_Experiencia.pdf", mime="application/pdf")
+            except Exception:
+                st.caption("ℹ️ *[PDF com regras detalhadas de Relato de Experiência em breve]*")
 
         st.markdown("---")
         st.info("📌 **Importante:** Para que os arquivos sejam salvos diretamente na nuvem da comissão científica, a submissão é feita por formulário dedicado.")
@@ -385,9 +405,9 @@ elif menu == "✍️ Trabalhos Científicos":
                 else:
                     st.error("Por favor, digite um e-mail.")
 
-# --- 4. VALIDAÇÃO DE CERTIFICADOS (Com Leitura Otimizada da 1ª Aba e Múltiplas Planilhas) ---
+# --- 4. VALIDAÇÃO DE CERTIFICADOS ---
 elif menu == "🎓 Validação de Certificados":
-    mostrar_cabecalho("capa0.jpg")
+    mostrar_cabecalho("capaS.jpg")
     st.subheader("🎓 Validação de Autenticidade de Certificados")
     st.write("Insira o **Código de Autenticidade** exclusivo impresso no rodapé do certificado para comprovar sua validade:")
     
@@ -398,15 +418,15 @@ elif menu == "🎓 Validação de Certificados":
         if validar_btn:
             if codigo_digitado:
                 try:
-                    # Lista expandida para receber os links das planilhas de cada evento cadastrado (Lendo sempre a 1ª aba)
+                    # Lista contendo os links das planilhas de certificados cadastradas (lendo a 1ª aba)
                     links_planilhas = [
                         "https://docs.google.com/spreadsheets/d/15D_Vay3AQDUrbmaHjgwTeg0irLHX5q2pw6sw_wtiDl0/edit?usp=sharing",  # Planilha 1
                         "https://docs.google.com/spreadsheets/d/1ymnfGiFmC_PZLUIra7mWyZMjD_hc9Uu6jXvLohUjBeE/edit?usp=sharing",  # Planilha 2
                         "https://docs.google.com/spreadsheets/d/1eEQeDcwCQ9gkpy9MAI9It7gk1fx1QwZRXBnhRhvkg6o/edit?usp=sharing",  # Planilha 3
                         "https://docs.google.com/spreadsheets/d/1uQnTs-ijo0d4fiTFoIKC0ANuJ5A2SfRQO3jOA65OruI/edit?usp=sharing",  # Planilha 4
                         "https://docs.google.com/spreadsheets/d/1ym70HWRIJPhzFbcYhmf4bcQLmzW4rbF5GkkycDyEC_0/edit?usp=sharing",  # Planilha 5
-                        # Adicione novos links de planilhas de eventos futuros abaixo nesta mesma lista:
-                        # "COLE_LINK_NOVA_PLANILHA_EVENTO_AQUI",
+                        # Adicione links de planilhas de novos eventos abaixo:
+                        # "COLE_LINK_NOVA_PLANILHA_AQUI",
                     ]
                     
                     encontrado = False
@@ -457,14 +477,14 @@ elif menu == "🎓 Validação de Certificados":
 
 # --- 5. DOI/ISBN ---
 elif menu == "💳 Taxa de DOI Individual/Pessoal":
-    mostrar_cabecalho("capa0.jpg")
+    mostrar_cabecalho("capaS.jpg")
     st.subheader("💳 Solicitação e Pagamento de DOI Individual")
     st.write("O DOI individual é opcional (R$ 20,00). **O DOI individual é por trabalho/título**")
     st.info("ℹ️ **Chave PIX:** eventos@sciencenexus.com.br")
     st.link_button("🔗 Link para Solicitação DOI", "https://forms.gle/J1FArsU2fYT7nHU26")
 
 elif menu == "💳 Taxa de ISBN Coletivo":
-    mostrar_cabecalho("capa0.jpg")
+    mostrar_cabecalho("capaS.jpg")
     st.subheader("💳 Solicitação e Pagamento de ISBN Coletivo")
     st.write("Taxa única ISBN por evento, para o documento que conterá todos resumos/relatos/artigos dos Anais (R$ 35,00). Caso você queira registrar de forma independente o ISBN do seu evento, solicite o PDF dos Anais, sem ISBN, faça o registro e nos encaminhe o número ISBN para que seja anexado ao documento/Anais e publicizado na plataforma")
     st.info("ℹ️ **Chave PIX:** eventos@sciencenexus.com.br")
@@ -472,14 +492,14 @@ elif menu == "💳 Taxa de ISBN Coletivo":
 
 # --- 6. ANAIS ---
 elif menu == "📚 Anais Publicados":
-    mostrar_cabecalho("capa0.jpg")
+    mostrar_cabecalho("capaS.jpg")
     st.subheader("📚 Repositório Oficial de Anais")
     st.link_button("📥 Baixar Anais Jornada Científica 2026/2", "COLE_LINK_PDF_ANAIS_AQUI")
     st.link_button("📥 Baixar Anais Mostra de Extensão 2026", "COLE_LINK_PDF_ANAIS_AQUI") 
 
 # --- 7. TRANSMISSÃO AO VIVO ---
 elif menu == "📺 Transmissão ao Vivo":
-    mostrar_cabecalho("capa0.jpg")
+    mostrar_cabecalho("capaS.jpg")
     st.subheader("📺 Central de Transmissões ao Vivo e Eventos Online")
     st.write("Acompanhe abaixo as palestras, sessões de apresentação de trabalhos e mesas-redondas em tempo real.")
     
@@ -505,7 +525,7 @@ elif menu == "📺 Transmissão ao Vivo":
 
 # --- 8. EVENTOS ANTERIORES ---
 elif menu == "📂 Eventos Anteriores":
-    mostrar_cabecalho("capa0.jpg")
+    mostrar_cabecalho("capaS.jpg")
     st.subheader("📂 Repositório de Eventos Anteriores")
     st.write("Acesse abaixo os acervos, anais e certificados de edições passadas do nosso portal.")
     
@@ -526,11 +546,18 @@ elif menu == "📂 Eventos Anteriores":
             if buscar_antigo and email_antigo:
                 st.link_button("🔗 Abrir Link de Emissão do Ano Selecionado", "COLE_LINK_CERTIFICADOS_ANTERIORES")
 
-# --- 9. CONTATO ---
+# --- 9. CONTATO (Com seção para Solicitação de Cadastro de Evento) ---
 elif menu == "📞 Contato":
-    mostrar_cabecalho("capa0.jpg")
+    mostrar_cabecalho("capaS.jpg")
     st.subheader("📞 Fale Conosco")
     st.write("Entre em contato com a comissão organizadora para dúvidas sobre submissões, inscrições ou certificados.")
+    st.markdown("---")
+    
+    # Seção para solicitação de cadastro de evento
+    st.markdown("### 🏛️ Organiza um Evento? Solicite seu Cadastro")
+    st.write("Deseja hospedar e gerenciar as inscrições, submissões e certificações do seu evento acadêmico em nossa plataforma? Acesse o formulário dedicado abaixo:")
+    st.link_button("📝 Solicitar Cadastro de Novo Evento", "COLE_LINK_FORMULARIO_CADASTRO_EVENTO_AQUI")
+    
     st.markdown("---")
     st.info("📧 **E-mail oficial de suporte:** eventos@sciencenexus.com.br")
     st.write("Nossa equipe responderá sua mensagem em até 48 horas úteis.")
