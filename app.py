@@ -459,14 +459,14 @@ elif menu == "🎓 Validação de Certificados":
 elif menu == "💳 Taxa de DOI Individual/Pessoal":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("💳 Solicitação e Pagamento de DOI Individual")
-    st.write("O DOI individual é opcional (R$ 20,00).")
+    st.write("O DOI individual é opcional (R$ 20,00). O DOI individual é por trabalho/título")
     st.info("ℹ️ **Chave PIX:** eventos@sciencenexus.com.br")
     st.link_button("🔗 Link para Solicitação DOI", "https://forms.gle/J1FArsU2fYT7nHU26")
 
 elif menu == "💳 Taxa de ISBN Coletivo":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("💳 Solicitação e Pagamento de ISBN Coletivo")
-    st.write("Taxa única ISBN, para o documento que conterá todos os resumos dos Anais (R$ 35,00). Caso tenha registrado ISBN do seu evento, informe o número para que seja anexado ao documento/Anais")
+    st.write("Taxa única ISBN por evento, para o documento que conterá todos resumos/relatos/artigos dos Anais (R$ 35,00). Caso você queira registrar de forma independente o ISBN do seu evento, solicite o PDF dos Anais, sem DOI, faça o registro e nos encaminhe o número ISBN para que seja anexado ao documento/Anais e publicizado na plataforma")
     st.info("ℹ️ **Chave PIX:** eventos@sciencenexus.com.br")
     st.link_button("🔗 Link para Solicitação ISBN", "https://forms.gle/2bN1yFrR5phvTcAu5")
 
