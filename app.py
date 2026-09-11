@@ -312,7 +312,7 @@ elif menu == "✍️ Trabalhos Científicos":
             st.markdown("### Normas para Submissão de Resumo Expandido")
             st.markdown("""
             * **Estrutura Obrigatória:** Resumo, Palavras-chave, Introdução, Metodologia, Resultados e Discussão, Conclusão, Referências Bibliográficas.
-            * **Extensão:** No mínimo 4 páginas e no máximo 7 páginas completas.
+            * **Extensão:** No mínimo 4 páginas e no máximo 8 páginas completas.
             * **Formatação:** Fonte Times New Roman, tamanho 12, espaçamento entre linhas 1,0, recuo de parágrafo de 1,25 cm.
             """)
             
@@ -339,7 +339,7 @@ elif menu == "✍️ Trabalhos Científicos":
             st.markdown("### Normas para Submissão de Relato de Experiência")
             st.markdown("""
             * **Estrutura Obrigatória:** Introdução/Fundamentação Teórica, Descrição da Experiência (Vivência, Local, Público Envolvido), Reflexão Crítica/Resultados Alcançados, e Considerações Finais.
-            * **Extensão:** De 3 a 5 páginas completas.
+            * **Extensão:** De 4 a 8 páginas completas.
             * **Formatação:** Fonte Times New Roman, tamanho 12, espaçamento entre linhas 1,0, recuo de parágrafo de 1,25 cm.
             * **Palavras-chave:** De 3 a 5 palavras-chave separadas por ponto e vírgula.
             
@@ -554,13 +554,13 @@ elif menu == "📞 Contato":
     st.markdown("---")
     
     # Seção para solicitação de cadastro de evento
-    st.markdown("### 🏛️ Organiza um Evento? Solicite seu Cadastro")
+    st.markdown("### 🏛️ Está organizando um Evento? Solicite seu Cadastro")
     st.write("Deseja hospedar e gerenciar as inscrições, submissões e certificações do seu evento acadêmico em nossa plataforma? Acesse o formulário dedicado abaixo:")
     st.link_button("📝 Solicitar Cadastro de Novo Evento", "COLE_LINK_FORMULARIO_CADASTRO_EVENTO_AQUI")
     
     st.markdown("---")
     st.info("📧 **E-mail oficial de suporte:** eventos@sciencenexus.com.br")
-    st.write("Nossa equipe responderá sua mensagem em até 48 horas úteis.")
+    st.write("Nossa equipe responderá sua mensagem em até 24 horas úteis.")
 
 # --- RODAPÉ ---
 st.markdown("---")
