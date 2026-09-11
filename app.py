@@ -102,7 +102,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         "1. Jornada Científica do Curso de Fisioterapia",
         "2. Encontro Formativo PET Saúde Clima",
         "3. Acolhimento dos Monitores Caeme/Prograd", 
-        "4. Mostra Extensionista da Graduação em Fisioterapia", 
+        "4. Atividades de Extensão e Vínculo com a Comunidade", 
         "5. Minicurso Prático: Reabilitação e Terapia Manual", 
         "6. Workshop: Inovação e Tecnologias em Saúde",
         "7. Simpósio de Saúde Coletiva e Políticas Públicas",
@@ -174,21 +174,22 @@ elif menu == "🎟️ Eventos e Inscrições":
         opcoes_inscricao = ["Participante/Ouvinte"]
         link_ouv = "https://forms.gle/wtTcSXZt6PnwzjEL7"
         
-    elif "Mostra Extensionista" in evento_selecionado:
+    elif "Atividades de Extensão" in evento_selecionado:
         try:
             st.image("extensao.jpg", width=400)
         except Exception:
             st.caption("ℹ️ *[Logo/Imagem da Mostra não encontrada]*")
             
-        st.markdown("### 🩺 Mostra das Atividades de Extensão da Graduação em Fisioterapia")
+        st.markdown("### 🩺 Atividades de Extensão e Vínculo com a Comunidade")
         st.write("""
         * **Público-alvo:** Estudantes e docentes do curso de Fisioterapia.
         * **Investimento:** Gratuito para Estudantes e Docentes.
-        * **Destaque:** Permite submissão de Resumos Simples e Resumos Expandidos com ISBN.
+        * **Destaque:** Permite submissão de Relatos de Experiência e Resumos Expandidos com ISBN.
         """)
         st.markdown("### **EIXOS TEMÁTICOS**")
-        st.write("**Disciplinas extensionistas do curso de Fisioterapia.**")
-        st.warning("⚠️ **Sugestão:** os modelos de banner devem ser adaptados para **Resumo Expandido**.")
+        st.write("**Disciplinas extensionistas; Atividades de Extensão nos Estágios e Atividades Externas às Disciplinas do curso de Fisioterapia.**")
+        st.write("**Submissões abertas o ano todo **(Fluxo Contínuo)**. Os anais serão publicados em edição única anual ao final de cada ciclo.**")
+        st.warning("⚠️ **Sugestão:** os modelos de atividades devem ser adaptados para **Relato de Experiência** ou **Resumo Expandido**.")
         
         st.markdown("---")
         st.markdown("#### 📅 Programação do Evento")
