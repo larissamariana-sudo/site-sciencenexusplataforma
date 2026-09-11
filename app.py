@@ -554,7 +554,7 @@ elif menu == "📞 Contato":
     st.markdown("---")
     
     # Seção para solicitação de cadastro de evento
-    st.markdown("### 🏛️ Está organizando um Evento? Solicite seu Cadastro")
+    st.markdown("### 🏛️ Está organizando um Evento? Solicite o Cadastro pelo link")
     st.write("Deseja hospedar e gerenciar as inscrições, submissões e certificações do seu evento acadêmico em nossa plataforma? Acesse o formulário dedicado abaixo:")
     st.link_button("📝 Solicitar Cadastro de Novo Evento", "COLE_LINK_FORMULARIO_CADASTRO_EVENTO_AQUI")
     
