@@ -466,7 +466,7 @@ elif menu == "💳 Taxa de DOI Individual/Pessoal":
 elif menu == "💳 Taxa de ISBN Coletivo":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("💳 Solicitação e Pagamento de ISBN Coletivo")
-    st.write("Taxa única ISBN por evento, para o documento que conterá todos resumos/relatos/artigos dos Anais (R$ 35,00). Caso você queira registrar de forma independente o ISBN do seu evento, solicite o PDF dos Anais, sem DOI, faça o registro e nos encaminhe o número ISBN para que seja anexado ao documento/Anais e publicizado na plataforma")
+    st.write("Taxa única ISBN por evento, para o documento que conterá todos resumos/relatos/artigos dos Anais (R$ 35,00). Caso você queira registrar de forma independente o ISBN do seu evento, solicite o PDF dos Anais, sem ISBN, faça o registro e nos encaminhe o número ISBN para que seja anexado ao documento/Anais e publicizado na plataforma")
     st.info("ℹ️ **Chave PIX:** eventos@sciencenexus.com.br")
     st.link_button("🔗 Link para Solicitação ISBN", "https://forms.gle/2bN1yFrR5phvTcAu5")
 
