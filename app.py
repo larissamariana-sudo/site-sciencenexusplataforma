@@ -51,7 +51,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- FUNÇÕES DE ESTILO (Segura contra ausência de imagens) ---
-def mostrar_cabecalho(foto="capa0.jpg"):
+def mostrar_cabecalho(foto="capaS.jpg"):
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
         try:
@@ -82,7 +82,7 @@ menu = st.sidebar.selectbox("Navegue pelo Portal:", [
 
 # --- 1. INÍCIO ---
 if menu == "🏠 Início / Sobre":
-    mostrar_cabecalho("capa0.jpg")
+    mostrar_cabecalho("capaS.jpg")
     st.subheader("Bem-vindo à Science Nexus Plataforma Científica")
     st.write("Central oficial de gestão acadêmica, submissão de resumos, acompanhamento de avaliação e publicação de anais.")
     st.markdown("""
@@ -94,7 +94,7 @@ if menu == "🏠 Início / Sobre":
 
 # --- 2. EVENTOS E INSCRIÇÕES (Com Links Independentes por Evento) ---
 elif menu == "🎟️ Eventos e Inscrições":
-    mostrar_cabecalho("capa0.jpg")
+    mostrar_cabecalho("capaS.jpg")
     st.subheader("🎟️ Programação de Eventos e Cursos Disponíveis")
     st.write("Selecione abaixo o evento de seu interesse para ver os detalhes, consultar a programação e realizar a inscrição.")
     
