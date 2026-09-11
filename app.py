@@ -459,7 +459,7 @@ elif menu == "🎓 Validação de Certificados":
 elif menu == "💳 Taxa de DOI Individual/Pessoal":
     mostrar_cabecalho("capa0.jpg")
     st.subheader("💳 Solicitação e Pagamento de DOI Individual")
-    st.write("O DOI individual é opcional (R$ 20,00). O DOI individual é por trabalho/título")
+    st.write("O DOI individual é opcional (R$ 20,00). **O DOI individual é por trabalho/título**")
     st.info("ℹ️ **Chave PIX:** eventos@sciencenexus.com.br")
     st.link_button("🔗 Link para Solicitação DOI", "https://forms.gle/J1FArsU2fYT7nHU26")
 
