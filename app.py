@@ -188,7 +188,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         """)
         st.markdown("### **EIXOS TEMÁTICOS**")
         st.write("**Disciplinas extensionistas; Atividades de Extensão nos Estágios e Atividades Externas às Disciplinas do curso de Fisioterapia.**")
-        st.write("**Submissões abertas o ano todo **(Fluxo Contínuo)**. Os anais serão publicados em edição única anual ao final de cada ciclo.**")
+        st.write("**Submissões em regime de fluxo contínuo durante o ano. A publicação dos anais eletrônicos é realizada em volume único ao final de cada ciclo.**")
         st.warning("⚠️ **Sugestão:** os modelos de atividades devem ser adaptados para **Relato de Experiência** ou **Resumo Expandido**.")
         
         st.markdown("---")
