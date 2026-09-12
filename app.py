@@ -335,7 +335,7 @@ elif menu == "✍️ Trabalhos Científicos":
             st.markdown("### Normas para Submissão de Relato de Experiência")
             st.markdown("""
             * **Estrutura Obrigatória:** Introdução/Fundamentação Teórica, Descrição da Experiência (Vivência, Local, Público Envolvido), Reflexão Crítica/Resultados Alcançados, e Considerações Finais.
-            * **Extensão:** De 4 a 8 páginas completas.
+            * **Extensão:** No mínimo 4 páginas e no máximo 8 páginas completas.
             * **Formatação:** Fonte Times New Roman, tamanho 12, espaçamento entre linhas 1,0.
             * **Palavras-chave:** De 3 a 5 palavras-chave separadas por ponto e vírgula.
             
