@@ -189,11 +189,11 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.markdown("### **EIXOS TEMÁTICOS**")
         st.write("**Disciplinas extensionistas; Atividades de Extensão nos Estágios e Atividades Externas às Disciplinas do curso de Fisioterapia.**")
         st.write("**Submissões em regime de fluxo contínuo durante o ano. A publicação dos anais eletrônicos é realizada em volume único ao final de cada ciclo.**")
-        st.warning("⚠️ **Sugestão:** os modelos de atividades devem ser adaptados para **Relato de Experiência** ou **Resumo Expandido**.")
+        st.warning("⚠️ **Sugestão:** os modelos de atividades podem ser adaptados para **Relato de Experiência** ou **Resumo Expandido**.")
         
         st.markdown("---")
-        st.markdown("#### 📅 Programação do Evento")
-        st.link_button("📅 Ver / Baixar Programação da Mostra", "COLE_LINK_PROGRAMACAO_MOSTRA")               
+        st.markdown("#### 📅 Submissões em regime de fluxo contínuo")
+        st.link_button("📅 ANAIS 2026 / Baixar Anais EM BREVE", "COLE_LINK_PROGRAMACAO_MOSTRA")               
         
         opcoes_inscricao = ["Orientador/Professor", "Apresentador de Trabalho", "Cadastro de Trabalho para Certificação (Orientador)"]
         
