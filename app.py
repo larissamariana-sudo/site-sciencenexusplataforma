@@ -123,7 +123,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         * **Investimento:** 
           * Estudantes, Docentes e Banca da PUC Goiás: **Gratuito**.
           * Participantes Externos: **R$ 10,00** (Standby mediante comprovante na chave `eventos@sciencenexus.com.br`).
-        * **Destaque:** Permite submissão de Resumos Simples, Expandidos e Artigos Completos com ISBN.
+        * **Destaque:** Permite submissão de Resumos Simples e Expandidos.
         """)
         st.markdown("### **EIXOS TEMÁTICOS**")
         st.write("**Fisioterapia Musculo Esquelética, Neurológica, Cardiorrespiratória, Terapia Intensiva, Geriatria e Gerontologia, Saúde da Mulher, Saúde Coletiva, Tecnologias e Inteligência Artificial na Saúde e Outras Áreas.**")
@@ -139,7 +139,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         link_ori = "https://forms.gle/tVKQtkEpQHG9Bo3K7"
         link_apr = "https://forms.gle/tVKQtkEpQHG9Bo3K7"
         link_ban = "https://forms.gle/tVKQtkEpQHG9Bo3K7"
-        link_cad = "https://forms.gle/GM55UFo18d7EqPgL8"
+        link_cad = "https://form.jotform.com/262542975983675"
 
     elif "Encontro Formativo PET Saúde Clima" in evento_selecionado:
         try:
@@ -197,7 +197,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         
         opcoes_inscricao = ["Cadastro Submissão de Relato de Experiência/Resumo Expandido"]
         
-        link_cad = "https://forms.gle/j5ESvsXoYoahGpJB9"
+        link_cad = "https://form.jotform.com/262538360587062"
     
     elif "Minicurso Prático" in evento_selecionado:
         try:
@@ -357,7 +357,7 @@ elif menu == "✍️ Trabalhos Científicos":
         st.markdown("---")
         st.info("📌 **Importante:** Para que os arquivos sejam salvos diretamente na nuvem da comissão científica, a submissão é feita por formulário dedicado.")
         st.link_button("📥 Jornada Científica / Clique aqui para acessar o Formulário de Submissão de Trabalhos", "https://forms.gle/UUmLAAEdCwY9JRrY6")
-        st.link_button("📥 Mostra Extensionista / Clique aqui para acessar o Formulário de Submissão de Trabalhos", "https://forms.gle/7JXdM3jRKzqJyqdR9")
+        st.link_button("📥 Atividades de Extensão / Clique aqui para acessar o Formulário de Submissão de Trabalhos", "https://forms.gle/7JXdM3jRKzqJyqdR9")
     
     with tab_principal2:
         st.write("Digite o seu e-mail cadastrado na submissão para verificar o parecer atual da comissão científica.")
