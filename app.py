@@ -139,7 +139,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         link_ori = "https://forms.gle/tVKQtkEpQHG9Bo3K7"
         link_apr = "https://forms.gle/tVKQtkEpQHG9Bo3K7"
         link_ban = "https://forms.gle/tVKQtkEpQHG9Bo3K7"
-        link_sim = "https://form.jotform.com/262542975983675"
+        link_sim = "https://form.jotform.com/262543743960664"
         link_cad = "https://form.jotform.com/262542975983675"
 
     elif "Encontro Formativo PET Saúde Clima" in evento_selecionado:
