@@ -177,7 +177,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         
     elif "Atividades de Extensão" in evento_selecionado:
         try:
-            st.image("extensao.jpg", width=400)
+            st.image("extensao1.jpg", width=400)
         except Exception:
             st.caption("ℹ️ *[Logo/Imagem da Mostra não encontrada]*")
             
