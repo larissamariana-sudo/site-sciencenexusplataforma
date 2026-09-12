@@ -292,10 +292,10 @@ elif menu == "✍️ Trabalhos Científicos":
             * **Autores:** Permitido até 3 autores por trabalho (incluindo o orientador).
             
             **INFORMAÇÕES PARA A SUBMISSÃO**
-            * **Formato:** Todos os trabalhos devem ser submetidos obrigatoriamente em arquivo formato WORD.
+            * **Formato:** Todos os trabalhos devem ser submetidos através da plataforma, em formulário específico.
             * **Prazo:** As submissões devem ser realizadas estritamente dentro das datas estabelecidas no cronograma oficial.
             * **ISBN:** Registro ISBN - necessário para a publicação dos anais do evento. Pode ser adquirido pelo organizador do evento ou solicitado nessa plataforma.
-            * **DOI (Opcional):** Autores que desejarem maior rastreabilidade podem optar pela aquisição do registro de DOI.
+            * **DOI (Opcional):** Autores que desejarem maior rastreabilidade podem optar pela aquisição do registro de DOI individual.
             """)
             
             try:
@@ -309,7 +309,7 @@ elif menu == "✍️ Trabalhos Científicos":
             st.markdown("""
             * **Estrutura Obrigatória:** Resumo, Palavras-chave, Introdução, Metodologia, Resultados e Discussão, Conclusão, Referências Bibliográficas.
             * **Extensão:** No mínimo 4 páginas e no máximo 8 páginas completas.
-            * **Formatação:** Fonte Times New Roman, tamanho 12, espaçamento entre linhas 1,0, recuo de parágrafo de 1,25 cm.
+            * **Formatação:** Fonte Times New Roman, tamanho 12, espaçamento entre linhas 1,0.
             """)
             
             try:
@@ -336,7 +336,7 @@ elif menu == "✍️ Trabalhos Científicos":
             st.markdown("""
             * **Estrutura Obrigatória:** Introdução/Fundamentação Teórica, Descrição da Experiência (Vivência, Local, Público Envolvido), Reflexão Crítica/Resultados Alcançados, e Considerações Finais.
             * **Extensão:** De 4 a 8 páginas completas.
-            * **Formatação:** Fonte Times New Roman, tamanho 12, espaçamento entre linhas 1,0, recuo de parágrafo de 1,25 cm.
+            * **Formatação:** Fonte Times New Roman, tamanho 12, espaçamento entre linhas 1,0.
             * **Palavras-chave:** De 3 a 5 palavras-chave separadas por ponto e vírgula.
             
             **INFORMAÇÕES PARA A SUBMISSÃO**
