@@ -341,8 +341,8 @@ elif menu == "✍️ Trabalhos Científicos":
             
             **INFORMAÇÕES PARA A SUBMISSÃO**
             * **Formato:** O arquivo deve ser submetido atráves do link para o formulários específico.
-            * **Prazo:** Respeitar o cronograma oficial do evento. Os trabalhos aprovados são inserido nos anais oficiais.
-            * **Trabalhos:** Os trabalhos que necessitem ajustes devem submeter o novo documento com as alterações solicitadas, dentro do prazo. Os trabalhos aprovados são inserido nos anais oficiais.
+            * **Prazo:** Respeitar o cronograma oficial do evento. O ciclo de submissões se encerra dia 10 de dezembro. Trabalhos enviados após essa data, serão avalados para o próximo ciclo.
+            * **Trabalhos:** Os trabalhos que necessitem ajustes devem submeter o novo documento com as alterações solicitadas, dentro do prazo.
             * **Anais:** Os trabalhos aprovados são incluídos nos Anais oficiais.
             * **Publicação:** A publicação é realizada até 45 dias após o encerramento do ciclo anual. 
             """)
