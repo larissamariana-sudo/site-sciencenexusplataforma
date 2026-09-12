@@ -276,7 +276,7 @@ elif menu == "🎟️ Eventos e Inscrições":
 elif menu == "✍️ Trabalhos Científicos":
     mostrar_cabecalho("eventos.png")
     st.subheader("✍️ Central de Submissão Trabalhos Científicos e Relatos de Experiência")
-    st.write("Consulte abaixo as normas e utilize o link do formulário exclusivo para enviar o seu arquivo Word (.doc/.docx).")
+    st.write("Consulte abaixo as normas e utilize o link do formulário específico para enviar o seu arquivo.")
     
     tab_principal1, tab_principal2 = st.tabs(["📥 Submissão e Normas", "🔍 Consultar Status"])
     
