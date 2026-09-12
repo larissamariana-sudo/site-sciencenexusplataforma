@@ -340,9 +340,11 @@ elif menu == "✍️ Trabalhos Científicos":
             * **Palavras-chave:** De 3 a 5 palavras-chave separadas por ponto e vírgula.
             
             **INFORMAÇÕES PARA A SUBMISSÃO**
-            * **Formato:** O arquivo deve ser submetido em formato WORD (.doc/.docx).
-            * **Prazo:** Respeitar o cronograma oficial do evento.
-            * **Publicação:** Inserido nos anais oficiais com ISBN da plataforma.
+            * **Formato:** O arquivo deve ser submetido atráves do link para o formulários específico.
+            * **Prazo:** Respeitar o cronograma oficial do evento. Os trabalhos aprovados são inserido nos anais oficiais.
+            * **Trabalhos:** Os trabalhos que necessitem ajustes devem submeter o novo documento com as alterações solicitadas, dentro do prazo. Os trabalhos aprovados são inserido nos anais oficiais.
+            * **Anais:** Os trabalhos aprovados são incluídos nos Anais oficiais.
+            * **Publicação:** A publicação é realizada até 45 dias após o encerramento do ciclo anual. 
             """)
             
             try:
