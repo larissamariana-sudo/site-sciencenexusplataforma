@@ -353,10 +353,10 @@ elif menu == "✍️ Trabalhos Científicos":
 
         st.markdown("---")
         st.info("📌 **Importante:** Para que os arquivos sejam salvos diretamente na nuvem da comissão científica, a submissão é feita por formulário dedicado.")
-        st.link_button("📥 Jornada Científica Resumo Expandido/ Clique aqui para acessar o Formulário de Submissão de Trabalhos", "https://form.jotform.com/262542975983675")
-        st.link_button("📥 Jornada Científica Resumo Simples / Clique aqui para acessar o Formulário de Submissão de Trabalhos", "https://form.jotform.com/262543743960664")
+        st.link_button("📥 **Jornada Científica Resumo Expandido**/ Clique aqui para acessar o Formulário de Submissão de Trabalhos", "https://form.jotform.com/262542975983675")
+        st.link_button("📥 **Jornada Científica Resumo Simples** / Clique aqui para acessar o Formulário de Submissão de Trabalhos", "https://form.jotform.com/262543743960664")
         
-        st.link_button("📥 Atividades de Extensão Relato de Experência • Resumo Expandido/ Clique aqui para acessar o Formulário de Submissão de Trabalhos", "https://form.jotform.com/262538360587062")
+        st.link_button("📥 **Atividades de Extensão Relato de Experência** • **Resumo Expandido**/ Clique aqui para acessar o Formulário de Submissão de Trabalhos", "https://form.jotform.com/262538360587062")
     
     with tab_principal2:
         st.write("Digite o seu e-mail cadastrado na submissão para verificar o parecer atual da comissão científica.")
