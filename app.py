@@ -133,12 +133,13 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.markdown("#### 📅 Programação do Evento")
         st.link_button("📅 Ver / Baixar Programação da Jornada EM BREVE", "COLE_LINK_PROGRAMACAO_JORNADA")
         
-        opcoes_inscricao = ["Participante/Ouvinte", "Orientador", "Apresentador de Trabalho", "Membro da Banca", "Cadastro de Trabalho para Certificação (Orientador)"]
+        opcoes_inscricao = ["Participante/Ouvinte", "Orientador", "Apresentador de Trabalho", "Membro da Banca", "Cadastro Resumo Simples (Orientador)", "Cadastro Resumo Expandido (Orientador)"]
         
         link_ouv = "https://forms.gle/tVKQtkEpQHG9Bo3K7"
         link_ori = "https://forms.gle/tVKQtkEpQHG9Bo3K7"
         link_apr = "https://forms.gle/tVKQtkEpQHG9Bo3K7"
         link_ban = "https://forms.gle/tVKQtkEpQHG9Bo3K7"
+        link_sim = "https://form.jotform.com/262542975983675"
         link_cad = "https://form.jotform.com/262542975983675"
 
     elif "Encontro Formativo PET Saúde Clima" in evento_selecionado:
