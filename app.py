@@ -192,14 +192,8 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.warning("⚠️ **Sugestão:** os modelos de atividades devem ser adaptados para **Relato de Experiência** ou **Resumo Expandido**.")
         
         st.markdown("---")
-        st.markdown("#### 📅 Submissões em regime de fluxo contínuo")
-        try:
-        with open("regras_relato_experiencia.pdf", "rb") as pdf_file:
-        st.download_button("📥 Baixar Regras Completas (PDF - Relato de Experiência)", pdf_file, file_name="Regras_Relato_Experiencia.pdf", mime="application/pdf")
-        try:
-        with open("regras_resumo_expandido.pdf", "rb") as pdf_file:
-        st.download_button("📥 Baixar Regras Completas (PDF - Resumo Expandido)", pdf_file, file_name="Regras_Resumo_Expandido.pdf", mime="application/pdf")
-        st.link_button("📅 Instruções / Relato de Experiência ou Resumo Expandido", "https://forms.gle/j5ESvsXoYoahGpJB9")        
+        st.markdown("#### 📅 Programação do Evento")
+        st.link_button("📅 Ver / Baixar Programação da Mostra", "COLE_LINK_PROGRAMACAO_MOSTRA")               
         
         opcoes_inscricao = ["Orientador/Professor", "Apresentador de Trabalho", "Cadastro de Trabalho para Certificação (Orientador)"]
         
