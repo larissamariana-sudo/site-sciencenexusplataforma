@@ -195,10 +195,8 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.markdown("#### 📅 Submissões em regime de fluxo contínuo")
         st.link_button("📅 ANAIS 2026 / Baixar Anais EM BREVE", "COLE_LINK_PROGRAMACAO_MOSTRA")               
         
-        opcoes_inscricao = ["Orientador/Professor", "Apresentador de Trabalho", "Cadastro de Trabalho para Certificação (Orientador)"]
+        opcoes_inscricao = ["Cadastro Submissão de Relato de Experiência/Resumo Expandido"]
         
-        link_ori = "https://forms.gle/j5ESvsXoYoahGpJB9"
-        link_apr = "https://forms.gle/j5ESvsXoYoahGpJB9"
         link_cad = "https://forms.gle/j5ESvsXoYoahGpJB9"
     
     elif "Minicurso Prático" in evento_selecionado:
