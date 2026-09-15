@@ -572,6 +572,7 @@ st.markdown("""
     Esta obra está licenciada sob uma Licença <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt-br" target="_blank">Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional</a>.
 </p>
 """, unsafe_allow_html=True)
+    mostrar_rodapé("commons.jpg")
 
 st.markdown("""
 <div class='footer-box'>
