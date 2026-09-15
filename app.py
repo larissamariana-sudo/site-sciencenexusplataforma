@@ -569,7 +569,7 @@ st.markdown("""
         <img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="115" alt="Licença Creative Commons BY-NC-SA 4.0">
     </a>
     <p style='font-size: 13px; margin-top: 5px;'>
-        Esta obra está licenciada sob uma Licença <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt-br" target="_blank">Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional</a>.
+        As obras publicadas nesse site estão sob uma Licença <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt-br" target="_blank">Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional</a>.
     </p>
 </div>
 """, unsafe_allow_html=True)
