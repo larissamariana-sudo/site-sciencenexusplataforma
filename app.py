@@ -567,12 +567,17 @@ st.markdown("---")
 st.markdown(f"<p style='text-align: center; color: gray; font-size: 14px;'>© {ano_atual} OLIVEIRA, L.M.V. Todos os direitos reservados.</p>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center; color: gray; font-size: 13px;'>O conteúdo deste website (textos, imagens e dados) está protegido pela Lei de Direitos Autorais (Lei nº 9.610/1998).</p>", unsafe_allow_html=True)
 
+# 2. Inserção da Licença Creative Commons BY-NC-SA 4.0 com os símbolos
 st.markdown("""
-<p style='text-align: center; font-size: 13px;'>
-    Esta obra está licenciada sob uma Licença <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt-br" target="_blank">Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional</a>.
-</p>
+<div style='text-align: center; margin-top: 10px; margin-bottom: 10px;'>
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt-br" target="_blank">
+        <img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="115" alt="Licença Creative Commons BY-NC-SA 4.0">
+    </a>
+    <p style='font-size: 13px; margin-top: 5px;'>
+        Esta obra está licenciada sob uma Licença <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt-br" target="_blank">Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional</a>.
+    </p>
+</div>
 """, unsafe_allow_html=True)
-    mostrar_rodapé("commons.jpg")
 
 st.markdown("""
 <div class='footer-box'>
