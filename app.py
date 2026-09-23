@@ -190,7 +190,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         
         st.markdown("---")
         st.markdown("#### 📅 Submissões em regime de fluxo contínuo")
-        st.link_button("📅 ANAIS 2026 / Baixar Anais EM BREVE", "COLE_LINK_PROGRAMACAO_MOSTRA")               
+        st.link_button("📅 ANAIS 2026 / Baixar Anais EM BREVE", "COLE_LINK_PROGRAMACAO_MOSTRA")            
         
         opcoes_inscricao = ["Cadastro Submissão de Relato de Experiência/Resumo Expandido"]
         
@@ -269,19 +269,19 @@ elif menu == "🎟️ Eventos e Inscrições":
     elif cat == "Membro da Banca":
         st.link_button("🔗 Inscrever-se como Banca", link_ban)
     else:
-        st.info("⚠️ **Exclusivo para Orientadores:** Utilize este formulário para cadastrar o trabalho, estudante e banca para o certificado.")
-        st.link_button("📝 Cadastrar Informações do Trabalho", link_cad)
+        st.info("⚠️ **Exclusivo para Orientadores/Organizadores:** Utilize este formulário para submeter ou cadastrar as informações.")
+        st.link_button("📝 Acessar Formulário de Submissão", link_cad)
 
-# --- 3. TRABALHOS (SUBMISSÃO + STATUS COM RELATO DE EXPERIÊNCIA) ---
+# --- 3. TRABALHOS (SUBMISSÃO + STATUS COM RELATO DE EXPERIÊNCIA E PRODUTO TÉCNICO-TECNOLÓGICO) ---
 elif menu == "✍️ Trabalhos Científicos":
     mostrar_cabecalho("eventos.png")
-    st.subheader("✍️ Central de Submissão Trabalhos Científicos e Relatos de Experiência")
+    st.subheader("✍️ Central de Submissão Trabalhos Científicos, Relatos e Produtos Técnicos")
     st.write("Consulte abaixo as normas e utilize o link do formulário específico para enviar o seu arquivo.")
     
     tab_principal1, tab_principal2 = st.tabs(["📥 Submissão e Normas", "🔍 Consultar Status"])
     
     with tab_principal1:
-        tab_simples, tab_expandido, tab_completo, tab_relato = st.tabs(["📄 Resumo Simples", "📑 Resumo Expandido", "📚 Artigo Completo", "📝 Relato de Experiência"])
+        tab_simples, tab_expandido, tab_completo, tab_relato, tab_produto = st.tabs(["📄 Resumo Simples", "📑 Resumo Expandido", "📚 Artigo Completo", "📝 Relato de Experiência", "⚙️ Prod. Técnico-Tecnológico"])
         
         with tab_simples:
             st.markdown("### Normas para Submissão de Resumo Simples")
@@ -340,8 +340,8 @@ elif menu == "✍️ Trabalhos Científicos":
             * **Palavras-chave:** De 3 a 5 palavras-chave separadas por ponto e vírgula.
             
             **INFORMAÇÕES PARA A SUBMISSÃO**
-            * **Formato:** O arquivo deve ser submetido atráves do link para o formulários específico.
-            * **Prazo:** Respeitar o cronograma oficial do evento. O ciclo de submissões encerra-se dia 10 de dezembro. Trabalhos enviados após essa data, serão avalados para o próximo ciclo.
+            * **Formato:** O arquivo deve ser submetido através do link para o formulário específico.
+            * **Prazo:** Respeitar o cronograma oficial do evento. O ciclo de submissões encerra-se dia 10 de dezembro. Trabalhos enviados após essa data serão avaliados para o próximo ciclo.
             * **Trabalhos:** Os trabalhos que necessitem ajustes devem submeter o novo documento com as alterações solicitadas, dentro do prazo.
             * **Anais:** Os trabalhos aprovados são incluídos nos Anais oficiais.
             * **Publicação:** A publicação é realizada até 45 dias após o encerramento do ciclo anual. 
@@ -353,12 +353,33 @@ elif menu == "✍️ Trabalhos Científicos":
             except Exception:
                 st.caption("ℹ️ *[PDF com regras detalhadas de Relato de Experiência em breve]*")
 
+        with tab_produto:
+            st.markdown("### ⚙️ Normas para Submissão de Produto Técnico-Tecnológico (Mestrado)")
+            st.markdown("""
+            **1. Formatação do Documento Escrito (Relatório Técnico)**
+            Mesmo que o seu produto seja um software, um vídeo ou uma cartilha, você precisará submeter um documento em formato de relatório técnico conclusivo que detalha como o produto foi construído. A estrutura básica exigida baseia-se nas normas ABNT ou APA. 
+            
+            * **Critérios de Avaliação:** Observar Aderência / Aplicabilidade / Inovação / Complexidade.
+            * **Configuração da Página:** Tamanho A4; margens superior e esquerda de 3 cm, inferior e direita de 2 cm.
+            * **Tipografia:** Fonte Times New Roman ou Arial, tamanho 12.
+            * **Espaçamento:** 1,5 entre linhas; recuo de parágrafo padrão.
+            
+            **Elementos Obrigatórios:**
+            Capa, resumo e abstract (com 3 a 5 palavras-chave), introdução (justificativa do problema real), metodologia de desenvolvimento do produto, o produto em si (ou telas/links para acesso), resultados obtidos/testes e referências bibliográficas.
+            """)
+            
+            try:
+                with open("regras_produto_tecnologico.pdf", "rb") as pdf_file:
+                    st.download_button("📥 Baixar Regras Completas (PDF - Produto Técnico-Tecnológico)", pdf_file, file_name="Regras_Produto_Tecnologico.pdf", mime="application/pdf")
+            except Exception:
+                st.caption("ℹ️ *[PDF com regras detalhadas de Produto Técnico-Tecnológico em breve]*")
+
         st.markdown("---")
         st.info("📌 **Importante:** Para que os arquivos sejam salvos diretamente na nuvem da comissão científica, a submissão é feita por formulário dedicado.")
-        st.link_button("📥 **Jornada Científica Resumo Expandido**/ Clique aqui para acessar o Formulário de Submissão de Trabalhos", "https://form.jotform.com/262542975983675")
-        st.link_button("📥 **Jornada Científica Resumo Simples** / Clique aqui para acessar o Formulário de Submissão de Trabalhos", "https://form.jotform.com/262543743960664")
-        
-        st.link_button("📥 **Atividades de Extensão Relato de Experência** • **Resumo Expandido**/ Clique aqui para acessar o Formulário de Submissão de Trabalhos", "https://form.jotform.com/262538360587062")
+        st.link_button("📥 **Jornada Científica Resumo Expandido** / Clique aqui para acessar o Formulário", "https://form.jotform.com/262542975983675")
+        st.link_button("📥 **Jornada Científica Resumo Simples** / Clique aqui para acessar o Formulário", "https://form.jotform.com/262543743960664")
+        st.link_button("📥 **Atividades de Extensão Relato de Experiência • Resumo Expandido** / Clique aqui para acessar o Formulário", "https://form.jotform.com/262538360587062")
+        st.link_button("⚙️ **Submissão de Produto Técnico-Tecnológico (Mestrado)** / Clique aqui para acessar o Formulário Dedicado", "COLE_LINK_FORMULARIO_PRODUTO_TECNOLOGICO_AQUI")
     
     with tab_principal2:
         st.write("Digite o seu e-mail cadastrado na submissão para verificar o parecer atual da comissão científica.")
@@ -425,8 +446,6 @@ elif menu == "🎓 Validação de Certificados":
                         "https://docs.google.com/spreadsheets/d/1eEQeDcwCQ9gkpy9MAI9It7gk1fx1QwZRXBnhRhvkg6o/edit?usp=sharing",  # Planilha 3
                         "https://docs.google.com/spreadsheets/d/1uQnTs-ijo0d4fiTFoIKC0ANuJ5A2SfRQO3jOA65OruI/edit?usp=sharing",  # Planilha 4
                         "https://docs.google.com/spreadsheets/d/1ym70HWRIJPhzFbcYhmf4bcQLmzW4rbF5GkkycDyEC_0/edit?usp=sharing",  # Planilha 5
-                        # Adicione links de planilhas de novos eventos abaixo:
-                        # "COLE_LINK_NOVA_PLANILHA_AQUI",
                     ]
                     
                     encontrado = False
