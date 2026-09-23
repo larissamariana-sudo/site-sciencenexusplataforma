@@ -542,29 +542,33 @@ elif menu == "📺 Transmissão ao Vivo":
     st.info("🔴 **Status:** Transmissão agendada. O link será ativado no horário oficial do evento.")
     st.link_button(f"🔗 Entrar na {sala_escolhida}", "COLE_LINK_DA_SALA")
 
-# --- 8. EVENTOS ANTERIORES (Com espaço para PTT) ---
+# --- 8. EVENTOS ANTERIORES (Com abas exclusivas para Anais: Jornada, Extensão, PTT e Pasta Geral) ---
 elif menu == "📂 Eventos Anteriores":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("📂 Repositório de Eventos Anteriores")
-    st.write("Acesse abaixo os acervos, anais e certificados de edições passadas do nosso portal.")
+    st.write("Acesse abaixo os acervos e anais de edições passadas do nosso portal.")
     
-    tab_ant1, tab_ant2 = st.tabs(["📚 Anais de Anos Anteriores", "📜 Certificados de Anos Anteriores"])
+    tab_jornada, tab_extensao, tab_ptt, tab_geral = st.tabs(["🩺 Jornada Científica", "🤝 Extensão", "⚙️ PTT", "📁 Pasta Geral"])
     
-    with tab_ant1:
-        st.markdown("### 📚 Anais Publicados em Edições Passadas")
-        st.link_button("📥 Baixar Apresentação; Expediente dos Anais da Jornada Científica", "COLE_LINK_PDF_ANAIS_AQUI")
-        st.link_button("📥 Baixar Apresentação; Expediente dos Anais da Mostra de Extensão", "COLE_LINK_PDF_ANAIS_AQUI") 
-        st.link_button("📥 Baixar Anais Anteriores - Produtos Técnico-Tecnológicos (PTT)", "COLE_LINK_PDF_ANAIS_PTT_ANTERIORES_AQUI")
-        st.link_button("📥 Acessar Pasta Geral de Anais Anteriores no Drive", "COLE_LINK_PASTA_ANAIS_ANTERIORES")
+    with tab_jornada:
+        st.markdown("### 🩺 Anais - Jornada Científica (Anos Anteriores)")
+        st.write("Consulte os cadernos de resumos e anais das edições passadas da Jornada Científica:")
+        st.link_button("📥 Baixar Anais / Expediente - Jornada Científica (Anos Anteriores)", "COLE_LINK_PDF_ANAIS_JORNADA_ANTERIORES")
         
-    with tab_ant2:
-        st.markdown("### 📜 Consulta de Certificados Anteriores")
-        ano_anterior = st.selectbox("Selecione o Ano do Evento:", ["2025", "2024"])
-        with st.form("form_cert_antigos"):
-            email_antigo = st.text_input("Digite seu e-mail cadastrado no evento anterior:")
-            buscar_antigo = st.form_submit_button("Consultar Certificado Antigo")
-            if buscar_antigo and email_antigo:
-                st.link_button("🔗 Abrir Link de Emissão do Ano Selecionado", "COLE_LINK_CERTIFICADOS_ANTERIORES")
+    with tab_extensao:
+        st.markdown("### 🤝 Anais - Extensão (Anos Anteriores)")
+        st.write("Consulte os cadernos de resumos e anais das edições passadas da Mostra/Extensão:")
+        st.link_button("📥 Baixar Anais / Expediente - Extensão (Anos Anteriores)", "COLE_LINK_PDF_ANAIS_EXTENSAO_ANTERIORES")
+        
+    with tab_ptt:
+        st.markdown("### ⚙️ Anais - Produtos Técnico-Tecnológicos / PTT (Anos Anteriores)")
+        st.write("Consulte os relatórios e anais de PTT de edições passadas:")
+        st.link_button("📥 Baixar Anais - PTT (Anos Anteriores)", "COLE_LINK_PDF_ANAIS_PTT_ANTERIORES")
+        
+    with tab_geral:
+        st.markdown("### 📁 Pasta Geral de Acervos Anteriores")
+        st.write("Acesse o repositório consolidado no Google Drive com todos os documentos de anos anteriores:")
+        st.link_button("📥 Acessar Pasta Geral de Anais Anteriores no Drive", "COLE_LINK_PASTA_GERAL_ANTERIORES")
 
 # --- 9. CONTATO ---
 elif menu == "📞 Contato":
