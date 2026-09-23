@@ -164,12 +164,12 @@ elif menu == "🎟️ Eventos e Inscrições":
             st.caption("ℹ️ *[Logo/Imagem do evento não encontrada]*")
             
         st.markdown("### 🤲 Acolhimento dos Monitores Caeme/Prograd (ENCERRADO)")
-        st.write("Data: 11/09 Matutino 9h às 10h30 Campus II Auditório Bloco G e Noturno 18h às 19h30 Área II Auditório II. Público: Monitores selecionados em 2026/2.")
+        st.write("Data: Público: Edição: 20XX/X.")
         st.markdown("#### 📅 Programação do Evento")
         st.link_button("📅 Ver / Baixar Programação", "COLE_LINK_PROGRAMACAO_MONITORES")
         
         opcoes_inscricao = ["Participante/Ouvinte"]
-        link_ouv = "https://forms.gle/wtTcSXZt6PnwzjEL7"
+        link_ouv = "https:// forms.gle/wtTcSXZt6PnwzjEL7"
         
     elif "Atividades de Extensão" in evento_selecionado:
         try:
