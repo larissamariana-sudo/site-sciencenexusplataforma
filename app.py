@@ -66,17 +66,17 @@ def mostrar_cabecalho(foto="capaS.jpg"):
     """, unsafe_allow_html=True)
     st.write("")
 
-# --- MENU (Nome da aba sincronizado perfeitamente) ---
+# --- MENU (Nomes atualizados conforme solicitado) ---
 menu = st.sidebar.selectbox("Navegue pelo Portal:", [
     "🏠 Início / Sobre", 
     "🎟️ Eventos e Inscrições", 
-    "✍️ Trabalhos Científicos", 
+    "✍️ Trabalhos Científicos e Submissões", 
     "🎓 Validação de Certificados", 
     "💳 Taxa de DOI Individual/Pessoal", 
     "💳 Taxa de ISBN Coletivo",
     "📚 Anais Publicados",
     "📺 Transmissão ao Vivo",
-    "📂 Eventos Anteriores",
+    "📂 Anais Anteriores",
     "📞 Contato"
 ])
 
@@ -272,8 +272,8 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.info("⚠️ **Exclusivo para Orientadores/Organizadores:** Utilize este formulário para submeter ou cadastrar as informações.")
         st.link_button("📝 Acessar Formulário de Submissão", link_cad)
 
-# --- 3. TRABALHOS (SUBMISSÃO + STATUS COM RELATO DE EXPERIÊNCIA E PRODUTO TÉCNICO-TECNOLÓGICO) ---
-elif menu == "✍️ Trabalhos Científicos":
+# --- 3. TRABALHOS CIENTÍFICOS E SUBMISSÕES ---
+elif menu == "✍️ Trabalhos Científicos e Submissões":
     mostrar_cabecalho("eventos.png")
     st.subheader("✍️ Central de Submissão Trabalhos Científicos, Relatos e Produtos Técnicos")
     st.write("Consulte abaixo as normas e utilize o link do formulário específico para enviar o seu arquivo.")
@@ -508,7 +508,7 @@ elif menu == "💳 Taxa de ISBN Coletivo":
     st.info("ℹ️ **Chave PIX:** eventos@sciencenexus.com.br")
     st.link_button("🔗 Link para Solicitação ISBN", "https://forms.gle/2bN1yFrR5phvTcAu5")
 
-# --- 6. ANAIS (Com espaço para PTT) ---
+# --- 6. ANAIS ---
 elif menu == "📚 Anais Publicados":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("📚 Repositório Oficial de Anais")
@@ -542,33 +542,33 @@ elif menu == "📺 Transmissão ao Vivo":
     st.info("🔴 **Status:** Transmissão agendada. O link será ativado no horário oficial do evento.")
     st.link_button(f"🔗 Entrar na {sala_escolhida}", "COLE_LINK_DA_SALA")
 
-# --- 8. EVENTOS ANTERIORES (Com abas exclusivas para Anais: Jornada, Extensão, PTT e Pasta Geral) ---
-elif menu == "📂 Eventos Anteriores":
+# --- 8. ANAIS ANTERIORES (Substituído com 4 abas dedicadas) ---
+elif menu == "📂 Anais Anteriores":
     mostrar_cabecalho("capaS.jpg")
-    st.subheader("📂 Repositório de Eventos Anteriores")
-    st.write("Acesse abaixo os acervos e anais de edições passadas do nosso portal.")
+    st.subheader("📂 Repositório de Anais Anteriores")
+    st.write("Acesse abaixo os acervos e cadernos de resumos de edições passadas do nosso portal.")
     
-    tab_jornada, tab_extensao, tab_ptt, tab_geral = st.tabs(["🩺 Jornada Científica", "🤝 Extensão", "⚙️ PTT", "📁 Pasta Geral"])
+    tab_jornada, tab_extensao, tab_ptt, tab_geral = st.tabs(["📄 Jornada Científica", "🩺 Extensão", "⚙️ PTT", "📁 Pasta Geral"])
     
     with tab_jornada:
-        st.markdown("### 🩺 Anais - Jornada Científica (Anos Anteriores)")
-        st.write("Consulte os cadernos de resumos e anais das edições passadas da Jornada Científica:")
-        st.link_button("📥 Baixar Anais / Expediente - Jornada Científica (Anos Anteriores)", "COLE_LINK_PDF_ANAIS_JORNADA_ANTERIORES")
+        st.markdown("### 📄 Anais - Jornada Científica (Anos Anteriores)")
+        st.write("Consulte os cadernos de resumos das edições passadas da Jornada Científica:")
+        st.link_button("📥 Baixar Anais Anteriores - Jornada Científica", "COLE_LINK_PDF_ANAIS_JORNADA_ANTERIORES_AQUI")
         
     with tab_extensao:
-        st.markdown("### 🤝 Anais - Extensão (Anos Anteriores)")
-        st.write("Consulte os cadernos de resumos e anais das edições passadas da Mostra/Extensão:")
-        st.link_button("📥 Baixar Anais / Expediente - Extensão (Anos Anteriores)", "COLE_LINK_PDF_ANAIS_EXTENSAO_ANTERIORES")
+        st.markdown("### 🩺 Anais - Extensão (Anos Anteriores)")
+        st.write("Consulte os cadernos de resumos das atividades de extensão de anos anteriores:")
+        st.link_button("📥 Baixar Anais Anteriores - Extensão", "COLE_LINK_PDF_ANAIS_EXTENSAO_ANTERIORES_AQUI")
         
     with tab_ptt:
         st.markdown("### ⚙️ Anais - Produtos Técnico-Tecnológicos / PTT (Anos Anteriores)")
-        st.write("Consulte os relatórios e anais de PTT de edições passadas:")
-        st.link_button("📥 Baixar Anais - PTT (Anos Anteriores)", "COLE_LINK_PDF_ANAIS_PTT_ANTERIORES")
+        st.write("Consulte os relatórios e produtos técnico-tecnológicos publicados em anos anteriores:")
+        st.link_button("📥 Baixar Anais Anteriores - PTT", "COLE_LINK_PDF_ANAIS_PTT_ANTERIORES_AQUI")
         
     with tab_geral:
-        st.markdown("### 📁 Pasta Geral de Acervos Anteriores")
-        st.write("Acesse o repositório consolidado no Google Drive com todos os documentos de anos anteriores:")
-        st.link_button("📥 Acessar Pasta Geral de Anais Anteriores no Drive", "COLE_LINK_PASTA_GERAL_ANTERIORES")
+        st.markdown("### 📁 Pasta Geral de Anais no Drive")
+        st.write("Acesse o repositório completo contendo todos os acervos históricos organizados por ano:")
+        st.link_button("📥 Acessar Pasta Geral de Anais Anteriores no Drive", "COLE_LINK_PASTA_ANAIS_ANTERIORES")
 
 # --- 9. CONTATO ---
 elif menu == "📞 Contato":
