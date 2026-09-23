@@ -439,7 +439,6 @@ elif menu == "🎓 Validação de Certificados":
         if validar_btn:
             if codigo_digitado:
                 try:
-                    # Lista contendo os links das planilhas de certificados cadastradas (lendo a 1ª aba)
                     links_planilhas = [
                         "https://docs.google.com/spreadsheets/d/15D_Vay3AQDUrbmaHjgwTeg0irLHX5q2pw6sw_wtiDl0/edit?usp=sharing",  # Planilha 1
                         "https://docs.google.com/spreadsheets/d/1ymnfGiFmC_PZLUIra7mWyZMjD_hc9Uu6jXvLohUjBeE/edit?usp=sharing",  # Planilha 2
@@ -509,12 +508,13 @@ elif menu == "💳 Taxa de ISBN Coletivo":
     st.info("ℹ️ **Chave PIX:** eventos@sciencenexus.com.br")
     st.link_button("🔗 Link para Solicitação ISBN", "https://forms.gle/2bN1yFrR5phvTcAu5")
 
-# --- 6. ANAIS ---
+# --- 6. ANAIS (Com espaço para PTT) ---
 elif menu == "📚 Anais Publicados":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("📚 Repositório Oficial de Anais")
     st.link_button("📥 Baixar Anais Jornada Científica 2026/2", "COLE_LINK_PDF_ANAIS_AQUI")
     st.link_button("📥 Baixar Anais Mostra de Extensão 2026", "COLE_LINK_PDF_ANAIS_AQUI") 
+    st.link_button("📥 Baixar Anais - Produtos Técnico-Tecnológicos (PTT)", "COLE_LINK_PDF_ANAIS_PTT_AQUI")
 
 # --- 7. TRANSMISSÃO AO VIVO ---
 elif menu == "📺 Transmissão ao Vivo":
@@ -542,7 +542,7 @@ elif menu == "📺 Transmissão ao Vivo":
     st.info("🔴 **Status:** Transmissão agendada. O link será ativado no horário oficial do evento.")
     st.link_button(f"🔗 Entrar na {sala_escolhida}", "COLE_LINK_DA_SALA")
 
-# --- 8. EVENTOS ANTERIORES ---
+# --- 8. EVENTOS ANTERIORES (Com espaço para PTT) ---
 elif menu == "📂 Eventos Anteriores":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("📂 Repositório de Eventos Anteriores")
@@ -554,6 +554,7 @@ elif menu == "📂 Eventos Anteriores":
         st.markdown("### 📚 Anais Publicados em Edições Passadas")
         st.link_button("📥 Baixar Apresentação; Expediente dos Anais da Jornada Científica", "COLE_LINK_PDF_ANAIS_AQUI")
         st.link_button("📥 Baixar Apresentação; Expediente dos Anais da Mostra de Extensão", "COLE_LINK_PDF_ANAIS_AQUI") 
+        st.link_button("📥 Baixar Anais Anteriores - Produtos Técnico-Tecnológicos (PTT)", "COLE_LINK_PDF_ANAIS_PTT_ANTERIORES_AQUI")
         st.link_button("📥 Acessar Pasta Geral de Anais Anteriores no Drive", "COLE_LINK_PASTA_ANAIS_ANTERIORES")
         
     with tab_ant2:
@@ -565,14 +566,13 @@ elif menu == "📂 Eventos Anteriores":
             if buscar_antigo and email_antigo:
                 st.link_button("🔗 Abrir Link de Emissão do Ano Selecionado", "COLE_LINK_CERTIFICADOS_ANTERIORES")
 
-# --- 9. CONTATO (Com seção para Solicitação de Cadastro de Evento) ---
+# --- 9. CONTATO ---
 elif menu == "📞 Contato":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("📞 Fale Conosco")
     st.write("Entre em contato com a comissão organizadora para dúvidas sobre submissões, inscrições ou certificados.")
     st.markdown("---")
     
-    # Seção para solicitação de cadastro de evento
     st.markdown("### 🏛️ Está organizando um Evento? Solicite o Cadastro pelo link")
     st.write("Deseja hospedar e gerenciar as inscrições, submissões e certificações do seu evento acadêmico em nossa plataforma? Acesse o formulário dedicado abaixo:")
     st.link_button("📝 Solicitar Cadastro de Novo Evento", "COLE_LINK_FORMULARIO_CADASTRO_EVENTO_AQUI")
