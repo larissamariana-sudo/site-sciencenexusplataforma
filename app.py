@@ -66,11 +66,11 @@ def mostrar_cabecalho(foto="capaS.jpg"):
     """, unsafe_allow_html=True)
     st.write("")
 
-# --- MENU (Nome alterado para '🏛️ EVENTOS ESCOLA') ---
+# --- MENU (Nome alterado para '🏛️ Eventos Escolas') ---
 menu = st.sidebar.selectbox("Navegue pelo Portal:", [
     "🏠 Início / Sobre", 
     "🎟️ Eventos e Inscrições", 
-    "🏛️ EVENTOS ESCOLA",
+    "🏛️ Eventos Escolas",
     "✍️ Trabalhos Científicos e Submissões", 
     "🎓 Validação de Certificados", 
     "💳 Taxa de DOI Individual/Pessoal", 
@@ -155,7 +155,6 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.markdown("#### 📅 Programação e Links do Evento")
         st.link_button("📅 Ver / Baixar Programação PET Saúde Clima", "COLE_LINK_PROGRAMACAO_PET")
         
-        # Links específicos solicitados para o PET Saúde Clima
         st.markdown("##### 📌 Publicações e Submissões do PET:")
         st.link_button("📋 Acessar Publicação de Relatório Semanal", "COLE_LINK_RELATORIO_SEMANAL_PET")
         st.link_button("📝 Enviar / Consultar Relato de Experiência", "COLE_LINK_RELATO_EXPERIENCIA_PET")
@@ -278,11 +277,11 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.info("⚠️ **Exclusivo para Orientadores/Organizadores:** Utilize este formulário para submeter ou cadastrar as informações.")
         st.link_button("📝 Acessar Formulário de Submissão", link_cad)
 
-# --- 2.1. EVENTOS ESCOLA (Nova Aba com 5 abas horizontais e suporte a 3 eventos simultâneos por aba) ---
-elif menu == "🏛️ EVENTOS ESCOLA":
+# --- 2.1. EVENTOS ESCOLAS (Nova aba com 5 abas horizontais e suporte a 3 eventos simultâneos por aba) ---
+elif menu == "🏛️ Eventos Escolas":
     mostrar_cabecalho("capaS.jpg")
-    st.subheader("🏛️ Eventos Escola • Gestão de Eventos Simultâneos")
-    st.write("Selecione abaixo a sigla correspondente para consultar os eventos ativos e realizar as inscrições.")
+    st.subheader("🏛️ Eventos Escolas • Gestão de Eventos Simultâneos")
+    st.write("Selecione abaixo a unidade acadêmica correspondente para consultar os eventos ativos e realizar as inscrições.")
     
     # Criando as 5 abas horizontais para as siglas solicitadas
     tab_eciss, tab_ecmv, tab_poli, tab_ednc, tab_efph = st.tabs(["ECISS", "ECMV", "POLI", "EDNC", "EFPH"])
@@ -621,7 +620,7 @@ elif menu == "📺 Transmissão ao Vivo":
     st.info("🔴 **Status:** Transmissão agendada. O link será ativado no horário oficial do evento.")
     st.link_button(f"🔗 Entrar na {sala_escolhida}", "COLE_LINK_DA_SALA")
 
-# --- 8. ANAIS ANTERIORES (Substituído com 4 abas dedicadas) ---
+# --- 8. ANAIS ANTERIORES (Com 4 abas dedicadas) ---
 elif menu == "📂 Anais Anteriores":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("📂 Repositório de Anais Anteriores")
