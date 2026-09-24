@@ -66,10 +66,11 @@ def mostrar_cabecalho(foto="capaS.jpg"):
     """, unsafe_allow_html=True)
     st.write("")
 
-# --- MENU (Nomes atualizados conforme solicitado) ---
+# --- MENU (Nova aba lateral '🏛️ Escolas e Faculdades' incluída) ---
 menu = st.sidebar.selectbox("Navegue pelo Portal:", [
     "🏠 Início / Sobre", 
     "🎟️ Eventos e Inscrições", 
+    "🏛️ Escolas e Faculdades",
     "✍️ Trabalhos Científicos e Submissões", 
     "🎓 Validação de Certificados", 
     "💳 Taxa de DOI Individual/Pessoal", 
@@ -92,7 +93,7 @@ if menu == "🏠 Início / Sobre":
     * **Avaliação:** Acompanhe em tempo real se seu trabalho está em análise, aprovado ou pendente de correções.
     """)
 
-# --- 2. EVENTOS E INSCRIÇÕES (Com Links Independentes por Evento) ---
+# --- 2. EVENTOS E INSCRIÇÕES (Com Links Independentes por Evento e PET Saúde Clima atualizado) ---
 elif menu == "🎟️ Eventos e Inscrições":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("🎟️ Programação de Eventos e Cursos Disponíveis")
@@ -151,8 +152,13 @@ elif menu == "🎟️ Eventos e Inscrições":
         * **Investimento:** Gratuito.
         """)
         st.markdown("---")
-        st.markdown("#### 📅 Programação do Evento")
+        st.markdown("#### 📅 Programação e Links do Evento")
         st.link_button("📅 Ver / Baixar Programação PET Saúde Clima", "COLE_LINK_PROGRAMACAO_PET")
+        
+        # Links específicos solicitados para o PET Saúde Clima
+        st.markdown("##### 📌 Publicações e Submissões do PET:")
+        st.link_button("📋 Acessar Publicação de Relatório Semanal", "COLE_LINK_RELATORIO_SEMANAL_PET")
+        st.link_button("📝 Enviar / Consultar Relato de Experiência", "COLE_LINK_RELATO_EXPERIENCIA_PET")
         
         opcoes_inscricao = ["Participante/Ouvinte"]
         link_ouv = "https://forms.gle/u8nseAtgNAN5aMJDA"
@@ -231,7 +237,7 @@ elif menu == "🎟️ Eventos e Inscrições":
             st.caption("ℹ️ *[Logo do Simpósio não encontrada]*")
             
         st.markdown("### 📊 Simpósio de Saúde Coletiva e Políticas Públicas")
-        st.write("Debates e mesas-redondas sobre o impacto das políticas públicas na saúde.")
+        st.write("Debates e mesas-redondas sobre o impacto das públicas na saúde.")
         st.markdown("#### 📅 Programação do Evento")
         st.link_button("📅 Ver / Baixar Programação do Simpósio", "COLE_LINK_PROGRAMACAO_SIMPOSIO")
         
@@ -272,7 +278,80 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.info("⚠️ **Exclusivo para Orientadores/Organizadores:** Utilize este formulário para submeter ou cadastrar as informações.")
         st.link_button("📝 Acessar Formulário de Submissão", link_cad)
 
-# --- 3. TRABALHOS CIENTÍFICOS E SUBMISSÕES ---
+# --- 2.1. ESCOLAS E FACULDADES (Nova Aba com 5 abas horizontais e suporte a 3 eventos simultâneos por aba) ---
+elif menu == "🏛️ Escolas e Faculdades":
+    mostrar_cabecalho("capaS.jpg")
+    st.subheader("🏛️ Unidades Acadêmicas • Gestão de Eventos Simultâneos")
+    st.write("Selecione abaixo a Escola ou Faculdade correspondente para consultar os eventos ativos e realizar as inscrições.")
+    
+    # Criando as 5 abas horizontais para as siglas solicitadas
+    tab_eciss, tab_ecmv, tab_poli, tab_ednc, tab_efph = st.tabs(["ECISS", "ECMV", "POLI", "EDNC", "EFPH"])
+    
+    # Função auxiliar reutilizável para gerenciar os 3 eventos simultâneos em cada aba
+    def renderizar_gestao_eventos_unidade(sigla_unidade):
+        st.markdown(f"### 📋 Eventos Ativos - Unidade {sigla_unidade}")
+        
+        # Lista suspensa para selecionar qual dos 3 eventos simultâneos deseja visualizar/inscrever
+        evento_simultaneo = st.selectbox(
+            f"Selecione o Evento Simultâneo ({sigla_unidade}):",
+            [
+                f"1. Evento Principal / 1º Simpósio ({sigla_unidade})",
+                f"2. Evento Secundário / Minicurso ({sigla_unidade})",
+                f"3. Evento Complementar / Workshop ({sigla_unidade})"
+            ],
+            key=f"select_{sigla_unidade}"
+        )
+        
+        st.markdown("---")
+        
+        # Exibição customizada baseada na escolha da lista suspensa
+        if "1. Evento Principal" in evento_simultaneo:
+            try:
+                st.image(f"logo_{sigla_unidade.lower()}_evento1.png", width=350)
+            except Exception:
+                st.caption(f"ℹ️ *[Logo institucional do Evento 1 ({sigla_unidade}) não encontrada no repositório]*")
+                
+            st.markdown(f"#### 🩺 1º Evento Acadêmico Principal - {sigla_unidade}")
+            st.write(f"Programação oficial e palestras magnas da unidade {sigla_unidade}.")
+            st.link_button(f"🔗 Inscrever-se no Evento 1 ({sigla_unidade})", f"https://forms.gle/LINK_INSCRICAO_{sigla_unidade}_EV1")
+            
+        elif "2. Evento Secundário" in evento_simultaneo:
+            try:
+                st.image(f"logo_{sigla_unidade.lower()}_evento2.png", width=350)
+            except Exception:
+                st.caption(f"ℹ️ *[Logo institucional do Evento 2 ({sigla_unidade}) não encontrada no repositório]*")
+                
+            st.markdown(f"#### 🤲 2º Evento Prático / Minicurso - {sigla_unidade}")
+            st.write(f"Atividades práticas, oficinas e capacitações da unidade {sigla_unidade}.")
+            st.link_button(f"🔗 Inscrever-se no Evento 2 ({sigla_unidade})", f"https://forms.gle/LINK_INSCRICAO_{sigla_unidade}_EV2")
+            
+        else:
+            try:
+                st.image(f"logo_{sigla_unidade.lower()}_evento3.png", width=350)
+            except Exception:
+                st.caption(f"ℹ️ *[Logo institucional do Evento 3 ({sigla_unidade}) não encontrada no repositório]*")
+                
+            st.markdown(f"#### 💡 3º Workshop / Mesa-Redonda - {sigla_unidade}")
+            st.write(f"Debates temáticos e apresentações especiais da unidade {sigla_unidade}.")
+            st.link_button(f"🔗 Inscrever-se no Evento 3 ({sigla_unidade})", f"https://forms.gle/LINK_INSCRICAO_{sigla_unidade}_EV3")
+
+    # Renderizando o conteúdo dentro de cada aba horizontal
+    with tab_eciss:
+        renderizar_gestao_eventos_unidade("ECISS")
+        
+    with tab_ecmv:
+        renderizar_gestao_eventos_unidade("ECMV")
+        
+    with tab_poli:
+        renderizar_gestao_eventos_unidade("POLI")
+        
+    with tab_ednc:
+        renderizar_gestao_eventos_unidade("EDNC")
+        
+    with tab_efph:
+        renderizar_gestao_eventos_unidade("EFPH")
+
+# --- 3. TRABALHOS (SUBMISSÃO + STATUS COM RELATO DE EXPERIÊNCIA E PRODUTO TÉCNICO-TECNOLÓGICO) ---
 elif menu == "✍️ Trabalhos Científicos e Submissões":
     mostrar_cabecalho("eventos.png")
     st.subheader("✍️ Central de Submissão Trabalhos Científicos, Relatos e Produtos Técnicos")
