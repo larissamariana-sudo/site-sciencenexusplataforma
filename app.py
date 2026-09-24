@@ -66,7 +66,7 @@ def mostrar_cabecalho(foto="capaS.jpg"):
     """, unsafe_allow_html=True)
     st.write("")
 
-# --- MENU (Nome alterado para '🏛️ Eventos ECISS') ---
+# --- MENU ---
 menu = st.sidebar.selectbox("Navegue pelo Portal:", [
     "🏠 Início / Sobre", 
     "🎟️ Eventos e Inscrições", 
@@ -277,84 +277,72 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.info("⚠️ **Exclusivo para Orientadores/Organizadores:** Utilize este formulário para submeter ou cadastrar as informações.")
         st.link_button("📝 Acessar Formulário de Submissão", link_cad)
 
-# --- 2.1. EVENTOS ECISS (Nova aba com 7 abas horizontais para os cursos e suporte a 3 eventos simultâneos por curso) ---
+# --- 2.1. EVENTOS ECISS (Exibição Simultânea Direta dos 3 Eventos com Logo e Link por Curso) ---
 elif menu == "🏛️ Eventos ECISS":
     mostrar_cabecalho("capaS.jpg")
-    st.subheader("🏛️ Eventos ECISS • Gestão de Eventos por Curso de Graduação")
-    st.write("Selecione abaixo o curso de graduação correspondente para consultar os eventos ativos e realizar as inscrições.")
+    st.subheader("🏛️ Eventos ECISS • Programação por Curso de Graduação")
+    st.write("Consulte abaixo os eventos simultâneos ativos para cada curso de graduação, com suas respectivas logos e links de inscrição.")
     
-    # Criando as 7 abas horizontais solicitadas
+    # Criando as 7 abas horizontais para os cursos solicitados
     tab_enf, tab_fisio, tab_fono, tab_gastro, tab_nutri, tab_psi, tab_ser = st.tabs(["ENF", "FISIO", "FONO", "GASTRO", "NUTRI", "PSI", "SER"])
     
-    # Função auxiliar reutilizável para gerenciar os 3 eventos simultâneos em cada curso
-    def renderizar_gestao_eventos_curso(sigla_curso):
+    # Função auxiliar para renderizar diretamente os 3 eventos simultâneos com Logo e Link de Inscrição em cada aba de curso
+    def renderizar_tres_eventos_curso(sigla_curso):
         st.markdown(f"### 📋 Eventos Ativos - Curso de {sigla_curso}")
+        st.markdown("---")
         
-        # Lista suspensa para selecionar qual dos 3 eventos simultâneos deseja visualizar/inscrever
-        evento_simultaneo = st.selectbox(
-            f"Selecione o Evento Simultâneo ({sigla_curso}):",
-            [
-                f"1. Evento Principal / 1º Simpósio ({sigla_curso})",
-                f"2. Evento Secundário / Minicurso ({sigla_curso})",
-                f"3. Evento Complementar / Workshop ({sigla_curso})"
-            ],
-            key=f"select_{sigla_curso}"
-        )
+        # --- EVENTO 1 ---
+        st.markdown(f"#### 🩺 1º Evento Principal - {sigla_curso}")
+        try:
+            st.image(f"logo_{sigla_curso.lower()}_evento1.png", width=350)
+        except Exception:
+            st.caption(f"ℹ️ *[Logo do Evento 1 ({sigla_curso}) não encontrada no repositório]*")
+        st.write(f"Descrição e detalhes oficiais do 1º evento do curso de {sigla_curso}.")
+        st.link_button(f"🔗 Inscrever-se no 1º Evento ({sigla_curso})", f"https://forms.gle/LINK_INSCRICAO_{sigla_curso}_EV1")
         
         st.markdown("---")
         
-        # Exibição customizada baseada na escolha da lista suspensa
-        if "1. Evento Principal" in evento_simultaneo:
-            try:
-                st.image(f"logo_{sigla_curso.lower()}_evento1.png", width=350)
-            except Exception:
-                st.caption(f"ℹ️ *[Logo institucional do Evento 1 ({sigla_curso}) não encontrada no repositório]*")
-                
-            st.markdown(f"#### 🩺 1º Evento Acadêmico Principal - {sigla_curso}")
-            st.write(f"Programação oficial e palestras magnas do curso de {sigla_curso}.")
-            st.link_button(f"🔗 Inscrever-se no Evento 1 ({sigla_curso})", f"https://forms.gle/LINK_INSCRICAO_{sigla_curso}_EV1")
-            
-        elif "2. Evento Secundário" in evento_simultaneo:
-            try:
-                st.image(f"logo_{sigla_curso.lower()}_evento2.png", width=350)
-            except Exception:
-                st.caption(f"ℹ️ *[Logo institucional do Evento 2 ({sigla_curso}) não encontrada no repositório]*")
-                
-            st.markdown(f"#### 🤲 2º Evento Prático / Minicurso - {sigla_curso}")
-            st.write(f"Atividades práticas, oficinas e capacitações do curso de {sigla_curso}.")
-            st.link_button(f"🔗 Inscrever-se no Evento 2 ({sigla_curso})", f"https://forms.gle/LINK_INSCRICAO_{sigla_curso}_EV2")
-            
-        else:
-            try:
-                st.image(f"logo_{sigla_curso.lower()}_evento3.png", width=350)
-            except Exception:
-                st.caption(f"ℹ️ *[Logo institucional do Evento 3 ({sigla_curso}) não encontrada no repositório]*")
-                
-            st.markdown(f"#### 💡 3º Workshop / Mesa-Redonda - {sigla_curso}")
-            st.write(f"Debates temáticos e apresentações especiais do curso de {sigla_curso}.")
-            st.link_button(f"🔗 Inscrever-se no Evento 3 ({sigla_curso})", f"https://forms.gle/LINK_INSCRICAO_{sigla_curso}_EV3")
+        # --- EVENTO 2 ---
+        st.markdown(f"#### 🤲 2º Evento Prático / Minicurso - {sigla_curso}")
+        try:
+            st.image(f"logo_{sigla_curso.lower()}_evento2.png", width=350)
+        except Exception:
+            st.caption(f"ℹ️ *[Logo do Evento 2 ({sigla_curso}) não encontrada no repositório]*")
+        st.write(f"Descrição e detalhes oficiais do 2º evento do curso de {sigla_curso}.")
+        st.link_button(f"🔗 Inscrever-se no 2º Evento ({sigla_curso})", f"https://forms.gle/LINK_INSCRICAO_{sigla_curso}_EV2")
+        
+        st.markdown("---")
+        
+        # --- EVENTO 3 ---
+        st.markdown(f"#### 💡 3º Workshop / Mesa-Redonda - {sigla_curso}")
+        try:
+            st.image(f"logo_{sigla_curso.lower()}_evento3.png", width=350)
+        except Exception:
+            st.caption(f"ℹ️ *[Logo do Evento 3 ({sigla_curso}) não encontrada no repositório]*")
+        st.write(f"Descrição e detalhes oficiais do 3º evento do curso de {sigla_curso}.")
+        st.link_button(f"🔗 Inscrever-se no 3º Evento ({sigla_curso})", f"https://forms.gle/LINK_INSCRICAO_{sigla_curso}_EV3")
 
-    # Renderizando o conteúdo dentro de cada uma das 7 abas de cursos
+    # Renderizando o conteúdo estruturado dentro de cada uma das 7 abas
     with tab_enf:
-        renderizar_gestao_eventos_curso("ENF")
+        renderizar_tres_eventos_curso("ENF")
         
     with tab_fisio:
-        renderizar_gestao_eventos_curso("FISIO")
+        renderizar_tres_eventos_curso("FISIO")
         
     with tab_fono:
-        renderizar_gestao_eventos_curso("FONO")
+        renderizar_tres_eventos_curso("FONO")
         
     with tab_gastro:
-        renderizar_gestao_eventos_curso("GASTRO")
+        renderizar_tres_eventos_curso("GASTRO")
         
     with tab_nutri:
-        renderizar_gestao_eventos_curso("NUTRI")
+        renderizar_tres_eventos_curso("NUTRI")
         
     with tab_psi:
-        renderizar_gestao_eventos_curso("PSI")
+        renderizar_tres_eventos_curso("PSI")
         
     with tab_ser:
-        renderizar_gestao_eventos_curso("SER")
+        renderizar_tres_eventos_curso("SER")
 
 # --- 3. TRABALHOS (SUBMISSÃO + STATUS COM RELATO DE EXPERIÊNCIA E PRODUTO TÉCNICO-TECNOLÓGICO) ---
 elif menu == "✍️ Trabalhos Científicos e Submissões":
