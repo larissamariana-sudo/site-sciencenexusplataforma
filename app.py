@@ -651,7 +651,7 @@ elif menu == "📞 Contato":
     
     st.markdown("### 🏛️ Está organizando um Evento? Solicite o Cadastro pelo link")
     st.write("Deseja hospedar e gerenciar as inscrições, submissões e certificações do seu evento acadêmico em nossa plataforma? Acesse o formulário dedicado abaixo:")
-    st.link_button("📝 Solicitar Cadastro de Novo Evento", "https://forms.gle/cQmCXiG5yQd79vrM9)
+    st.link_button("📝 Solicitar Cadastro de Novo Evento", "https://forms.gle/cQmCXiG5yQd79vrM9")
     
     st.markdown("---")
     st.info("📧 **E-mail oficial de suporte:** eventos@sciencenexus.com.br")
