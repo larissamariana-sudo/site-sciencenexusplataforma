@@ -278,7 +278,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.info("⚠️ **Exclusivo para Orientadores/Organizadores:** Utilize este formulário para submeter ou cadastrar as informações.")
         st.link_button("📝 Acessar Formulário de Submissão", link_cad)
 
-# --- 2.1. ESCOLAS E FACULDADES (Nova Aba com 5 abas horizontais e suporte a 3 eventos simultâneos por aba) ---
+# --- 2.1. EVENTOS ESCOLAS (Nova Aba com 5 abas horizontais e suporte a 3 eventos simultâneos por aba) ---
 elif menu == "🏛️ Escolas e Faculdades":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("🏛️ Unidades Acadêmicas • Gestão de Eventos Simultâneos")
