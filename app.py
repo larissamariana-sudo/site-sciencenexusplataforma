@@ -66,11 +66,11 @@ def mostrar_cabecalho(foto="capaS.jpg"):
     """, unsafe_allow_html=True)
     st.write("")
 
-# --- MENU (Nova aba lateral '🏛️ Escolas e Faculdades' incluída) ---
+# --- MENU (Nome alterado para '🏛️ EVENTOS ESCOLA') ---
 menu = st.sidebar.selectbox("Navegue pelo Portal:", [
     "🏠 Início / Sobre", 
     "🎟️ Eventos e Inscrições", 
-    "🏛️ Escolas e Faculdades",
+    "🏛️ EVENTOS ESCOLA",
     "✍️ Trabalhos Científicos e Submissões", 
     "🎓 Validação de Certificados", 
     "💳 Taxa de DOI Individual/Pessoal", 
@@ -237,7 +237,7 @@ elif menu == "🎟️ Eventos e Inscrições":
             st.caption("ℹ️ *[Logo do Simpósio não encontrada]*")
             
         st.markdown("### 📊 Simpósio de Saúde Coletiva e Políticas Públicas")
-        st.write("Debates e mesas-redondas sobre o impacto das públicas na saúde.")
+        st.write("Debates e mesas-redondas sobre o impacto das políticas públicas na saúde.")
         st.markdown("#### 📅 Programação do Evento")
         st.link_button("📅 Ver / Baixar Programação do Simpósio", "COLE_LINK_PROGRAMACAO_SIMPOSIO")
         
@@ -278,11 +278,11 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.info("⚠️ **Exclusivo para Orientadores/Organizadores:** Utilize este formulário para submeter ou cadastrar as informações.")
         st.link_button("📝 Acessar Formulário de Submissão", link_cad)
 
-# --- 2.1. EVENTOS ESCOLAS (Nova Aba com 5 abas horizontais e suporte a 3 eventos simultâneos por aba) ---
-elif menu == "🏛️ Escolas e Faculdades":
+# --- 2.1. EVENTOS ESCOLA (Nova Aba com 5 abas horizontais e suporte a 3 eventos simultâneos por aba) ---
+elif menu == "🏛️ EVENTOS ESCOLA":
     mostrar_cabecalho("capaS.jpg")
-    st.subheader("🏛️ Unidades Acadêmicas • Gestão de Eventos Simultâneos")
-    st.write("Selecione abaixo a Escola ou Faculdade correspondente para consultar os eventos ativos e realizar as inscrições.")
+    st.subheader("🏛️ Eventos Escola • Gestão de Eventos Simultâneos")
+    st.write("Selecione abaixo a sigla correspondente para consultar os eventos ativos e realizar as inscrições.")
     
     # Criando as 5 abas horizontais para as siglas solicitadas
     tab_eciss, tab_ecmv, tab_poli, tab_ednc, tab_efph = st.tabs(["ECISS", "ECMV", "POLI", "EDNC", "EFPH"])
