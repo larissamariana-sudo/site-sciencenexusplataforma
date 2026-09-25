@@ -348,7 +348,7 @@ elif menu == "🏛️ Eventos ECISS":
         
         # Exibição da Logo do Evento (denominada como 'fono.jpg')
         try:
-            st.image("fono.jpg", width=400)
+            st.image("logo_fono_evento1", width=400)
         except Exception:
             try:
                 st.image("logo_fono_evento1", width=400)
