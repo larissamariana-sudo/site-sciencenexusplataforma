@@ -598,7 +598,7 @@ elif menu == "✍️ Trabalhos Científicos e Submissões":
         st.link_button("📥 **Jornada Científica Resumo Expandido** / Clique aqui para acessar o Formulário", "https://form.jotform.com/262542975983675")
         st.link_button("📥 **Jornada Científica Resumo Simples** / Clique aqui para acessar o Formulário", "https://form.jotform.com/262543743960664")
         st.link_button("📥 **Atividades de Extensão Relato de Experiência • Resumo Expandido** / Clique aqui para acessar o Formulário", "https://form.jotform.com/262538360587062")
-        st.link_button("⚙️ **Submissão de Produto Técnico-Tecnológico (Mestrado)** / Clique aqui para acessar o Formulário Dedicado", "https://form.jotform.com/262667414213657")
+        st.link_button("⚙️ **Submissão de Produto Técnico-Tecnológico (Mestrado/Doutorado)** / Clique aqui para acessar o Formulário Dedicado", "https://form.jotform.com/262667414213657")
     
     with tab_principal2:
         st.write("Digite o seu e-mail cadastrado na submissão para verificar o parecer atual da comissão científica.")
