@@ -346,12 +346,12 @@ elif menu == "🏛️ Eventos ECISS":
         * **Local:** Auditório da Área 4 da PUC Goiás  
         """)
         
-        # Exibição da Logo do Evento (denominada como 'fono')
+        # Exibição da Logo do Evento (denominada como 'fono.jpg')
         try:
-            st.image("fono", width=400)
+            st.image("fono.jpg", width=400)
         except Exception:
             try:
-                st.image("fono.png", width=400)
+                st.image("fono.jpg", width=400)
             except Exception:
                 st.caption("ℹ️ *[Logo 'fono' do evento não encontrada no repositório]*")
                 
@@ -360,7 +360,7 @@ elif menu == "🏛️ Eventos ECISS":
         
         # Exibição da Imagem com QR Code de Inscrição (denominada como 'jornadafono')
         try:
-            st.image("jornadafono", width=300)
+            st.image("jornadafono.jpg", width=300)
         except Exception:
             try:
                 st.image("jornadafono.png", width=300)
@@ -798,7 +798,7 @@ elif menu == "📞 Contato":
     
     st.markdown("### 🏛️ Está organizando um Evento? Solicite o Cadastro pelo link")
     st.write("Deseja hospedar e gerenciar as inscrições, submissões e certificações do seu evento acadêmico em nossa plataforma? Acesse o formulário dedicado abaixo:")
-    st.link_button("📝 Solicitar Cadastro de Novo Evento", "COLE_LINK_FORMULARIO_CADASTRO_EVENTO_AQUI")
+    st.link_button("📝 Solicitar Cadastro de Novo Evento", "https://forms.gle/yDZ99vzxCNQnqXgH8")
     
     st.markdown("---")
     st.info("📧 **E-mail oficial de suporte:** eventos@sciencenexus.com.br")
