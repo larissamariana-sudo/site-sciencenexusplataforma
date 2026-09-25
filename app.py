@@ -348,7 +348,7 @@ elif menu == "🏛️ Eventos ECISS":
         
         # Exibição da Logo do Evento (denominada como 'fono.jpg')
         try:
-            st.image("logo_fono_evento1", width=400)
+            st.image("jornadafono.jpg", width=400)
         except Exception:
             try:
                 st.image("logo_fono_evento1", width=400)
@@ -360,7 +360,7 @@ elif menu == "🏛️ Eventos ECISS":
         
         # Exibição da Imagem com QR Code de Inscrição (denominada como 'jornadafono')
         try:
-            st.image("jornadafono.jpg", width=300)
+            st.image("logo_fono_evento1", width=300)
         except Exception:
             try:
                 st.image("jornadafono.png", width=300)
