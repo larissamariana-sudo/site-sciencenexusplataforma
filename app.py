@@ -157,7 +157,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         
         st.markdown("##### 📌 Publicações e Submissões do PET:")
         st.link_button("📋 Acessar Publicação de Relatório Semanal", "https://forms.gle/LNYNJ97gh4WxsLmg6")
-        st.link_button("📝 Enviar / Consultar Relato de Experiência", "COLE_LINK_RELATORIO_SEMANAL_PET")
+        st.link_button("📝 Enviar / Consultar Relato de Experiência", "https://form.jotform.com/262538360587062")
         
         opcoes_inscricao = ["Participante/Ouvinte"]
         link_ouv = "https://forms.gle/u8nseAtgNAN5aMJDA"
