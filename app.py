@@ -351,7 +351,7 @@ elif menu == "🏛️ Eventos ECISS":
             st.image("fono.jpg", width=400)
         except Exception:
             try:
-                st.image("fono.jpg", width=400)
+                st.image("logo_fono_evento1", width=400)
             except Exception:
                 st.caption("ℹ️ *[Logo 'fono' do evento não encontrada no repositório]*")
                 
