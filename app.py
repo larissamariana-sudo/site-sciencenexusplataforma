@@ -573,7 +573,7 @@ elif menu == "✍️ Trabalhos Científicos e Submissões":
                 st.caption("ℹ️ *[PDF com regras detalhadas de Relato de Experiência em breve]*")
 
         with tab_produto:
-            st.markdown("### ⚙️ Normas para Submissão de Produto Técnico-Tecnológico (Mestrado)")
+            st.markdown("### ⚙️ Normas para Submissão de Produto Técnico-Tecnológico (Mestrado/Doutorado)")
             st.markdown("""
             **1. Formatação do Documento Escrito (Relatório Técnico)**
             Mesmo que o seu produto seja um software, um vídeo ou uma cartilha, você precisará submeter um documento em formato de relatório técnico conclusivo que detalha como o produto foi construído. A estrutura básica exigida baseia-se nas normas ABNT ou APA. 
@@ -598,7 +598,7 @@ elif menu == "✍️ Trabalhos Científicos e Submissões":
         st.link_button("📥 **Jornada Científica Resumo Expandido** / Clique aqui para acessar o Formulário", "https://form.jotform.com/262542975983675")
         st.link_button("📥 **Jornada Científica Resumo Simples** / Clique aqui para acessar o Formulário", "https://form.jotform.com/262543743960664")
         st.link_button("📥 **Atividades de Extensão Relato de Experiência • Resumo Expandido** / Clique aqui para acessar o Formulário", "https://form.jotform.com/262538360587062")
-        st.link_button("⚙️ **Submissão de Produto Técnico-Tecnológico (Mestrado)** / Clique aqui para acessar o Formulário Dedicado", "COLE_LINK_FORMULARIO_PRODUTO_TECNOLOGICO_AQUI")
+        st.link_button("⚙️ **Submissão de Produto Técnico-Tecnológico (Mestrado)** / Clique aqui para acessar o Formulário Dedicado", "https://form.jotform.com/262667414213657")
     
     with tab_principal2:
         st.write("Digite o seu e-mail cadastrado na submissão para verificar o parecer atual da comissão científica.")
