@@ -156,8 +156,8 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.link_button("📅 Ver / Baixar Programação PET Saúde Clima", "COLE_LINK_PROGRAMACAO_PET")
         
         st.markdown("##### 📌 Publicações e Submissões do PET:")
-        st.link_button("📋 Acessar Publicação de Relatório Semanal", "COLE_LINK_RELATORIO_SEMANAL_PET")
-        st.link_button("📝 Enviar / Consultar Relato de Experiência", "https://forms.gle/LNYNJ97gh4WxsLmg6")
+        st.link_button("📋 Acessar Publicação de Relatório Semanal", "https://forms.gle/LNYNJ97gh4WxsLmg6")
+        st.link_button("📝 Enviar / Consultar Relato de Experiência", "COLE_LINK_RELATORIO_SEMANAL_PET")
         
         opcoes_inscricao = ["Participante/Ouvinte"]
         link_ouv = "https://forms.gle/u8nseAtgNAN5aMJDA"
