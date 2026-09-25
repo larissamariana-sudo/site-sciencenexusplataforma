@@ -277,7 +277,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.info("⚠️ **Exclusivo para Orientadores/Organizadores:** Utilize este formulário para submeter ou cadastrar as informações.")
         st.link_button("📝 Acessar Formulário de Submissão", link_cad)
 
-# --- 2.1. EVENTOS ECISS (Exibição Simultânea Direta dos 3 Eventos com Logo e Link por Curso) ---
+# --- 2.1. EVENTOS ECISS (Com o evento específico de FONO e suporte a 3 eventos simultâneos por curso) ---
 elif menu == "🏛️ Eventos ECISS":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("🏛️ Eventos ECISS • Programação por Curso de Graduação")
@@ -286,63 +286,210 @@ elif menu == "🏛️ Eventos ECISS":
     # Criando as 7 abas horizontais para os cursos solicitados
     tab_enf, tab_fisio, tab_fono, tab_gastro, tab_nutri, tab_psi, tab_ser = st.tabs(["ENF", "FISIO", "FONO", "GASTRO", "NUTRI", "PSI", "SER"])
     
-    # Função auxiliar para renderizar diretamente os 3 eventos simultâneos com Logo e Link de Inscrição em cada aba de curso
-    def renderizar_tres_eventos_curso(sigla_curso):
-        st.markdown(f"### 📋 Eventos Ativos - Curso de {sigla_curso}")
-        st.markdown("---")
-        
-        # --- EVENTO 1 ---
-        st.markdown(f"#### 🩺 1º Evento Principal - {sigla_curso}")
-        try:
-            st.image(f"logo_{sigla_curso.lower()}_evento1.png", width=350)
-        except Exception:
-            st.caption(f"ℹ️ *[Logo do Evento 1 ({sigla_curso}) não encontrada no repositório]*")
-        st.write(f"Descrição e detalhes oficiais do 1º evento do curso de {sigla_curso}.")
-        st.link_button(f"🔗 Inscrever-se no 1º Evento ({sigla_curso})", f"https://forms.gle/LINK_INSCRICAO_{sigla_curso}_EV1")
-        
-        st.markdown("---")
-        
-        # --- EVENTO 2 ---
-        st.markdown(f"#### 🤲 2º Evento Prático / Minicurso - {sigla_curso}")
-        try:
-            st.image(f"logo_{sigla_curso.lower()}_evento2.png", width=350)
-        except Exception:
-            st.caption(f"ℹ️ *[Logo do Evento 2 ({sigla_curso}) não encontrada no repositório]*")
-        st.write(f"Descrição e detalhes oficiais do 2º evento do curso de {sigla_curso}.")
-        st.link_button(f"🔗 Inscrever-se no 2º Evento ({sigla_curso})", f"https://forms.gle/LINK_INSCRICAO_{sigla_curso}_EV2")
-        
-        st.markdown("---")
-        
-        # --- EVENTO 3 ---
-        st.markdown(f"#### 💡 3º Workshop / Mesa-Redonda - {sigla_curso}")
-        try:
-            st.image(f"logo_{sigla_curso.lower()}_evento3.png", width=350)
-        except Exception:
-            st.caption(f"ℹ️ *[Logo do Evento 3 ({sigla_curso}) não encontrada no repositório]*")
-        st.write(f"Descrição e detalhes oficiais do 3º evento do curso de {sigla_curso}.")
-        st.link_button(f"🔗 Inscrever-se no 3º Evento ({sigla_curso})", f"https://forms.gle/LINK_INSCRICAO_{sigla_curso}_EV3")
-
-    # Renderizando o conteúdo estruturado dentro de cada uma das 7 abas
     with tab_enf:
-        renderizar_tres_eventos_curso("ENF")
+        st.markdown("### 📋 Eventos Ativos - Curso de ENF")
+        st.markdown("---")
+        st.markdown("#### 🩺 1º Evento Principal - ENF")
+        try:
+            st.image("logo_enf_evento1.png", width=350)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Evento 1 (ENF) não encontrada]*")
+        st.link_button("🔗 Inscrever-se no 1º Evento (ENF)", "https://forms.gle/LINK_INSCRICAO_ENF_EV1")
+        
+        st.markdown("---")
+        st.markdown("#### 🤲 2º Evento Prático / Minicurso - ENF")
+        try:
+            st.image("logo_enf_evento2.png", width=350)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Evento 2 (ENF) não encontrada]*")
+        st.link_button("🔗 Inscrever-se no 2º Evento (ENF)", "https://forms.gle/LINK_INSCRICAO_ENF_EV2")
+        
+        st.markdown("---")
+        st.markdown("#### 💡 3º Workshop / Mesa-Redonda - ENF")
+        try:
+            st.image("logo_enf_evento3.png", width=350)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Evento 3 (ENF) não encontrada]*")
+        st.link_button("🔗 Inscrever-se no 3º Evento (ENF)", "https://forms.gle/LINK_INSCRICAO_ENF_EV3")
         
     with tab_fisio:
-        renderizar_tres_eventos_curso("FISIO")
+        st.markdown("### 📋 Eventos Ativos - Curso de FISIO")
+        st.markdown("---")
+        st.markdown("#### 🩺 1º Evento Principal - FISIO")
+        try:
+            st.image("logo_fisio_evento1.png", width=350)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Evento 1 (FISIO) não encontrada]*")
+        st.link_button("🔗 Inscrever-se no 1º Evento (FISIO)", "https://forms.gle/LINK_INSCRICAO_FISIO_EV1")
+        
+        st.markdown("---")
+        st.markdown("#### 🤲 2º Evento Prático / Minicurso - FISIO")
+        try:
+            st.image("logo_fisio_evento2.png", width=350)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Evento 2 (FISIO) não encontrada]*")
+        st.link_button("🔗 Inscrever-se no 2º Evento (FISIO)", "https://forms.gle/LINK_INSCRICAO_FISIO_EV2")
+        
+        st.markdown("---")
+        st.markdown("#### 💡 3º Workshop / Mesa-Redonda - FISIO")
+        try:
+            st.image("logo_fisio_evento3.png", width=350)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Evento 3 (FISIO) não encontrada]*")
+        st.link_button("🔗 Inscrever-se no 3º Evento (FISIO)", "https://forms.gle/LINK_INSCRICAO_FISIO_EV3")
         
     with tab_fono:
-        renderizar_tres_eventos_curso("FONO")
+        st.markdown("### 🗣️ XVI Jornada Goiana de Fonoaudiologia / X Encontro de Egressos de Fonoaudiologia")
+        st.write("""
+        * **Data:** 01 e 02 de outubro  
+        * **Horário:** 07:30 - 12:15h  
+        * **Local:** Auditório da Área 4 da PUC Goiás  
+        """)
+        
+        # Exibição da Logo do Evento (denominada como 'fono')
+        try:
+            st.image("fono", width=400)
+        except Exception:
+            try:
+                st.image("fono.png", width=400)
+            except Exception:
+                st.caption("ℹ️ *[Logo 'fono' do evento não encontrada no repositório]*")
+                
+        st.markdown("---")
+        st.markdown("#### 📱 Inscrição via QR Code / Link Dedicado")
+        
+        # Exibição da Imagem com QR Code de Inscrição (denominada como 'jornadafono')
+        try:
+            st.image("jornadafono", width=300)
+        except Exception:
+            try:
+                st.image("jornadafono.png", width=300)
+            except Exception:
+                st.caption("ℹ️ *[Imagem 'jornadafono' com QR Code não encontrada no repositório]*")
+                
+        st.link_button("🔗 Inscrever-se na XVI Jornada Goiana de Fonoaudiologia", "COLE_LINK_INSCRICAO_JORNADA_FONO")
+        
+        st.markdown("---")
+        st.markdown("#### 📋 Outros Eventos Simultâneos - FONO")
+        
+        st.markdown("##### 2º Evento Secundário - FONO")
+        try:
+            st.image("logo_fono_evento2.png", width=350)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Evento 2 (FONO) não encontrada]*")
+        st.link_button("🔗 Inscrever-se no 2º Evento (FONO)", "https://forms.gle/LINK_INSCRICAO_FONO_EV2")
+        
+        st.markdown("---")
+        st.markdown("##### 3º Evento Complementar - FONO")
+        try:
+            st.image("logo_fono_evento3.png", width=350)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Evento 3 (FONO) não encontrada]*")
+        st.link_button("🔗 Inscrever-se no 3º Evento (FONO)", "https://forms.gle/LINK_INSCRICAO_FONO_EV3")
         
     with tab_gastro:
-        renderizar_tres_eventos_curso("GASTRO")
+        st.markdown("### 📋 Eventos Ativos - Curso de GASTRO")
+        st.markdown("---")
+        st.markdown("#### 🩺 1º Evento Principal - GASTRO")
+        try:
+            st.image("logo_gastro_evento1.png", width=350)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Evento 1 (GASTRO) não encontrada]*")
+        st.link_button("🔗 Inscrever-se no 1º Evento (GASTRO)", "https://forms.gle/LINK_INSCRICAO_GASTRO_EV1")
+        
+        st.markdown("---")
+        st.markdown("#### 🤲 2º Evento Prático / Minicurso - GASTRO")
+        try:
+            st.image("logo_gastro_evento2.png", width=350)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Evento 2 (GASTRO) não encontrada]*")
+        st.link_button("🔗 Inscrever-se no 2º Evento (GASTRO)", "https://forms.gle/LINK_INSCRICAO_GASTRO_EV2")
+        
+        st.markdown("---")
+        st.markdown("#### 💡 3º Workshop / Mesa-Redonda - GASTRO")
+        try:
+            st.image("logo_gastro_evento3.png", width=350)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Evento 3 (GASTRO) não encontrada]*")
+        st.link_button("🔗 Inscrever-se no 3º Evento (GASTRO)", "https://forms.gle/LINK_INSCRICAO_GASTRO_EV3")
         
     with tab_nutri:
-        renderizar_tres_eventos_curso("NUTRI")
+        st.markdown("### 📋 Eventos Ativos - Curso de NUTRI")
+        st.markdown("---")
+        st.markdown("#### 🩺 1º Evento Principal - NUTRI")
+        try:
+            st.image("logo_nutri_evento1.png", width=350)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Evento 1 (NUTRI) não encontrada]*")
+        st.link_button("🔗 Inscrever-se no 1º Evento (NUTRI)", "https://forms.gle/LINK_INSCRICAO_NUTRI_EV1")
+        
+        st.markdown("---")
+        st.markdown("#### 🤲 2º Evento Prático / Minicurso - NUTRI")
+        try:
+            st.image("logo_nutri_evento2.png", width=350)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Evento 2 (NUTRI) não encontrada]*")
+        st.link_button("🔗 Inscrever-se no 2º Evento (NUTRI)", "https://forms.gle/LINK_INSCRICAO_NUTRI_EV2")
+        
+        st.markdown("---")
+        st.markdown("#### 💡 3º Workshop / Mesa-Redonda - NUTRI")
+        try:
+            st.image("logo_nutri_evento3.png", width=350)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Evento 3 (NUTRI) não encontrada]*")
+        st.link_button("🔗 Inscrever-se no 3º Evento (NUTRI)", "https://forms.gle/LINK_INSCRICAO_NUTRI_EV3")
         
     with tab_psi:
-        renderizar_tres_eventos_curso("PSI")
+        st.markdown("### 📋 Eventos Ativos - Curso de PSI")
+        st.markdown("---")
+        st.markdown("#### 🩺 1º Evento Principal - PSI")
+        try:
+            st.image("logo_psi_evento1.png", width=350)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Evento 1 (PSI) não encontrada]*")
+        st.link_button("🔗 Inscrever-se no 1º Evento (PSI)", "https://forms.gle/LINK_INSCRICAO_PSI_EV1")
+        
+        st.markdown("---")
+        st.markdown("#### 🤲 2º Evento Prático / Minicurso - PSI")
+        try:
+            st.image("logo_psi_evento2.png", width=350)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Evento 2 (PSI) não encontrada]*")
+        st.link_button("🔗 Inscrever-se no 2º Evento (PSI)", "https://forms.gle/LINK_INSCRICAO_PSI_EV2")
+        
+        st.markdown("---")
+        st.markdown("#### 💡 3º Workshop / Mesa-Redonda - PSI")
+        try:
+            st.image("logo_psi_evento3.png", width=350)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Evento 3 (PSI) não encontrada]*")
+        st.link_button("🔗 Inscrever-se no 3º Evento (PSI)", "https://forms.gle/LINK_INSCRICAO_PSI_EV3")
         
     with tab_ser:
-        renderizar_tres_eventos_curso("SER")
+        st.markdown("### 📋 Eventos Ativos - Curso de SER")
+        st.markdown("---")
+        st.markdown("#### 🩺 1º Evento Principal - SER")
+        try:
+            st.image("logo_ser_evento1.png", width=350)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Evento 1 (SER) não encontrada]*")
+        st.link_button("🔗 Inscrever-se no 1º Evento (SER)", "https://forms.gle/LINK_INSCRICAO_SER_EV1")
+        
+        st.markdown("---")
+        st.markdown("#### 🤲 2º Evento Prático / Minicurso - SER")
+        try:
+            st.image("logo_ser_evento2.png", width=350)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Evento 2 (SER) não encontrada]*")
+        st.link_button("🔗 Inscrever-se no 2º Evento (SER)", "https://forms.gle/LINK_INSCRICAO_SER_EV2")
+        
+        st.markdown("---")
+        st.markdown("#### 💡 3º Workshop / Mesa-Redonda - SER")
+        try:
+            st.image("logo_ser_evento3.png", width=350)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Evento 3 (SER) não encontrada]*")
+        st.link_button("🔗 Inscrever-se no 3º Evento (SER)", "https://forms.gle/LINK_INSCRICAO_SER_EV3")
 
 # --- 3. TRABALHOS (SUBMISSÃO + STATUS COM RELATO DE EXPERIÊNCIA E PRODUTO TÉCNICO-TECNOLÓGICO) ---
 elif menu == "✍️ Trabalhos Científicos e Submissões":
