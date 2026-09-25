@@ -174,7 +174,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.link_button("📅 Ver / Baixar Programação", "COLE_LINK_PROGRAMACAO_MONITORES")
         
         opcoes_inscricao = ["Participante/Ouvinte"]
-        link_ouv = "https://forms.gle/wtTcSXZt6PnwzjEL7"
+        link_ouv = "https:// forms.gle/wtTcSXZt6PnwzjEL7"
         
     elif "Atividades de Extensão" in evento_selecionado:
         try:
@@ -292,11 +292,11 @@ elif menu == "🏛️ Eventos ECISS":
         st.markdown("---")
         
         # --- EVENTO 1 ---
-        st.markdown(f"#### 🩺 1º Evento Principal - {FONO}")
+        st.markdown(f"#### 🩺 1º Evento Principal - {sigla_curso}")
         try:
-            st.image(f"jornadafono_{FONO}_evento1.png", width=350)
+            st.image(f"logo_{sigla_curso.lower()}_evento1.png", width=350)
         except Exception:
-            st.caption(f"ℹ️ *[fono ({FONO}) não encontrada no repositório]*")
+            st.caption(f"ℹ️ *[Logo do Evento 1 ({sigla_curso}) não encontrada no repositório]*")
         st.write(f"Descrição e detalhes oficiais do 1º evento do curso de {sigla_curso}.")
         st.link_button(f"🔗 Inscrever-se no 1º Evento ({sigla_curso})", f"https://forms.gle/LINK_INSCRICAO_{sigla_curso}_EV1")
         
@@ -651,7 +651,7 @@ elif menu == "📞 Contato":
     
     st.markdown("### 🏛️ Está organizando um Evento? Solicite o Cadastro pelo link")
     st.write("Deseja hospedar e gerenciar as inscrições, submissões e certificações do seu evento acadêmico em nossa plataforma? Acesse o formulário dedicado abaixo:")
-    st.link_button("📝 Solicitar Cadastro de Novo Evento", "https://forms.gle/cQmCXiG5yQd79vrM9")
+    st.link_button("📝 Solicitar Cadastro de Novo Evento", "COLE_LINK_FORMULARIO_CADASTRO_EVENTO_AQUI")
     
     st.markdown("---")
     st.info("📧 **E-mail oficial de suporte:** eventos@sciencenexus.com.br")
