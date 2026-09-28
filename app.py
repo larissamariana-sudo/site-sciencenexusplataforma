@@ -493,8 +493,8 @@ elif menu == "🌱 PET Saúde Clima":
     st.link_button("📅 Ver / Baixar Programação PET Saúde Clima", "https://drive.google.com/file/d/18c2ipSoJfXGZeBvMnuduDoP9AIP2k-s7/view?usp=sharing")
     
     st.markdown("##### 📌 Publicações e Submissões do PET:")
-    st.link_button("📋 Enviar Resumo/Atividades de leitura e Atividades em campo", "https://forms.gle/LNYNJ97gh4WxsLmg6")
-    st.link_button("📝 Enviar / Consultar Relato de Experiência", "https://form.jotform.com/262538360587062")
+    st.link_button("📋 Enviar **Resumo/Atividades de leitura e Atividades em campo**", "https://forms.gle/LNYNJ97gh4WxsLmg6")
+    st.link_button("📝 Enviar **Relato de Experiência** (seguir as normas abaixo)", "https://form.jotform.com/262538360587062")
     
     st.markdown("---")
     st.markdown("### 📝 Normas para Submissão de Relato de Experiência")
