@@ -468,10 +468,10 @@ elif menu == "🏛️ Eventos ECISS":
             st.caption("ℹ️ *[Logo do Evento 3 (SER) não encontrada]*")
         st.link_button("🔗 Inscrever-se no 3º Evento (SER)", "https://forms.gle/LINK_INSCRICAO_SER_EV3")
 
-# --- 2.2. PET SAÚDE CLIMA (Aba Vertical com Informações de Relato de Experiência) ---
+# --- 2.2. PET SAÚDE CLIMA (Aba Vertical com Atividades Formativas e Inscrições logo abaixo) ---
 elif menu == "🌱 PET Saúde Clima":
     mostrar_cabecalho("capaS.jpg")
-    st.subheader("🌱 Encontro Formativo PET Saúde Clima")
+    st.subheader("🌱 Atividades Formativas PET Saúde Clima")
     
     try:
         st.image("pet clima.png", width=400)
@@ -483,6 +483,11 @@ elif menu == "🌱 PET Saúde Clima":
     * **Modalidade de Certificação:** Certificado de Ouvinte Participante.
     * **Investimento:** Gratuito.
     """)
+    
+    # Seção de Inscrições posicionada logo abaixo da informação de Investimento
+    st.markdown("#### 🔗 Inscrição")
+    st.link_button("🔗 Inscrever-se como Ouvinte (PET Saúde Clima)", "https://forms.gle/u8nseAtgNAN5aMJDA")
+
     st.markdown("---")
     st.markdown("#### 📅 Programação e Links do Evento")
     st.link_button("📅 Ver / Baixar Programação PET Saúde Clima", "https://drive.google.com/file/d/18c2ipSoJfXGZeBvMnuduDoP9AIP2k-s7/view?usp=sharing")
@@ -513,10 +518,6 @@ elif menu == "🌱 PET Saúde Clima":
     except Exception:
         st.caption("ℹ️ *[PDF com regras detalhadas de Relato de Experiência em breve]*")
 
-    st.markdown("---")
-    st.markdown("#### 🔗 Inscrição")
-    st.link_button("🔗 Inscrever-se como Ouvinte (PET Saúde Clima)", "https://forms.gle/u8nseAtgNAN5aMJDA")
-
 # --- 3. TRABALHOS (SUBMISSÃO + STATUS COM ARTIGO COMPLETO NO FINAL) ---
 elif menu == "✍️ Trabalhos Científicos e Submissões":
     mostrar_cabecalho("eventos.png")
@@ -526,7 +527,6 @@ elif menu == "✍️ Trabalhos Científicos e Submissões":
     tab_principal1, tab_principal2 = st.tabs(["📥 Submissão e Normas", "🔍 Consultar Status"])
     
     with tab_principal1:
-        # Reordenado: Artigo Completo movido para o final da lista de abas internas
         tab_simples, tab_expandido, tab_relato, tab_produto, tab_completo = st.tabs(["📄 Resumo Simples", "📑 Resumo Expandido", "📝 Relato de Experiência", "⚙️ Prod. Técnico-Tecnológico", "📚 Artigo Completo"])
         
         with tab_simples:
