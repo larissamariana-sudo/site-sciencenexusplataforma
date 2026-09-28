@@ -485,7 +485,7 @@ elif menu == "🌱 PET Saúde Clima":
     """)
     st.markdown("---")
     st.markdown("#### 📅 Programação e Links do Evento")
-    st.link_button("📅 Ver / Baixar Programação PET Saúde Clima", "COLE_LINK_PROGRAMACAO_PET")
+    st.link_button("📅 Ver / Baixar Programação PET Saúde Clima", "https://drive.google.com/file/d/18c2ipSoJfXGZeBvMnuduDoP9AIP2k-s7/view?usp=sharing")
     
     st.markdown("##### 📌 Publicações e Submissões do PET:")
     st.link_button("📋 Acessar Publicação de Relatório Semanal", "https://forms.gle/LNYNJ97gh4WxsLmg6")
