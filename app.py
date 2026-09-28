@@ -468,7 +468,7 @@ elif menu == "🏛️ Eventos ECISS":
             st.caption("ℹ️ *[Logo do Evento 3 (SER) não encontrada]*")
         st.link_button("🔗 Inscrever-se no 3º Evento (SER)", "https://forms.gle/LINK_INSCRICAO_SER_EV3")
 
-# --- 2.2. PET SAÚDE CLIMA (Nova Aba Vertical Criada) ---
+# --- 2.2. PET SAÚDE CLIMA (Aba Vertical com Informações de Relato de Experiência) ---
 elif menu == "🌱 PET Saúde Clima":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("🌱 Encontro Formativo PET Saúde Clima")
@@ -492,10 +492,32 @@ elif menu == "🌱 PET Saúde Clima":
     st.link_button("📝 Enviar / Consultar Relato de Experiência", "https://form.jotform.com/262538360587062")
     
     st.markdown("---")
+    st.markdown("### 📝 Normas para Submissão de Relato de Experiência")
+    st.markdown("""
+    * **Estrutura Obrigatória:** Introdução/Fundamentação Teórica, Descrição da Experiência (Vivência, Local, Público Envolvido), Reflexão Crítica/Resultados Alcançados, e Considerações Finais.
+    * **Extensão:** No mínimo 4 páginas e no máximo 8 páginas completas.
+    * **Formatação:** Fonte Times New Roman, tamanho 12, espaçamento entre linhas 1,0.
+    * **Palavras-chave:** De 3 a 5 palavras-chave separadas por ponto e vírgula.
+    
+    **INFORMAÇÕES PARA A SUBMISSÃO**
+    * **Formato:** O arquivo deve ser submetido através do link para o formulário específico.
+    * **Prazo:** Respeitar o cronograma oficial do evento. O ciclo de submissões encerra-se dia 10 de dezembro. Trabalhos enviados após essa data serão avaliados para o próximo ciclo.
+    * **Trabalhos:** Os trabalhos que necessitem ajustes devem submeter o novo documento com as alterações solicitadas, dentro do prazo.
+    * **Anais:** Os trabalhos aprovados são incluídos nos Anais oficiais.
+    * **Publicação:** A publicação é realizada até 45 dias após o encerramento do ciclo anual. 
+    """)
+    
+    try:
+        with open("regras_relato_experiencia.pdf", "rb") as pdf_file:
+            st.download_button("📥 Baixar Regras Completas (PDF - Relato de Experiência)", pdf_file, file_name="Regras_Relato_Experiencia.pdf", mime="application/pdf")
+    except Exception:
+        st.caption("ℹ️ *[PDF com regras detalhadas de Relato de Experiência em breve]*")
+
+    st.markdown("---")
     st.markdown("#### 🔗 Inscrição")
     st.link_button("🔗 Inscrever-se como Ouvinte (PET Saúde Clima)", "https://forms.gle/u8nseAtgNAN5aMJDA")
 
-# --- 3. TRABALHOS (SUBMISSÃO + STATUS COM RELATO DE EXPERIÊNCIA E PRODUTO TÉCNICO-TECNOLÓGICO) ---
+# --- 3. TRABALHOS (SUBMISSÃO + STATUS COM ARTIGO COMPLETO NO FINAL) ---
 elif menu == "✍️ Trabalhos Científicos e Submissões":
     mostrar_cabecalho("eventos.png")
     st.subheader("✍️ Central de Submissão Trabalhos Científicos, Relatos e Produtos Técnicos")
@@ -504,7 +526,8 @@ elif menu == "✍️ Trabalhos Científicos e Submissões":
     tab_principal1, tab_principal2 = st.tabs(["📥 Submissão e Normas", "🔍 Consultar Status"])
     
     with tab_principal1:
-        tab_simples, tab_expandido, tab_completo, tab_relato, tab_produto = st.tabs(["📄 Resumo Simples", "📑 Resumo Expandido", "📚 Artigo Completo", "📝 Relato de Experiência", "⚙️ Prod. Técnico-Tecnológico"])
+        # Reordenado: Artigo Completo movido para o final da lista de abas internas
+        tab_simples, tab_expandido, tab_relato, tab_produto, tab_completo = st.tabs(["📄 Resumo Simples", "📑 Resumo Expandido", "📝 Relato de Experiência", "⚙️ Prod. Técnico-Tecnológico", "📚 Artigo Completo"])
         
         with tab_simples:
             st.markdown("### Normas para Submissão de Resumo Simples")
@@ -540,19 +563,6 @@ elif menu == "✍️ Trabalhos Científicos e Submissões":
                     st.download_button("📥 Baixar Regras Completas (PDF - Resumo Expandido)", pdf_file, file_name="Regras_Resumo_Expandido.pdf", mime="application/pdf")
             except Exception:
                 st.caption("ℹ️ *[PDF com regras detalhadas de Resumo Expandido em breve]*")
-                    
-        with tab_completo:
-            st.markdown("### Normas para Submissão de Artigo Completo")
-            st.markdown("""
-            * **Estrutura Obrigatória:** Resumo, Palavras-chave, Introdução, Metodologia, Resultados e Discussão, Conclusão, Referências Bibliográficas.
-            * **Extensão:** No mínimo 8 páginas e no máximo 16 páginas completas.
-            """)
-            
-            try:
-                with open("regras_resumo_artigo.pdf", "rb") as pdf_file:
-                    st.download_button("📥 Baixar Regras Completas (PDF - Artigo Completo)", pdf_file, file_name="Regras_Artigo_Completo.pdf", mime="application/pdf")
-            except Exception:
-                st.caption("ℹ️ *[PDF com regras detalhadas de Artigo Completo em breve]*")
 
         with tab_relato:
             st.markdown("### Normas para Submissão de Relato de Experiência")
@@ -596,6 +606,19 @@ elif menu == "✍️ Trabalhos Científicos e Submissões":
                     st.download_button("📥 Baixar Regras Completas (PDF - Produto Técnico-Tecnológico)", pdf_file, file_name="Regras_Produto_Tecnologico.pdf", mime="application/pdf")
             except Exception:
                 st.caption("ℹ️ *[PDF com regras detalhadas de Produto Técnico-Tecnológico em breve]*")
+                    
+        with tab_completo:
+            st.markdown("### Normas para Submissão de Artigo Completo")
+            st.markdown("""
+            * **Estrutura Obrigatória:** Resumo, Palavras-chave, Introdução, Metodologia, Resultados e Discussão, Conclusão, Referências Bibliográficas.
+            * **Extensão:** No mínimo 8 páginas e no máximo 16 páginas completas.
+            """)
+            
+            try:
+                with open("regras_resumo_artigo.pdf", "rb") as pdf_file:
+                    st.download_button("📥 Baixar Regras Completas (PDF - Artigo Completo)", pdf_file, file_name="Regras_Artigo_Completo.pdf", mime="application/pdf")
+            except Exception:
+                st.caption("ℹ️ *[PDF com regras detalhadas de Artigo Completo em breve]*")
 
         st.markdown("---")
         st.info("📌 **Importante:** Para que os arquivos sejam salvos diretamente na nuvem da comissão científica, a submissão é feita por formulário dedicado.")
