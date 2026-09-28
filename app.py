@@ -71,6 +71,7 @@ menu = st.sidebar.selectbox("Navegue pelo Portal:", [
     "🏠 Início / Sobre", 
     "🎟️ Eventos e Inscrições", 
     "🏛️ Eventos ECISS",
+    "🌱 PET Saúde Clima",
     "✍️ Trabalhos Científicos e Submissões", 
     "🎓 Validação de Certificados", 
     "💳 Taxa de DOI Individual/Pessoal", 
@@ -93,7 +94,7 @@ if menu == "🏠 Início / Sobre":
     * **Avaliação:** Acompanhe em tempo real se seu trabalho está em análise, aprovado ou pendente de correções.
     """)
 
-# --- 2. EVENTOS E INSCRIÇÕES (Com Links Independentes por Evento e PET Saúde Clima atualizado) ---
+# --- 2. EVENTOS E INSCRIÇÕES (Com Links Independentes por Evento) ---
 elif menu == "🎟️ Eventos e Inscrições":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("🎟️ Programação de Eventos e Cursos Disponíveis")
@@ -101,13 +102,12 @@ elif menu == "🎟️ Eventos e Inscrições":
     
     evento_selecionado = st.selectbox("Escolha o Evento:", [
         "1. Jornada Científica do Curso de Fisioterapia",
-        "2. Encontro Formativo PET Saúde Clima",
-        "3. Acolhimento dos Monitores Caeme/Prograd", 
-        "4. Atividades de Extensão e Vínculo com a Comunidade", 
-        "5. Minicurso Prático: Reabilitação e Terapia Manual", 
-        "6. Workshop: Inovação e Tecnologias em Saúde",
-        "7. Simpósio de Saúde Coletiva e Políticas Públicas",
-        "8. Encontro Científico Psico História e as Leis da Robótica"
+        "2. Acolhimento dos Monitores Caeme/Prograd", 
+        "3. Atividades de Extensão e Vínculo com a Comunidade", 
+        "4. Minicurso Prático: Reabilitação e Terapia Manual", 
+        "5. Workshop: Inovação e Tecnologias em Saúde",
+        "6. Simpósio de Saúde Coletiva e Políticas Públicas",
+        "7. Encontro Científico Psico História e as Leis da Robótica"
     ])
     
     st.markdown("---")
@@ -138,29 +138,6 @@ elif menu == "🎟️ Eventos e Inscrições":
         
         link_ouv = "https://forms.gle/tVKQtkEpQHG9Bo3K7"
         link_cad = "https://forms.gle/CP2dG8qZXP2xoRtG6"
-
-    elif "Encontro Formativo PET Saúde Clima" in evento_selecionado:
-        try:
-            st.image("pet clima.png", width=400)
-        except Exception:
-            st.caption("ℹ️ *[Logo de divulgação do PET Saúde Clima não encontrada no repositório]*")
-            
-        st.markdown("### 🌱 Encontro Formativo PET Saúde Clima")
-        st.write("""
-        * **Público-alvo:** Integrantes do programa, estudantes e comunidade acadêmica.
-        * **Modalidade de Certificação:** Certificado de Ouvinte Participante.
-        * **Investimento:** Gratuito.
-        """)
-        st.markdown("---")
-        st.markdown("#### 📅 Programação e Links do Evento")
-        st.link_button("📅 Ver / Baixar Programação PET Saúde Clima", "COLE_LINK_PROGRAMACAO_PET")
-        
-        st.markdown("##### 📌 Publicações e Submissões do PET:")
-        st.link_button("📋 Acessar Publicação de Relatório Semanal", "https://forms.gle/LNYNJ97gh4WxsLmg6")
-        st.link_button("📝 Enviar / Consultar Relato de Experiência", "https://form.jotform.com/262538360587062")
-        
-        opcoes_inscricao = ["Participante/Ouvinte"]
-        link_ouv = "https://forms.gle/u8nseAtgNAN5aMJDA"
 
     elif "Acolhimento dos Monitores" in evento_selecionado or "Monitores" in evento_selecionado:
         try:
@@ -490,6 +467,33 @@ elif menu == "🏛️ Eventos ECISS":
         except Exception:
             st.caption("ℹ️ *[Logo do Evento 3 (SER) não encontrada]*")
         st.link_button("🔗 Inscrever-se no 3º Evento (SER)", "https://forms.gle/LINK_INSCRICAO_SER_EV3")
+
+# --- 2.2. PET SAÚDE CLIMA (Nova Aba Vertical Criada) ---
+elif menu == "🌱 PET Saúde Clima":
+    mostrar_cabecalho("capaS.jpg")
+    st.subheader("🌱 Encontro Formativo PET Saúde Clima")
+    
+    try:
+        st.image("pet clima.png", width=400)
+    except Exception:
+        st.caption("ℹ️ *[Logo de divulgação do PET Saúde Clima não encontrada no repositório]*")
+        
+    st.write("""
+    * **Público-alvo:** Integrantes do programa, estudantes e comunidade acadêmica.
+    * **Modalidade de Certificação:** Certificado de Ouvinte Participante.
+    * **Investimento:** Gratuito.
+    """)
+    st.markdown("---")
+    st.markdown("#### 📅 Programação e Links do Evento")
+    st.link_button("📅 Ver / Baixar Programação PET Saúde Clima", "COLE_LINK_PROGRAMACAO_PET")
+    
+    st.markdown("##### 📌 Publicações e Submissões do PET:")
+    st.link_button("📋 Acessar Publicação de Relatório Semanal", "https://forms.gle/LNYNJ97gh4WxsLmg6")
+    st.link_button("📝 Enviar / Consultar Relato de Experiência", "https://form.jotform.com/262538360587062")
+    
+    st.markdown("---")
+    st.markdown("#### 🔗 Inscrição")
+    st.link_button("🔗 Inscrever-se como Ouvinte (PET Saúde Clima)", "https://forms.gle/u8nseAtgNAN5aMJDA")
 
 # --- 3. TRABALHOS (SUBMISSÃO + STATUS COM RELATO DE EXPERIÊNCIA E PRODUTO TÉCNICO-TECNOLÓGICO) ---
 elif menu == "✍️ Trabalhos Científicos e Submissões":
