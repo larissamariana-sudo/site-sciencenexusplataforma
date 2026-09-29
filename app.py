@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 
+# Configuração da página com o favicon e layout wide
 st.set_page_config(
     page_title="Science Nexus Plataforma | Saúde • Sociedade • Tecnologias • Humanidades",
     page_icon="favicon.jpg",
@@ -826,7 +827,7 @@ st.markdown("""
         <img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="115" alt="Licença Creative Commons BY-NC-SA 4.0">
     </a>
     <p style='font-size: 13px; margin-top: 5px;'>
-        As obras publicadas nesse site estão sob a Licença <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt-br" target="_blank">Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional</a>.
+        As obras publicadas nesse site estão sob la Licença <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt-br" target="_blank">Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional</a>.
     </p>
 </div>
 """, unsafe_allow_html=True)
