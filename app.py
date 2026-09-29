@@ -2,6 +2,11 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 
+st.set_page_config(
+    page_title="Science Nexus Plataforma | Saúde • Sociedade • Tecnologias • Humanidades",
+    page_icon="favicon.jpg",  # Aqui você insere o arquivo ou um emoji (ex: "🩺")
+    layout="wide"
+)
 # Obter o ano atual dinamicamente para o copyright
 ano_atual = datetime.now().year
 
@@ -366,12 +371,12 @@ elif menu == "🎟️ Eventos e Inscrições":
             
         st.markdown("### 🩺 Atividades de Extensão e Vínculo com a Comunidade")
         st.write("""
-        * **Público-alvo:** Estudantes e docentes do curso de Fisioterapia.
+        * **Público-alvo:** Estudantes e docentes da graduação.
         * **Investimento:** Gratuito para Estudantes e Docentes.
         * **Destaque:** Permite submissão de Relatos de Experiência e Resumos Expandidos com ISBN.
         """)
         st.markdown("### **EIXOS TEMÁTICOS**")
-        st.write("**Disciplinas extensionistas; Ligas Acadêmicas; Atividades de Extensão nos Estágios e Atividades Externas às Disciplinas do curso de Fisioterapia.**")
+        st.write("Relatos de Experiências relacionados a: **Disciplinas extensionistas; Ligas Acadêmicas; Atividades de Extensão nos Estágios; Atividades Externas às Disciplinas; Ações do PET Saúde.**")
         st.write("**Submissões em regime de fluxo contínuo durante o ano. A publicação dos anais eletrônicos é realizada em volume único ao final de cada ciclo.**")
         st.warning("⚠️ **Sugestão:** os modelos de atividades podem ser adaptados para **Relato de Experiência** ou **Resumo Expandido**.")
         
@@ -483,8 +488,8 @@ elif menu == "🌱 PET Saúde Clima":
     st.link_button("📅 Ver / Baixar Programação PET Saúde Clima", "https://drive.google.com/file/d/18c2ipSoJfXGZeBvMnuduDoP9AIP2k-s7/view?usp=sharing")
     
     st.markdown("##### 📌 Publicações e Submissões do PET:")
-    st.link_button("📋 Acessar Publicação de Relatório Semanal", "https://forms.gle/LNYNJ97gh4WxsLmg6")
-    st.link_button("📝 Enviar / Consultar Relato de Experiência", "https://form.jotform.com/262538360587062")
+    st.link_button("📋 Enviar **Relatório Semanal**", "https://forms.gle/LNYNJ97gh4WxsLmg6")
+    st.link_button("📝 Enviar **Relato de Experiência / Ver normas para submissão**", "https://form.jotform.com/262538360587062")
     
     st.markdown("---")
     st.markdown("### 📝 Normas para Submissão de Relato de Experiência")
