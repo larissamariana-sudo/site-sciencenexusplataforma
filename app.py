@@ -66,11 +66,11 @@ def mostrar_cabecalho(foto="capaS.jpg"):
     """, unsafe_allow_html=True)
     st.write("")
 
-# --- MENU ---
+# --- MENU (Eventos ECISS reposicionado logo abaixo de Início / Sobre) ---
 menu = st.sidebar.selectbox("Navegue pelo Portal:", [
     "🏠 Início / Sobre", 
-    "🎟️ Eventos e Inscrições", 
     "🏛️ Eventos ECISS",
+    "🎟️ Eventos e Inscrições", 
     "🌱 PET Saúde Clima",
     "✍️ Trabalhos Científicos e Submissões", 
     "🎓 Validação de Certificados", 
@@ -94,167 +94,7 @@ if menu == "🏠 Início / Sobre":
     * **Avaliação:** Acompanhe em tempo real se seu trabalho está em análise, aprovado ou pendente de correções.
     """)
 
-# --- 2. EVENTOS E INSCRIÇÕES (Com Links Independentes por Evento) ---
-elif menu == "🎟️ Eventos e Inscrições":
-    mostrar_cabecalho("capaS.jpg")
-    st.subheader("🎟️ Programação de Eventos e Cursos Disponíveis")
-    st.write("Selecione abaixo o evento de seu interesse para ver os detalhes, consultar a programação e realizar a inscrição.")
-    
-    evento_selecionado = st.selectbox("Escolha o Evento:", [
-        "1. Jornada Científica do Curso de Fisioterapia",
-        "2. Acolhimento dos Monitores Caeme/Prograd", 
-        "3. Atividades de Extensão e Vínculo com a Comunidade", 
-        "4. Minicurso Prático: Reabilitação e Terapia Manual", 
-        "5. Workshop: Inovação e Tecnologias em Saúde",
-        "6. Simpósio de Saúde Coletiva e Políticas Públicas",
-        "7. Encontro Científico Psico História e as Leis da Robótica"
-    ])
-    
-    st.markdown("---")
-    
-    if "Jornada Científica" in evento_selecionado:
-        try:
-            st.image("logo_jornada.png.jpg", width=400)
-        except Exception:
-            st.caption("ℹ️ *[Logo institucional da Jornada não encontrada no repositório]*")
-            
-        st.markdown("### 🩺 Jornada Científica do Curso de Fisioterapia")
-        st.write("""
-        * **Público-alvo:** Estudantes, docentes, profissionais e pesquisadores.
-        * **Investimento:** 
-          * Estudantes, Docentes e Banca da PUC Goiás: **Gratuito**.
-          * Participantes Externos: **R$ 10,00** (Standby mediante comprovante na chave `eventos@sciencenexus.com.br`).
-        * **Destaque:** Permite submissão de Resumos Simples e Expandidos.
-        """)
-        st.markdown("### **EIXOS TEMÁTICOS**")
-        st.write("**Fisioterapia Musculo Esquelética, Neurológica, Cardiorrespiratória, Terapia Intensiva, Geriatria e Gerontologia, Saúde da Mulher, Saúde Coletiva, Tecnologias e Inteligência Artificial na Saúde e Outras Áreas.**")
-        st.warning("⚠️ **Atenção para inscrições pagas:** Ficarão em status de **Standby** até a validação do comprovante.")
-        
-        st.markdown("---")
-        st.markdown("#### 📅 Programação do Evento")
-        st.link_button("📅 Ver / Baixar Programação da Jornada EM BREVE", "COLE_LINK_PROGRAMACAO_JORNADA")
-        
-        opcoes_inscricao = ["Participante/Ouvinte", "Cadastro Trabalho para Apresentação (Orientador)"]
-        
-        link_ouv = "https://forms.gle/tVKQtkEpQHG9Bo3K7"
-        link_cad = "https://forms.gle/CP2dG8qZXP2xoRtG6"
-
-    elif "Acolhimento dos Monitores" in evento_selecionado or "Monitores" in evento_selecionado:
-        try:
-            st.image("monitores.jpg", width=400)
-        except Exception:
-            st.caption("ℹ️ *[Logo/Imagem do evento não encontrada]*")
-            
-        st.markdown("### 🤲 Acolhimento dos Monitores Caeme/Prograd (ENCERRADO)")
-        st.write("Data: Público: Edição: 20XX/X.")
-        st.markdown("#### 📅 Programação do Evento")
-        st.link_button("📅 Ver / Baixar Programação", "COLE_LINK_PROGRAMACAO_MONITORES")
-        
-        opcoes_inscricao = ["Participante/Ouvinte"]
-        link_ouv = "https:// forms.gle/wtTcSXZt6PnwzjEL7"
-        
-    elif "Atividades de Extensão" in evento_selecionado:
-        try:
-            st.image("extensao1.jpg", width=400)
-        except Exception:
-            st.caption("ℹ️ *[Logo/Imagem da Mostra não encontrada]*")
-            
-        st.markdown("### 🩺 Atividades de Extensão e Vínculo com a Comunidade")
-        st.write("""
-        * **Público-alvo:** Estudantes e docentes do curso de Fisioterapia.
-        * **Investimento:** Gratuito para Estudantes e Docentes.
-        * **Destaque:** Permite submissão de Relatos de Experiência e Resumos Expandidos com ISBN.
-        """)
-        st.markdown("### **EIXOS TEMÁTICOS**")
-        st.write("**Disciplinas extensionistas; Ligas Acadêmicas; Atividades de Extensão nos Estágios e Atividades Externas às Disciplinas do curso de Fisioterapia.**")
-        st.write("**Submissões em regime de fluxo contínuo durante o ano. A publicação dos anais eletrônicos é realizada em volume único ao final de cada ciclo.**")
-        st.warning("⚠️ **Sugestão:** os modelos de atividades podem ser adaptados para **Relato de Experiência** ou **Resumo Expandido**.")
-        
-        st.markdown("---")
-        st.markdown("#### 📅 Submissões em regime de fluxo contínuo")
-        st.link_button("📅 ANAIS 2026 / Baixar Anais EM BREVE", "COLE_LINK_PROGRAMACAO_MOSTRA")            
-        
-        opcoes_inscricao = ["Cadastro Submissão de Relato de Experiência/Resumo Expandido"]
-        
-        link_cad = "https://form.jotform.com/262538360587062"
-    
-    elif "Minicurso Prático" in evento_selecionado:
-        try:
-            st.image("minicurso.jpg", width=400)
-        except Exception:
-            st.caption("ℹ️ *[Logo do Minicurso não encontrada]*")
-            
-        st.markdown("### 🤲 Minicurso Prático: Reabilitação e Terapia Manual")
-        st.write("Detalhes e práticas avançadas em terapia manual para acadêmicos e profissionais.")
-        st.markdown("#### 📅 Programação do Evento")
-        st.link_button("📅 Ver / Baixar Programação do Minicurso", "COLE_LINK_PROGRAMACAO_MINICURSO")
-        
-        opcoes_inscricao = ["Participante/Ouvinte"]
-        link_ouv = "https://forms.gle/LINK_MINICURSO_OUVINTE"
-        
-    elif "Workshop" in evento_selecionado:
-        try:
-            st.image("workshop.jpg", width=400)
-        except Exception:
-            st.caption("ℹ️ *[Logo do Workshop não encontrada]*")
-            
-        st.markdown("### 💡 Workshop: Inovação e Tecnologias em Saúde")
-        st.write("Discussão sobre novas tecnologias e o futuro da reabilitação e saúde.")
-        st.markdown("#### 📅 Programação do Evento")
-        st.link_button("📅 Ver / Baixar Programação do Workshop", "COLE_LINK_PROGRAMACAO_WORKSHOP")
-        
-        opcoes_inscricao = ["Participante/Ouvinte"]
-        link_ouv = "https://forms.gle/LINK_WORKSHOP_OUVINTE"
-        
-    elif "Simpósio de Saúde Coletiva" in evento_selecionado:
-        try:
-            st.image("simposio.jpg", width=400)
-        except Exception:
-            st.caption("ℹ️ *[Logo do Simpósio não encontrada]*")
-            
-        st.markdown("### 📊 Simpósio de Saúde Coletiva e Políticas Públicas")
-        st.write("Debates e mesas-redondas sobre o impacto das políticas públicas na saúde.")
-        st.markdown("#### 📅 Programação do Evento")
-        st.link_button("📅 Ver / Baixar Programação do Simpósio", "COLE_LINK_PROGRAMACAO_SIMPOSIO")
-        
-        opcoes_inscricao = ["Participante/Ouvinte", "Apresentador de Trabalho"]
-        link_ouv = "https://forms.gle/LINK_SIMPOSIO_OUVINTE"
-        link_apr = "https://forms.gle/LINK_SIMPOSIO_APRESENTADOR"
-        
-    elif "Encontro Científico" in evento_selecionado:
-        try:
-            st.image("encontro.jpg", width=400)
-        except Exception:
-            st.caption("ℹ️ *[Logo do Encontro não encontrada]*")
-            
-        st.markdown("### 🎓 Encontro Científico Psico História e as Leis da Robótica")
-        st.write("""
-        * **Foco:** Integração científica dos acadêmicos da graduação.
-        * **Investimento:** Gratuito para a comunidade acadêmica da FST.
-        """)
-        st.markdown("#### 📅 Programação do Evento")
-        st.link_button("📅 Ver / Baixar Programação do Encontro", "COLE_LINK_PROGRAMACAO_ENCONTRO")
-        
-        opcoes_inscricao = ["Participante/Ouvinte", "Apresentador de Trabalho"]
-        link_ouv = "https://forms.gle/LINK_ENCONTRO_OUVINTE"
-        link_apr = "https://forms.gle/LINK_ENCONTRO_APRESENTADOR"
-    
-    st.markdown("---")
-    cat = st.radio("Selecione a opção desejada para inscrição:", opcoes_inscricao)
-    
-    if cat == "Participante/Ouvinte":
-        st.link_button("🔗 Inscrever-se como Ouvinte", link_ouv)
-    elif cat == "Orientador" or cat == "Orientador/Professor":
-        st.link_button("🔗 Inscrever-se como Orientador", link_ori)
-    elif cat == "Apresentador de Trabalho":
-        st.link_button("🔗 Inscrever-se como Apresentador", link_apr)
-    elif cat == "Membro da Banca":
-        st.link_button("🔗 Inscrever-se como Banca", link_ban)
-    else:
-        st.info("⚠️ **Exclusivo para Orientadores/Organizadores:** Utilize este formulário para submeter ou cadastrar as informações.")
-        st.link_button("📝 Acessar Formulário de Submissão", link_cad)
-
-# --- 2.1. EVENTOS ECISS (Com o evento específico de FONO e suporte a 3 eventos simultâneos por curso) ---
+# --- 2. EVENTOS ECISS (Com a aba FISIO contendo a Jornada Científica e demais cursos) ---
 elif menu == "🏛️ Eventos ECISS":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("🏛️ Eventos ECISS • Programação por Curso de Graduação")
@@ -290,17 +130,36 @@ elif menu == "🏛️ Eventos ECISS":
         st.link_button("🔗 Inscrever-se no 3º Evento (ENF)", "https://forms.gle/LINK_INSCRICAO_ENF_EV3")
         
     with tab_fisio:
-        st.markdown("### 📋 Eventos Ativos - Curso de FISIO")
-        st.markdown("---")
-        st.markdown("#### 🩺 1º Evento Principal - FISIO")
         try:
-            st.image("logo_fisio_evento1.png", width=350)
+            st.image("logo_jornada.png.jpg", width=400)
         except Exception:
-            st.caption("ℹ️ *[Logo do Evento 1 (FISIO) não encontrada]*")
-        st.link_button("🔗 Inscrever-se no 1º Evento (FISIO)", "https://forms.gle/LINK_INSCRICAO_FISIO_EV1")
+            st.caption("ℹ️ *[Logo institucional da Jornada não encontrada no repositório]*")
+            
+        st.markdown("### 🩺 Jornada Científica do Curso de Fisioterapia")
+        st.write("""
+        * **Público-alvo:** Estudantes, docentes, profissionais e pesquisadores.
+        * **Investimento:** 
+          * Estudantes, Docentes e Banca da PUC Goiás: **Gratuito**.
+          * Participantes Externos: **R$ 10,00** (Standby mediante comprovante na chave `eventos@sciencenexus.com.br`).
+        * **Destaque:** Permite submissão de Resumos Simples e Expandidos.
+        """)
+        st.markdown("### **EIXOS TEMÁTICOS**")
+        st.write("**Fisioterapia Musculo Esquelética, Neurológica, Cardiorrespiratória, Terapia Intensiva, Geriatria e Gerontologia, Saúde da Mulher, Saúde Coletiva, Tecnologias e Inteligência Artificial na Saúde e Outras Áreas.**")
+        st.warning("⚠️ **Atenção para inscrições pagas:** Ficarão em status de **Standby** até a validação do comprovante.")
         
         st.markdown("---")
-        st.markdown("#### 🤲 2º Evento Prático / Minicurso - FISIO")
+        st.markdown("#### 📅 Programação do Evento")
+        st.link_button("📅 Ver / Baixar Programação da Jornada EM BREVE", "COLE_LINK_PROGRAMACAO_JORNADA")
+        
+        st.markdown("---")
+        st.markdown("#### 🔗 Links de Inscrição")
+        st.link_button("🔗 Inscrever-se como Ouvinte", "https://forms.gle/tVKQtkEpQHG9Bo3K7")
+        st.link_button("📝 Cadastro Trabalho para Apresentação (Orientador)", "https://forms.gle/CP2dG8qZXP2xoRtG6")
+
+        st.markdown("---")
+        st.markdown("#### 📋 Outros Eventos Simultâneos - FISIO")
+        
+        st.markdown("##### 2º Evento Prático / Minicurso - FISIO")
         try:
             st.image("logo_fisio_evento2.png", width=350)
         except Exception:
@@ -308,7 +167,7 @@ elif menu == "🏛️ Eventos ECISS":
         st.link_button("🔗 Inscrever-se no 2º Evento (FISIO)", "https://forms.gle/LINK_INSCRICAO_FISIO_EV2")
         
         st.markdown("---")
-        st.markdown("#### 💡 3º Workshop / Mesa-Redonda - FISIO")
+        st.markdown("##### 3º Workshop / Mesa-Redonda - FISIO")
         try:
             st.image("logo_fisio_evento3.png", width=350)
         except Exception:
@@ -468,7 +327,139 @@ elif menu == "🏛️ Eventos ECISS":
             st.caption("ℹ️ *[Logo do Evento 3 (SER) não encontrada]*")
         st.link_button("🔗 Inscrever-se no 3º Evento (SER)", "https://forms.gle/LINK_INSCRICAO_SER_EV3")
 
-# --- 2.2. PET SAÚDE CLIMA (Aba Vertical com Atividades Formativas e Inscrições logo abaixo) ---
+# --- 3. EVENTOS E INSCRIÇÕES (Atualizado sem a Jornada Científica) ---
+elif menu == "🎟️ Eventos e Inscrições":
+    mostrar_cabecalho("capaS.jpg")
+    st.subheader("🎟️ Programação de Eventos e Cursos Disponíveis")
+    st.write("Selecione abaixo o evento de seu interesse para ver os detalhes, consultar a programação e realizar a inscrição.")
+    
+    evento_selecionado = st.selectbox("Escolha o Evento:", [
+        "1. Acolhimento dos Monitores Caeme/Prograd", 
+        "2. Atividades de Extensão e Vínculo com a Comunidade", 
+        "3. Minicurso Prático: Reabilitação e Terapia Manual", 
+        "4. Workshop: Inovação e Tecnologias em Saúde",
+        "5. Simpósio de Saúde Coletiva e Políticas Públicas",
+        "6. Encontro Científico Psico História e as Leis da Robótica"
+    ])
+    
+    st.markdown("---")
+    
+    if "Acolhimento dos Monitores" in evento_selecionado or "Monitores" in evento_selecionado:
+        try:
+            st.image("monitores.jpg", width=400)
+        except Exception:
+            st.caption("ℹ️ *[Logo/Imagem do evento não encontrada]*")
+            
+        st.markdown("### 🤲 Acolhimento dos Monitores Caeme/Prograd (ENCERRADO)")
+        st.write("Data: Público: Edição: 20XX/X.")
+        st.markdown("#### 📅 Programação do Evento")
+        st.link_button("📅 Ver / Baixar Programação", "COLE_LINK_PROGRAMACAO_MONITORES")
+        
+        opcoes_inscricao = ["Participante/Ouvinte"]
+        link_ouv = "https:// forms.gle/wtTcSXZt6PnwzjEL7"
+        
+    elif "Atividades de Extensão" in evento_selecionado:
+        try:
+            st.image("extensao1.jpg", width=400)
+        except Exception:
+            st.caption("ℹ️ *[Logo/Imagem da Mostra não encontrada]*")
+            
+        st.markdown("### 🩺 Atividades de Extensão e Vínculo com a Comunidade")
+        st.write("""
+        * **Público-alvo:** Estudantes e docentes do curso de Fisioterapia.
+        * **Investimento:** Gratuito para Estudantes e Docentes.
+        * **Destaque:** Permite submissão de Relatos de Experiência e Resumos Expandidos com ISBN.
+        """)
+        st.markdown("### **EIXOS TEMÁTICOS**")
+        st.write("**Disciplinas extensionistas; Ligas Acadêmicas; Atividades de Extensão nos Estágios e Atividades Externas às Disciplinas do curso de Fisioterapia.**")
+        st.write("**Submissões em regime de fluxo contínuo durante o ano. A publicação dos anais eletrônicos é realizada em volume único ao final de cada ciclo.**")
+        st.warning("⚠️ **Sugestão:** os modelos de atividades podem ser adaptados para **Relato de Experiência** ou **Resumo Expandido**.")
+        
+        st.markdown("---")
+        st.markdown("#### 📅 Submissões em regime de fluxo contínuo")
+        st.link_button("📅 ANAIS 2026 / Baixar Anais EM BREVE", "COLE_LINK_PROGRAMACAO_MOSTRA")            
+        
+        opcoes_inscricao = ["Cadastro Submissão de Relato de Experiência/Resumo Expandido"]
+        
+        link_cad = "https://form.jotform.com/262538360587062"
+    
+    elif "Minicurso Prático" in evento_selecionado:
+        try:
+            st.image("minicurso.jpg", width=400)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Minicurso não encontrada]*")
+            
+        st.markdown("### 🤲 Minicurso Prático: Reabilitação e Terapia Manual")
+        st.write("Detalhes e práticas avançadas em terapia manual para acadêmicos e profissionais.")
+        st.markdown("#### 📅 Programação do Evento")
+        st.link_button("📅 Ver / Baixar Programação do Minicurso", "COLE_LINK_PROGRAMACAO_MINICURSO")
+        
+        opcoes_inscricao = ["Participante/Ouvinte"]
+        link_ouv = "https://forms.gle/LINK_MINICURSO_OUVINTE"
+        
+    elif "Workshop" in evento_selecionado:
+        try:
+            st.image("workshop.jpg", width=400)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Workshop não encontrada]*")
+            
+        st.markdown("### 💡 Workshop: Inovação e Tecnologias em Saúde")
+        st.write("Discussão sobre novas tecnologias e o futuro da reabilitação e saúde.")
+        st.markdown("#### 📅 Programação do Evento")
+        st.link_button("📅 Ver / Baixar Programação do Workshop", "COLE_LINK_PROGRAMACAO_WORKSHOP")
+        
+        opcoes_inscricao = ["Participante/Ouvinte"]
+        link_ouv = "https://forms.gle/LINK_WORKSHOP_OUVINTE"
+        
+    elif "Simpósio de Saúde Coletiva" in evento_selecionado:
+        try:
+            st.image("simposio.jpg", width=400)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Simpósio não encontrada]*")
+            
+        st.markdown("### 📊 Simpósio de Saúde Coletiva e Políticas Públicas")
+        st.write("Debates e mesas-redondas sobre o impacto das políticas públicas na saúde.")
+        st.markdown("#### 📅 Programação do Evento")
+        st.link_button("📅 Ver / Baixar Programação do Simpósio", "COLE_LINK_PROGRAMACAO_SIMPOSIO")
+        
+        opcoes_inscricao = ["Participante/Ouvinte", "Apresentador de Trabalho"]
+        link_ouv = "https://forms.gle/LINK_SIMPOSIO_OUVINTE"
+        link_apr = "https://forms.gle/LINK_SIMPOSIO_APRESENTADOR"
+        
+    elif "Encontro Científico" in evento_selecionado:
+        try:
+            st.image("encontro.jpg", width=400)
+        except Exception:
+            st.caption("ℹ️ *[Logo do Encontro não encontrada]*")
+            
+        st.markdown("### 🎓 Encontro Científico Psico História e as Leis da Robótica")
+        st.write("""
+        * **Foco:** Integração científica dos acadêmicos da graduação.
+        * **Investimento:** Gratuito para a comunidade acadêmica da FST.
+        """)
+        st.markdown("#### 📅 Programação do Evento")
+        st.link_button("📅 Ver / Baixar Programação do Encontro", "COLE_LINK_PROGRAMACAO_ENCONTRO")
+        
+        opcoes_inscricao = ["Participante/Ouvinte", "Apresentador de Trabalho"]
+        link_ouv = "https://forms.gle/LINK_ENCONTRO_OUVINTE"
+        link_apr = "https://forms.gle/LINK_ENCONTRO_APRESENTADOR"
+    
+    st.markdown("---")
+    cat = st.radio("Selecione a opção desejada para inscrição:", opcoes_inscricao)
+    
+    if cat == "Participante/Ouvinte":
+        st.link_button("🔗 Inscrever-se como Ouvinte", link_ouv)
+    elif cat == "Orientador" or cat == "Orientador/Professor":
+        st.link_button("🔗 Inscrever-se como Orientador", link_ori)
+    elif cat == "Apresentador de Trabalho":
+        st.link_button("🔗 Inscrever-se como Apresentador", link_apr)
+    elif cat == "Membro da Banca":
+        st.link_button("🔗 Inscrever-se como Banca", link_ban)
+    else:
+        st.info("⚠️ **Exclusivo para Orientadores/Organizadores:** Utilize este formulário para submeter ou cadastrar as informações.")
+        st.link_button("📝 Acessar Formulário de Submissão", link_cad)
+
+# --- 4. PET SAÚDE CLIMA ---
 elif menu == "🌱 PET Saúde Clima":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("🌱 Atividades Formativas PET Saúde Clima")
@@ -484,7 +475,6 @@ elif menu == "🌱 PET Saúde Clima":
     * **Investimento:** Gratuito.
     """)
     
-    # Seção de Inscrições posicionada logo abaixo da informação de Investimento
     st.markdown("#### 🔗 Inscrição")
     st.link_button("🔗 Inscrever-se como Ouvinte (PET Saúde Clima)", "https://forms.gle/u8nseAtgNAN5aMJDA")
 
@@ -493,8 +483,8 @@ elif menu == "🌱 PET Saúde Clima":
     st.link_button("📅 Ver / Baixar Programação PET Saúde Clima", "https://drive.google.com/file/d/18c2ipSoJfXGZeBvMnuduDoP9AIP2k-s7/view?usp=sharing")
     
     st.markdown("##### 📌 Publicações e Submissões do PET:")
-    st.link_button("📋 Enviar **Resumo/Atividades de leitura e Atividades em campo**", "https://forms.gle/LNYNJ97gh4WxsLmg6")
-    st.link_button("📝 Enviar **Relato de Experiência** (seguir as normas abaixo)", "https://form.jotform.com/262538360587062")
+    st.link_button("📋 Acessar Publicação de Relatório Semanal", "https://forms.gle/LNYNJ97gh4WxsLmg6")
+    st.link_button("📝 Enviar / Consultar Relato de Experiência", "https://form.jotform.com/262538360587062")
     
     st.markdown("---")
     st.markdown("### 📝 Normas para Submissão de Relato de Experiência")
@@ -518,7 +508,7 @@ elif menu == "🌱 PET Saúde Clima":
     except Exception:
         st.caption("ℹ️ *[PDF com regras detalhadas de Relato de Experiência em breve]*")
 
-# --- 3. TRABALHOS (SUBMISSÃO + STATUS COM ARTIGO COMPLETO NO FINAL) ---
+# --- 5. TRABALHOS (SUBMISSÃO + STATUS COM ARTIGO COMPLETO NO FINAL) ---
 elif menu == "✍️ Trabalhos Científicos e Submissões":
     mostrar_cabecalho("eventos.png")
     st.subheader("✍️ Central de Submissão Trabalhos Científicos, Relatos e Produtos Técnicos")
@@ -672,7 +662,7 @@ elif menu == "✍️ Trabalhos Científicos e Submissões":
                 else:
                     st.error("Por favor, digite um e-mail.")
 
-# --- 4. VALIDAÇÃO DE CERTIFICADOS ---
+# --- 6. VALIDAÇÃO DE CERTIFICADOS ---
 elif menu == "🎓 Validação de Certificados":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("🎓 Validação de Autenticidade de Certificados")
@@ -739,7 +729,7 @@ elif menu == "🎓 Validação de Certificados":
             else:
                 st.error("Por favor, digite o código de autenticidade.")
 
-# --- 5. DOI/ISBN ---
+# --- 7. DOI/ISBN ---
 elif menu == "💳 Taxa de DOI Individual/Pessoal":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("💳 Solicitação e Pagamento de DOI Individual")
@@ -754,7 +744,7 @@ elif menu == "💳 Taxa de ISBN Coletivo":
     st.info("ℹ️ **Chave PIX:** eventos@sciencenexus.com.br")
     st.link_button("🔗 Link para Solicitação ISBN", "https://forms.gle/2bN1yFrR5phvTcAu5")
 
-# --- 6. ANAIS ---
+# --- 8. ANAIS ---
 elif menu == "📚 Anais Publicados":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("📚 Repositório Oficial de Anais")
@@ -762,7 +752,7 @@ elif menu == "📚 Anais Publicados":
     st.link_button("📥 Baixar Anais Mostra de Extensão 2026", "COLE_LINK_PDF_ANAIS_AQUI") 
     st.link_button("📥 Baixar Anais - Produtos Técnico-Tecnológicos (PTT)", "COLE_LINK_PDF_ANAIS_PTT_AQUI")
 
-# --- 7. TRANSMISSÃO AO VIVO ---
+# --- 9. TRANSMISSÃO AO VIVO ---
 elif menu == "📺 Transmissão ao Vivo":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("📺 Central de Transmissões ao Vivo e Eventos Online")
@@ -788,7 +778,7 @@ elif menu == "📺 Transmissão ao Vivo":
     st.info("🔴 **Status:** Transmissão agendada. O link será ativado no horário oficial do evento.")
     st.link_button(f"🔗 Entrar na {sala_escolhida}", "COLE_LINK_DA_SALA")
 
-# --- 8. ANAIS ANTERIORES (Com 4 abas dedicadas) ---
+# --- 10. ANAIS ANTERIORES (Com 4 abas dedicadas) ---
 elif menu == "📂 Anais Anteriores":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("📂 Repositório de Anais Anteriores")
@@ -816,7 +806,7 @@ elif menu == "📂 Anais Anteriores":
         st.write("Acesse o repositório completo contendo todos os acervos históricos organizados por ano:")
         st.link_button("📥 Acessar Pasta Geral de Anais Anteriores no Drive", "COLE_LINK_PASTA_ANAIS_ANTERIORES")
 
-# --- 9. CONTATO ---
+# --- 11. CONTATO ---
 elif menu == "📞 Contato":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("📞 Fale Conosco")
