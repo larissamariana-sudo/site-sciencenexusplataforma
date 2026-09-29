@@ -19,7 +19,6 @@ def carregar_dados_planilha(link_planilha):
     try:
         if "docs.google.com" in link_planilha:
             id_plan = link_planilha.split("/d/")[1].split("/")[0]
-            # Usa export?format=csv para ler automaticamente a primeira aba da planilha do Google Sheets
             url_csv = f"https://docs.google.com/spreadsheets/d/{id_plan}/export?format=csv"
             df = pd.read_csv(url_csv)
             df.columns = df.columns.str.strip().str.lower()
@@ -67,21 +66,34 @@ def mostrar_cabecalho(foto="capaS.jpg"):
     """, unsafe_allow_html=True)
     st.write("")
 
-# --- MENU (Eventos ECISS reposicionado logo abaixo de Início / Sobre) ---
-menu = st.sidebar.selectbox("Navegue pelo Portal:", [
+# --- MENU DUPLO NA BARRA LATERAL (Duas abas verticais separadas) ---
+st.sidebar.markdown("### 🌐 Navegue pelo Portal")
+menu_principal = st.sidebar.selectbox("Seção Principal:", [
     "🏠 Início / Sobre", 
     "🏛️ Eventos ECISS",
     "🎟️ Eventos e Inscrições", 
     "🌱 PET Saúde Clima",
+    "📺 Transmissão ao Vivo",
+    "📞 Contato"
+], key="menu_principal")
+
+st.sidebar.markdown("---")
+st.sidebar.markdown("### ✍️ Submissões e Gestão Científica")
+menu_submissoes = st.sidebar.selectbox("Seção Científica:", [
+    "Nenhuma / Voltar ao Início",
     "✍️ Trabalhos Científicos e Submissões", 
     "🎓 Validação de Certificados", 
     "💳 Taxa de DOI Individual/Pessoal", 
     "💳 Taxa de ISBN Coletivo",
     "📚 Anais Publicados",
-    "📺 Transmissão ao Vivo",
-    "📂 Anais Anteriores",
-    "📞 Contato"
-])
+    "📂 Anais Anteriores"
+], key="menu_submissoes")
+
+# Lógica unificada para definir qual aba está ativa (priorizando a seção científica se escolhida diferente de 'Nenhuma')
+if menu_submissoes != "Nenhuma / Voltar ao Início":
+    menu = menu_submissoes
+else:
+    menu = menu_principal
 
 # --- 1. INÍCIO ---
 if menu == "🏠 Início / Sobre":
@@ -95,13 +107,12 @@ if menu == "🏠 Início / Sobre":
     * **Avaliação:** Acompanhe em tempo real se seu trabalho está em análise, aprovado ou pendente de correções.
     """)
 
-# --- 2. EVENTOS ECISS (Com a aba FISIO contendo a Jornada Científica e demais cursos) ---
+# --- 2. EVENTOS ECISS ---
 elif menu == "🏛️ Eventos ECISS":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("🏛️ Eventos ECISS • Programação por Curso de Graduação")
     st.write("Consulte abaixo os eventos simultâneos ativos para cada curso de graduação, com suas respectivas logos e links de inscrição.")
     
-    # Criando as 7 abas horizontais para os cursos solicitados
     tab_enf, tab_fisio, tab_fono, tab_gastro, tab_nutri, tab_psi, tab_ser = st.tabs(["ENF", "FISIO", "FONO", "GASTRO", "NUTRI", "PSI", "SER"])
     
     with tab_enf:
@@ -326,7 +337,7 @@ elif menu == "🏛️ Eventos ECISS":
             st.caption("ℹ️ *[Logo do Evento 3 (SER) não encontrada]*")
         st.link_button("🔗 Inscrever-se no 3º Evento (SER)", "https://forms.gle/LINK_INSCRICAO_SER_EV3")
 
-# --- 3. EVENTOS E INSCRIÇÕES (Atualizado sem a Jornada Científica) ---
+# --- 3. EVENTOS E INSCRIÇÕES ---
 elif menu == "🎟️ Eventos e Inscrições":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("🎟️ Programação de Eventos e Cursos Disponíveis")
@@ -507,7 +518,7 @@ elif menu == "🌱 PET Saúde Clima":
     except Exception:
         st.caption("ℹ️ *[PDF com regras detalhadas de Relato de Experiência em breve]*")
 
-# --- 5. TRABALHOS (SUBMISSÃO + STATUS COM ARTIGO COMPLETO NO FINAL) ---
+# --- 5. TRABALHOS (SUBMISSÃO + STATUS) ---
 elif menu == "✍️ Trabalhos Científicos e Submissões":
     mostrar_cabecalho("eventos.png")
     st.subheader("✍️ Central de Submissão Trabalhos Científicos, Relatos e Produtos Técnicos")
@@ -777,7 +788,7 @@ elif menu == "📺 Transmissão ao Vivo":
     st.info("🔴 **Status:** Transmissão agendada. O link será ativado no horário oficial do evento.")
     st.link_button(f"🔗 Entrar na {sala_escolhida}", "COLE_LINK_DA_SALA")
 
-# --- 10. ANAIS ANTERIORES (Com 4 abas dedicadas) ---
+# --- 10. ANAIS ANTERIORES ---
 elif menu == "📂 Anais Anteriores":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("📂 Repositório de Anais Anteriores")
@@ -820,14 +831,14 @@ elif menu == "📞 Contato":
     st.info("📧 **E-mail oficial de suporte:** eventos@sciencenexus.com.br")
     st.write("Nossa equipe responderá sua mensagem em até 24 horas úteis.")
 
-# 2. Inserção da Licença Creative Commons BY-NC-SA 4.0 com os símbolos
+# Licença Creative Commons
 st.markdown("""
 <div style='text-align: center; margin-top: 10px; margin-bottom: 10px;'>
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt-br" target="_blank">
         <img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="115" alt="Licença Creative Commons BY-NC-SA 4.0">
     </a>
     <p style='font-size: 13px; margin-top: 5px;'>
-        As obras publicadas nesse site estão sob la Licença <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt-br" target="_blank">Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional</a>.
+        As obras publicadas nesse site estão sob a Licença <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt-br" target="_blank">Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional</a>.
     </p>
 </div>
 """, unsafe_allow_html=True)
