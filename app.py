@@ -66,7 +66,7 @@ def mostrar_cabecalho(foto="capaS.jpg"):
     """, unsafe_allow_html=True)
     st.write("")
 
-# --- MENU DUPLO NA BARRA LATERAL (Duas abas verticais separadas) ---
+# --- MENU DUPLO NA BARRA LATERAL (Com a Validação de Certificados e Extensão reposicionados) ---
 st.sidebar.markdown("### 🌐 Navegue pelo Portal")
 menu_principal = st.sidebar.selectbox("Seção Principal:", [
     "🏠 Início / Sobre", 
@@ -82,16 +82,16 @@ menu_principal = st.sidebar.selectbox("Seção Principal:", [
 st.sidebar.markdown("---")
 st.sidebar.markdown("### ✍️ Submissões e Gestão Científica")
 menu_submissoes = st.sidebar.selectbox("Seção Científica:", [
+    "Nenhuma / Voltar ao Início",
     "✍️ Trabalhos Científicos e Submissões", 
     "💳 Taxa de DOI Individual/Pessoal", 
     "💳 Taxa de ISBN Coletivo",
     "📚 Anais Publicados",
-    "📂 Anais Anteriores",
-    "🏠 Voltar ao Início / Menu Principal"
+    "📂 Anais Anteriores"
 ], key="menu_submissoes")
 
 # Lógica unificada para definir qual aba está ativa
-if menu_submissoes != "🏠 Voltar ao Início / Menu Principal":
+if menu_submissoes != "Nenhuma / Voltar ao Início":
     menu = menu_submissoes
 else:
     menu = menu_principal
@@ -338,7 +338,7 @@ elif menu == "🏛️ Eventos ECISS":
             st.caption("ℹ️ *[Logo do Evento 3 (SER) não encontrada]*")
         st.link_button("🔗 Inscrever-se no 3º Evento (SER)", "https://forms.gle/LINK_INSCRICAO_SER_EV3")
 
-# --- 3. EVENTOS E INSCRIÇÕES (Atualizado sem Atividades de Extensão) ---
+# --- 3. EVENTOS E INSCRIÇÕES (Sem Atividades de Extensão) ---
 elif menu == "🎟️ Eventos e Inscrições":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("🎟️ Programação de Eventos e Cursos Disponíveis")
@@ -444,7 +444,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.info("⚠️ **Exclusivo para Orientadores/Organizadores:** Utilize este formulário para submeter ou cadastrar as informações.")
         st.link_button("📝 Acessar Formulário de Submissão", link_cad)
 
-# --- ATIVIDADES DE EXTENSÃO (Nova Entrada na Primeira Seção) ---
+# --- 3.1. ATIVIDADES DE EXTENSÃO E VÍNCULO COM A COMUNIDADE (Nova Aba Independente) ---
 elif menu == "🩺 Atividades de Extensão e Vínculo com a Comunidade":
     mostrar_cabecalho("capaS.jpg")
     try:
@@ -466,7 +466,7 @@ elif menu == "🩺 Atividades de Extensão e Vínculo com a Comunidade":
     st.markdown("---")
     st.markdown("#### 📅 Submissões em regime de fluxo contínuo")
     st.link_button("📅 ANAIS 2026 / Baixar Anais EM BREVE", "COLE_LINK_PROGRAMACAO_MOSTRA")            
-    st.link_button("Cadastro Submissão de Relato de Experiência/Resumo Expandido", "https://form.jotform.com/262538360587062")
+    st.link_button("📝 Acessar Formulário de Submissão", "https://form.jotform.com/262538360587062")
 
 # --- 4. PET SAÚDE CLIMA ---
 elif menu == "🌱 PET Saúde Clima":
@@ -517,7 +517,111 @@ elif menu == "🌱 PET Saúde Clima":
     except Exception:
         st.caption("ℹ️ *[PDF com regras detalhadas de Relato de Experiência em breve]*")
 
-# --- 5. TRABALHOS (SUBMISSÃO + STATUS) ---
+# --- 5. TRANSMISSÃO AO VIVO ---
+elif menu == "📺 Transmissão ao Vivo":
+    mostrar_cabecalho("capaS.jpg")
+    st.subheader("📺 Central de Transmissões ao Vivo e Eventos Online")
+    st.write("Acompanhe abaixo as palestras, sessões de apresentação de trabalhos e mesas-redondas em tempo real.")
+    
+    st.markdown("---")
+    link_transmissao = st.text_input("🔗 Cole aqui o link da transmissão (YouTube Live):", "https://www.youtube.com/watch?v=EXEMPLO_LIVE")
+    
+    if link_transmissao:
+        try:
+            st.video(link_transmissao)
+        except Exception:
+            st.warning("Insira um link válido do YouTube para exibir o player de transmissão.")
+            
+    st.markdown("---")
+    st.markdown("### 📋 Programação das Salas Online")
+    sala_escolhida = st.selectbox("Escolha a Sala:", [
+        "Sala 1: Abertura e Conferências Principais",
+        "Sala 2: Apresentação de Trabalhos - Fisioterapia Musculoesquelética",
+        "Sala 3: Apresentação de Trabalhos - Saúde Coletiva e Extensão",
+        "Sala 4: Mesas-redondas e Encerramento"
+    ])
+    st.info("🔴 **Status:** Transmissão agendada. O link será ativado no horário oficial do evento.")
+    st.link_button(f"🔗 Entrar na {sala_escolhida}", "COLE_LINK_DA_SALA")
+
+# --- 6. VALIDAÇÃO DE CERTIFICADOS ---
+elif menu == "🎓 Validação de Certificados":
+    mostrar_cabecalho("capaS.jpg")
+    st.subheader("🎓 Validação de Autenticidade de Certificados")
+    st.write("Insira o **Código de Autenticidade** exclusivo impresso no rodapé do certificado para comprovar sua validade:")
+    
+    with st.form("form_validacao_cert"):
+        codigo_digitado = st.text_input("Código de Autenticidade:", placeholder="Ex: PUCGO-2026-XXXX").strip()
+        validar_btn = st.form_submit_button("Verificar Autenticidade")
+        
+        if validar_btn:
+            if codigo_digitado:
+                try:
+                    links_planilhas = [
+                        "https://docs.google.com/spreadsheets/d/15D_Vay3AQDUrbmaHjgwTeg0irLHX5q2pw6sw_wtiDl0/edit?usp=sharing",  
+                        "https://docs.google.com/spreadsheets/d/1ymnfGiFmC_PZLUIra7mWyZMjD_hc9Uu6jXvLohUjBeE/edit?usp=sharing",  
+                        "https://docs.google.com/spreadsheets/d/1eEQeDcwCQ9gkpy9MAI9It7gk1fx1QwZRXBnhRhvkg6o/edit?usp=sharing",  
+                        "https://docs.google.com/spreadsheets/d/1uQnTs-ijo0d4fiTFoIKC0ANuJ5A2SfRQO3jOA65OruI/edit?usp=sharing",  
+                        "https://docs.google.com/spreadsheets/d/1ym70HWRIJPhzFbcYhmf4bcQLmzW4rbF5GkkycDyEC_0/edit?usp=sharing",  
+                    ]
+                    
+                    encontrado = False
+                    nome_p = "Participante"
+                    erros_diagnostico = []
+                    
+                    for i, link in enumerate(links_planilhas):
+                        if "docs.google.com" in link:
+                            df_c = carregar_dados_planilha(link)
+                            if df_c is not None and not df_c.empty:
+                                df_c.columns = df_c.columns.str.strip().str.lower()
+                                
+                                col_cod = next((c for c in df_c.columns if any(termo in c for termo in ['codigo', 'chave', 'autenticidade', 'código'])), None)
+                                
+                                if col_cod:
+                                    df_c[col_cod] = df_c[col_cod].astype(str).str.strip().str.lower()
+                                    res_c = df_c[df_c[col_cod] == codigo_digitado.lower()]
+                                    
+                                    if not res_c.empty:
+                                        colunas_possiveis = ['nome', 'nome completo', 'nome_completo', 'nome_orientador', 'nome_aluno', 'participante', 'autor', 'aluno', 'orientador']
+                                        col_nome_encontrada = next((c for c in df_c.columns if any(p in c for p in colunas_possiveis)), None)
+                                        
+                                        if col_nome_encontrada:
+                                            nome_p = str(res_c.iloc[0].get(col_nome_encontrada, 'Participante')).title()
+                                        else:
+                                            nome_p = "Participante Registrado"
+                                            
+                                        encontrado = True
+                                        break
+                                else:
+                                    erros_diagnostico.append(f"Planilha {i+1}: Coluna de código não encontrada.")
+                            else:
+                                erros_diagnostico.append(f"Planilha {i+1}: Dados vazios ou sem permissão.")
+                    
+                    if encontrado:
+                        st.success("✅ **CERTIFICADO VÁLIDO E AUTÊNTICO!**")
+                        st.write(f"Este certificado pertence oficialmente a: **{nome_p}** — Science Nexus / PUC Goiás.")
+                    else:
+                        st.error("❌ **Certificado Inválido ou Não Encontrado:** O código informado não consta em nenhuma das bases de dados oficiais.")
+                except Exception as e:
+                    st.error(f"Erro técnico ao consultar a base de dados: {e}")
+            else:
+                st.error("Por favor, digite o código de autenticidade.")
+
+# --- 7. CONTATO ---
+elif menu == "📞 Contato":
+    mostrar_cabecalho("capaS.jpg")
+    st.subheader("📞 Fale Conosco")
+    st.write("Entre em contato com a comissão organizadora para dúvidas sobre submissões, inscrições ou certificados.")
+    st.markdown("---")
+    
+    st.markdown("### 🏛️ Está organizando um Evento? Solicite o Cadastro pelo link")
+    st.write("Deseja hospedar e gerenciar as inscrições, submissões e certificações do seu evento acadêmico em nossa plataforma? Acesse o formulário dedicado abaixo:")
+    st.link_button("📝 Solicitar Cadastro de Novo Evento", "https://forms.gle/yDZ99vzxCNQnqXgH8")
+    
+    st.markdown("---")
+    st.info("📧 **E-mail oficial de suporte:** eventos@sciencenexus.com.br")
+    st.write("Nossa equipe responderá sua mensagem em até 24 horas úteis.")
+
+# --- 8. TRABALHOS (SUBMISSÃO + STATUS) ---
 elif menu == "✍️ Trabalhos Científicos e Submissões":
     mostrar_cabecalho("eventos.png")
     st.subheader("✍️ Central de Submissão Trabalhos Científicos, Relatos e Produtos Técnicos")
@@ -671,74 +775,7 @@ elif menu == "✍️ Trabalhos Científicos e Submissões":
                 else:
                     st.error("Por favor, digite um e-mail.")
 
-# --- 6. VALIDAÇÃO DE CERTIFICADOS ---
-elif menu == "🎓 Validação de Certificados":
-    mostrar_cabecalho("capaS.jpg")
-    st.subheader("🎓 Validação de Autenticidade de Certificados")
-    st.write("Insira o **Código de Autenticidade** exclusivo impresso no rodapé do certificado para comprovar sua validade:")
-    
-    with st.form("form_validacao_cert"):
-        codigo_digitado = st.text_input("Código de Autenticidade:", placeholder="Ex: PUCGO-2026-XXXX").strip()
-        validar_btn = st.form_submit_button("Verificar Autenticidade")
-        
-        if validar_btn:
-            if codigo_digitado:
-                try:
-                    links_planilhas = [
-                        "https://docs.google.com/spreadsheets/d/15D_Vay3AQDUrbmaHjgwTeg0irLHX5q2pw6sw_wtiDl0/edit?usp=sharing",  # Planilha 1
-                        "https://docs.google.com/spreadsheets/d/1ymnfGiFmC_PZLUIra7mWyZMjD_hc9Uu6jXvLohUjBeE/edit?usp=sharing",  # Planilha 2
-                        "https://docs.google.com/spreadsheets/d/1eEQeDcwCQ9gkpy9MAI9It7gk1fx1QwZRXBnhRhvkg6o/edit?usp=sharing",  # Planilha 3
-                        "https://docs.google.com/spreadsheets/d/1uQnTs-ijo0d4fiTFoIKC0ANuJ5A2SfRQO3jOA65OruI/edit?usp=sharing",  # Planilha 4
-                        "https://docs.google.com/spreadsheets/d/1ym70HWRIJPhzFbcYhmf4bcQLmzW4rbF5GkkycDyEC_0/edit?usp=sharing",  # Planilha 5
-                    ]
-                    
-                    encontrado = False
-                    nome_p = "Participante"
-                    erros_diagnostico = []
-                    
-                    for i, link in enumerate(links_planilhas):
-                        if "docs.google.com" in link:
-                            df_c = carregar_dados_planilha(link)
-                            if df_c is not None and not df_c.empty:
-                                df_c.columns = df_c.columns.str.strip().str.lower()
-                                
-                                col_cod = next((c for c in df_c.columns if any(termo in c for termo in ['codigo', 'chave', 'autenticidade', 'código'])), None)
-                                
-                                if col_cod:
-                                    df_c[col_cod] = df_c[col_cod].astype(str).str.strip().str.lower()
-                                    res_c = df_c[df_c[col_cod] == codigo_digitado.lower()]
-                                    
-                                    if not res_c.empty:
-                                        colunas_possiveis = ['nome', 'nome completo', 'nome_completo', 'nome_orientador', 'nome_aluno', 'participante', 'autor', 'aluno', 'orientador']
-                                        col_nome_encontrada = next((c for c in df_c.columns if any(p in c for p in colunas_possiveis)), None)
-                                        
-                                        if col_nome_encontrada:
-                                            nome_p = str(res_c.iloc[0].get(col_nome_encontrada, 'Participante')).title()
-                                        else:
-                                            nome_p = "Participante Registrado"
-                                            
-                                        encontrado = True
-                                        break
-                                else:
-                                    erros_diagnostico.append(f"Planilha {i+1}: Coluna de código não encontrada (Colunas lidas: {list(df_c.columns)})")
-                            else:
-                                erros_diagnostico.append(f"Planilha {i+1}: Dados vazios ou sem permissão pública de leitura na 1ª aba.")
-                    
-                    if encontrado:
-                        st.success("✅ **CERTIFICADO VÁLIDO E AUTÊNTICO!**")
-                        st.write(f"Este certificado pertence oficialmente a: **{nome_p}** — Science Nexus / PUC Goiás.")
-                    else:
-                        st.error("❌ **Certificado Inválido ou Não Encontrado:** O código informado não consta em nenhuma das bases de dados oficiais.")
-                        with st.expander("🔍 Detalhes técnicos da varredura"):
-                            for err in erros_diagnostico:
-                                st.write(err)
-                        
-                except Exception as e:
-                    st.error(f"Erro técnico ao consultar a base de dados: {e}")
-            else:
-                st.error("Por favor, digite o código de autenticidade.")
-
-# --- 7. DOI/ISBN ---
+# --- 9. DOI/ISBN ---
 elif menu == "💳 Taxa de DOI Individual/Pessoal":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("💳 Solicitação e Pagamento de DOI Individual")
@@ -753,7 +790,7 @@ elif menu == "💳 Taxa de ISBN Coletivo":
     st.info("ℹ️ **Chave PIX:** eventos@sciencenexus.com.br")
     st.link_button("🔗 Link para Solicitação ISBN", "https://forms.gle/2bN1yFrR5phvTcAu5")
 
-# --- 8. ANAIS ---
+# --- 10. ANAIS ---
 elif menu == "📚 Anais Publicados":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("📚 Repositório Oficial de Anais")
@@ -761,33 +798,7 @@ elif menu == "📚 Anais Publicados":
     st.link_button("📥 Baixar Anais Mostra de Extensão 2026", "COLE_LINK_PDF_ANAIS_AQUI") 
     st.link_button("📥 Baixar Anais - Produtos Técnico-Tecnológicos (PTT)", "COLE_LINK_PDF_ANAIS_PTT_AQUI")
 
-# --- 9. TRANSMISSÃO AO VIVO ---
-elif menu == "📺 Transmissão ao Vivo":
-    mostrar_cabecalho("capaS.jpg")
-    st.subheader("📺 Central de Transmissões ao Vivo e Eventos Online")
-    st.write("Acompanhe abaixo as palestras, sessões de apresentação de trabalhos e mesas-redondas em tempo real.")
-    
-    st.markdown("---")
-    link_transmissao = st.text_input("🔗 Cole aqui o link da transmissão (YouTube Live):", "https://www.youtube.com/watch?v=EXEMPLO_LIVE")
-    
-    if link_transmissao:
-        try:
-            st.video(link_transmissao)
-        except Exception:
-            st.warning("Insira um link válido do YouTube para exibir o player de transmissão.")
-            
-    st.markdown("---")
-    st.markdown("### 📋 Programação das Salas Online")
-    sala_escolhida = st.selectbox("Escolha a Sala:", [
-        "Sala 1: Abertura e Conferências Principais",
-        "Sala 2: Apresentação de Trabalhos - Fisioterapia Musculoesquelética",
-        "Sala 3: Apresentação de Trabalhos - Saúde Coletiva e Extensão",
-        "Sala 4: Mesas-redondas e Encerramento"
-    ])
-    st.info("🔴 **Status:** Transmissão agendada. O link será ativado no horário oficial do evento.")
-    st.link_button(f"🔗 Entrar na {sala_escolhida}", "COLE_LINK_DA_SALA")
-
-# --- 10. ANAIS ANTERIORES ---
+# --- 11. ANAIS ANTERIORES ---
 elif menu == "📂 Anais Anteriores":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("📂 Repositório de Anais Anteriores")
@@ -814,21 +825,6 @@ elif menu == "📂 Anais Anteriores":
         st.markdown("### 📁 Pasta Geral de Anais no Drive")
         st.write("Acesse o repositório completo contendo todos os acervos históricos organizados por ano:")
         st.link_button("📥 Acessar Pasta Geral de Anais Anteriores no Drive", "COLE_LINK_PASTA_ANAIS_ANTERIORES")
-
-# --- 11. CONTATO ---
-elif menu == "📞 Contato":
-    mostrar_cabecalho("capaS.jpg")
-    st.subheader("📞 Fale Conosco")
-    st.write("Entre em contato com a comissão organizadora para dúvidas sobre submissões, inscrições ou certificados.")
-    st.markdown("---")
-    
-    st.markdown("### 🏛️ Está organizando um Evento? Solicite o Cadastro pelo link")
-    st.write("Deseja hospedar e gerenciar as inscrições, submissões e certificações do seu evento acadêmico em nossa plataforma? Acesse o formulário dedicado abaixo:")
-    st.link_button("📝 Solicitar Cadastro de Novo Evento", "https://forms.gle/yDZ99vzxCNQnqXgH8")
-    
-    st.markdown("---")
-    st.info("📧 **E-mail oficial de suporte:** eventos@sciencenexus.com.br")
-    st.write("Nossa equipe responderá sua mensagem em até 24 horas úteis.")
 
 # Licença Creative Commons
 st.markdown("""
