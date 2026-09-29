@@ -4,17 +4,12 @@ from datetime import datetime
 
 st.set_page_config(
     page_title="Science Nexus Plataforma | Saúde • Sociedade • Tecnologias • Humanidades",
-    page_icon="favicon.jpg",  # Aqui você insere o arquivo ou um emoji (ex: "🩺")
+    page_icon="favicon.jpg",
     layout="wide"
 )
+
 # Obter o ano atual dinamicamente para o copyright
 ano_atual = datetime.now().year
-
-st.set_page_config(
-    page_title="Science Nexus Plataforma | Saúde • Sociedade • Tecnologias • Humanidades",
-    page_icon="🩺",
-    layout="wide"
-)
 
 # --- FUNÇÃO DE CACHE PARA CARREGAR PLANILHAS RAPIDAMENTE ---
 @st.cache_data(ttl=600)
@@ -187,7 +182,6 @@ elif menu == "🏛️ Eventos ECISS":
         * **Local:** Auditório da Área 4 da PUC Goiás  
         """)
         
-        # Exibição da Logo do Evento (denominada como 'fono.jpg')
         try:
             st.image("jornadafono.jpg", width=400)
         except Exception:
@@ -199,7 +193,6 @@ elif menu == "🏛️ Eventos ECISS":
         st.markdown("---")
         st.markdown("#### 📱 Inscrição via QR Code / Link Dedicado")
         
-        # Exibição da Imagem com QR Code de Inscrição (denominada como 'jornadafono')
         try:
             st.image("logo_fono_evento1", width=300)
         except Exception:
