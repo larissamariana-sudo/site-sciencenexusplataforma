@@ -72,25 +72,26 @@ menu_principal = st.sidebar.selectbox("Seção Principal:", [
     "🏠 Início / Sobre", 
     "🏛️ Eventos ECISS",
     "🎟️ Eventos e Inscrições", 
+    "🩺 Atividades de Extensão e Vínculo com a Comunidade",
     "🌱 PET Saúde Clima",
     "📺 Transmissão ao Vivo",
+    "🎓 Validação de Certificados",
     "📞 Contato"
 ], key="menu_principal")
 
 st.sidebar.markdown("---")
 st.sidebar.markdown("### ✍️ Submissões e Gestão Científica")
 menu_submissoes = st.sidebar.selectbox("Seção Científica:", [
-    "Nenhuma / Voltar ao Início",
     "✍️ Trabalhos Científicos e Submissões", 
-    "🎓 Validação de Certificados", 
     "💳 Taxa de DOI Individual/Pessoal", 
     "💳 Taxa de ISBN Coletivo",
     "📚 Anais Publicados",
-    "📂 Anais Anteriores"
+    "📂 Anais Anteriores",
+    "🏠 Voltar ao Início / Menu Principal"
 ], key="menu_submissoes")
 
-# Lógica unificada para definir qual aba está ativa (priorizando a seção científica se escolhida diferente de 'Nenhuma')
-if menu_submissoes != "Nenhuma / Voltar ao Início":
+# Lógica unificada para definir qual aba está ativa
+if menu_submissoes != "🏠 Voltar ao Início / Menu Principal":
     menu = menu_submissoes
 else:
     menu = menu_principal
@@ -337,7 +338,7 @@ elif menu == "🏛️ Eventos ECISS":
             st.caption("ℹ️ *[Logo do Evento 3 (SER) não encontrada]*")
         st.link_button("🔗 Inscrever-se no 3º Evento (SER)", "https://forms.gle/LINK_INSCRICAO_SER_EV3")
 
-# --- 3. EVENTOS E INSCRIÇÕES ---
+# --- 3. EVENTOS E INSCRIÇÕES (Atualizado sem Atividades de Extensão) ---
 elif menu == "🎟️ Eventos e Inscrições":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("🎟️ Programação de Eventos e Cursos Disponíveis")
@@ -345,11 +346,10 @@ elif menu == "🎟️ Eventos e Inscrições":
     
     evento_selecionado = st.selectbox("Escolha o Evento:", [
         "1. Acolhimento dos Monitores Caeme/Prograd", 
-        "2. Atividades de Extensão e Vínculo com a Comunidade", 
-        "3. Minicurso Prático: Reabilitação e Terapia Manual", 
-        "4. Workshop: Inovação e Tecnologias em Saúde",
-        "5. Simpósio de Saúde Coletiva e Políticas Públicas",
-        "6. Encontro Científico Psico História e as Leis da Robótica"
+        "2. Minicurso Prático: Reabilitação e Terapia Manual", 
+        "3. Workshop: Inovação e Tecnologias em Saúde",
+        "4. Simpósio de Saúde Coletiva e Políticas Públicas",
+        "5. Encontro Científico Psico História e as Leis da Robótica"
     ])
     
     st.markdown("---")
@@ -368,31 +368,6 @@ elif menu == "🎟️ Eventos e Inscrições":
         opcoes_inscricao = ["Participante/Ouvinte"]
         link_ouv = "https:// forms.gle/wtTcSXZt6PnwzjEL7"
         
-    elif "Atividades de Extensão" in evento_selecionado:
-        try:
-            st.image("extensao1.jpg", width=400)
-        except Exception:
-            st.caption("ℹ️ *[Logo/Imagem da Mostra não encontrada]*")
-            
-        st.markdown("### 🩺 Atividades de Extensão e Vínculo com a Comunidade")
-        st.write("""
-        * **Público-alvo:** Estudantes e docentes da graduação.
-        * **Investimento:** Gratuito para Estudantes e Docentes.
-        * **Destaque:** Permite submissão de Relatos de Experiência e Resumos Expandidos com ISBN.
-        """)
-        st.markdown("### **EIXOS TEMÁTICOS**")
-        st.write("Relatos de Experiências relacionados a: **Disciplinas extensionistas; Ligas Acadêmicas; Atividades de Extensão nos Estágios; Atividades Externas às Disciplinas; Ações do PET Saúde.**")
-        st.write("**Submissões em regime de fluxo contínuo durante o ano. A publicação dos anais eletrônicos é realizada em volume único ao final de cada ciclo.**")
-        st.warning("⚠️ **Sugestão:** os modelos de atividades podem ser adaptados para **Relato de Experiência** ou **Resumo Expandido**.")
-        
-        st.markdown("---")
-        st.markdown("#### 📅 Submissões em regime de fluxo contínuo")
-        st.link_button("📅 ANAIS 2026 / Baixar Anais EM BREVE", "COLE_LINK_PROGRAMACAO_MOSTRA")            
-        
-        opcoes_inscricao = ["Cadastro Submissão de Relato de Experiência/Resumo Expandido"]
-        
-        link_cad = "https://form.jotform.com/262538360587062"
-    
     elif "Minicurso Prático" in evento_selecionado:
         try:
             st.image("minicurso.jpg", width=400)
@@ -468,6 +443,30 @@ elif menu == "🎟️ Eventos e Inscrições":
     else:
         st.info("⚠️ **Exclusivo para Orientadores/Organizadores:** Utilize este formulário para submeter ou cadastrar as informações.")
         st.link_button("📝 Acessar Formulário de Submissão", link_cad)
+
+# --- ATIVIDADES DE EXTENSÃO (Nova Entrada na Primeira Seção) ---
+elif menu == "🩺 Atividades de Extensão e Vínculo com a Comunidade":
+    mostrar_cabecalho("capaS.jpg")
+    try:
+        st.image("extensao1.jpg", width=400)
+    except Exception:
+        st.caption("ℹ️ *[Logo/Imagem da Mostra não encontrada]*")
+        
+    st.subheader("🩺 Atividades de Extensão e Vínculo com a Comunidade")
+    st.write("""
+    * **Público-alvo:** Estudantes e docentes da graduação.
+    * **Investimento:** Gratuito para Estudantes e Docentes.
+    * **Destaque:** Permite submissão de Relatos de Experiência e Resumos Expandidos com ISBN.
+    """)
+    st.markdown("### **EIXOS TEMÁTICOS**")
+    st.write("Relatos de Experiências relacionados a: **Disciplinas extensionistas; Ligas Acadêmicas; Atividades de Extensão nos Estágios; Atividades Externas às Disciplinas; Ações do PET Saúde.**")
+    st.write("**Submissões em regime de fluxo contínuo durante o ano. A publicação dos anais eletrônicos é realizada em volume único ao final de cada ciclo.**")
+    st.warning("⚠️ **Sugestão:** os modelos de atividades podem ser adaptados para **Relato de Experiência** ou **Resumo Expandido**.")
+    
+    st.markdown("---")
+    st.markdown("#### 📅 Submissões em regime de fluxo contínuo")
+    st.link_button("📅 ANAIS 2026 / Baixar Anais EM BREVE", "COLE_LINK_PROGRAMACAO_MOSTRA")            
+    st.link_button("Cadastro Submissão de Relato de Experiência/Resumo Expandido", "https://form.jotform.com/262538360587062")
 
 # --- 4. PET SAÚDE CLIMA ---
 elif menu == "🌱 PET Saúde Clima":
