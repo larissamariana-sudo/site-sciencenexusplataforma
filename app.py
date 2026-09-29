@@ -66,7 +66,7 @@ def mostrar_cabecalho(foto="capaS.jpg"):
     """, unsafe_allow_html=True)
     st.write("")
 
-# --- MENU DUPLO NA BARRA LATERAL (Com a Validação de Certificados e Extensão reposicionados) ---
+# --- MENU DUPLO NA BARRA LATERAL ---
 st.sidebar.markdown("### 🌐 Navegue pelo Portal")
 menu_principal = st.sidebar.selectbox("Seção Principal:", [
     "🏠 Início / Sobre", 
@@ -82,7 +82,7 @@ menu_principal = st.sidebar.selectbox("Seção Principal:", [
 st.sidebar.markdown("---")
 st.sidebar.markdown("### ✍️ Submissões e Gestão Científica")
 menu_submissoes = st.sidebar.selectbox("Seção Científica:", [
-    "Nenhuma / Voltar ao Início",
+    "Submissões / Voltar ao Início",
     "✍️ Trabalhos Científicos e Submissões", 
     "💳 Taxa de DOI Individual/Pessoal", 
     "💳 Taxa de ISBN Coletivo",
@@ -91,7 +91,7 @@ menu_submissoes = st.sidebar.selectbox("Seção Científica:", [
 ], key="menu_submissoes")
 
 # Lógica unificada para definir qual aba está ativa
-if menu_submissoes != "Nenhuma / Voltar ao Início":
+if menu_submissoes != "Submissões / Voltar ao Início":
     menu = menu_submissoes
 else:
     menu = menu_principal
@@ -338,7 +338,7 @@ elif menu == "🏛️ Eventos ECISS":
             st.caption("ℹ️ *[Logo do Evento 3 (SER) não encontrada]*")
         st.link_button("🔗 Inscrever-se no 3º Evento (SER)", "https://forms.gle/LINK_INSCRICAO_SER_EV3")
 
-# --- 3. EVENTOS E INSCRIÇÕES (Sem Atividades de Extensão) ---
+# --- 3. EVENTOS E INSCRIÇÕES ---
 elif menu == "🎟️ Eventos e Inscrições":
     mostrar_cabecalho("capaS.jpg")
     st.subheader("🎟️ Programação de Eventos e Cursos Disponíveis")
@@ -444,7 +444,7 @@ elif menu == "🎟️ Eventos e Inscrições":
         st.info("⚠️ **Exclusivo para Orientadores/Organizadores:** Utilize este formulário para submeter ou cadastrar as informações.")
         st.link_button("📝 Acessar Formulário de Submissão", link_cad)
 
-# --- 3.1. ATIVIDADES DE EXTENSÃO E VÍNCULO COM A COMUNIDADE (Nova Aba Independente) ---
+# --- 3.1. ATIVIDADES DE EXTENSÃO E VÍNCULO COM A COMUNIDADE ---
 elif menu == "🩺 Atividades de Extensão e Vínculo com a Comunidade":
     mostrar_cabecalho("capaS.jpg")
     try:
